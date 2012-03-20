@@ -21,7 +21,6 @@ public class InstrumentActivity extends Activity {
 	private IInstrumentService m_instrumentService;
 	private ServiceConnection m_connection = new ServiceConnection() {
 		public void onServiceConnected(ComponentName className, IBinder service) {
-			Log.d(TAG, "Service has connected");
 			m_instrumentService = IInstrumentService.Stub.asInterface(service);
 		}
 		

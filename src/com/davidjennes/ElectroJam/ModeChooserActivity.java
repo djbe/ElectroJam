@@ -34,7 +34,5 @@ public class ModeChooserActivity extends Activity {
             	startActivity(intent);
             }
         });
-        
-        Log.d("Mode Chooser", "Hey!");
     }
 }

@@ -14,12 +14,10 @@ public class InstrumentService extends Service {
 	@Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "Service created");
     }
 	
 	@Override
     public IBinder onBind(Intent intent) {
-        Log.d(TAG, "Binding...");
         return m_binder;
     }
 	
