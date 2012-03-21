@@ -42,7 +42,6 @@ public class InstrumentService extends Service {
    }
 	
 	private final IInstrumentService.Stub m_binder = new IInstrumentService.Stub() {
-		@Override
 		public void loadSamples(Map samples) throws RemoteException {
 			try {
 				final JmDNS jmdns = JmDNS.create();
@@ -75,7 +74,6 @@ public class InstrumentService extends Service {
 			}
 		}
 
-		@Override
 		public void sendEvent(String sample, int mode) throws RemoteException {
 			Log.d(TAG, "playing sample: " + sample + " mode: " + mode);
 		}
