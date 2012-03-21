@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ToggleButton;
 
@@ -24,7 +25,7 @@ public class TestActivity extends Activity {
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.instrument_looper);
         
         mtimer = new Timer();
         mtimer.scheduleAtFixedRate(new Action(), 0, 3750);
@@ -71,11 +72,8 @@ public class TestActivity extends Activity {
         buttonTab[23] = (ToggleButton) findViewById(R.id.LooperFX3);
         buttonTab[24] = (ToggleButton) findViewById(R.id.LooperFX4);
         
-        for (int i=1;i<25;i++) {
+        for (int i=1;i<25;i++)
         	buttonState[i] = 0;
-        	buttonTab[i].setText("");
-        }
-        
         
         buttonTab[1].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
