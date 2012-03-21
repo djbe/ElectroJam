@@ -4,9 +4,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TableLayout;
 import android.widget.ToggleButton;
 
 public class TestActivity extends Activity {
@@ -18,6 +20,8 @@ public class TestActivity extends Activity {
     Timer mtimer; 
     
     ToggleButton[] buttonTab;
+    
+    private TableLayout backgroundlayout;
     
     private String[] urlSons = new String[24];
     
@@ -44,6 +48,8 @@ public class TestActivity extends Activity {
         mSoundManager.addSound(6, R.raw.hithatfuzzogg);
         mSoundManager.addSound(7, R.raw.snareclapogg);
         mSoundManager.addSound(8, R.raw.snareclapreverbogg);
+        
+        backgroundlayout = (TableLayout) findViewById(R.id.LooperTable);
         
         buttonTab = new ToggleButton [25];
         
@@ -221,7 +227,6 @@ public class TestActivity extends Activity {
             TestActivity.this.runOnUiThread(new Runnable() {
                 public void run() {
                     timeCounter=timeCounter+1;
-                    
                     for (int i = 1; i < 25 ; ++i) {
                     	if (buttonState[i]==1) {
                     		mSoundManager.stopSound(i);
@@ -233,16 +238,27 @@ public class TestActivity extends Activity {
         }
     }
 
-    
-    public void buttonClick(String str) {
-    	
-    	int i = Integer.parseInt(str);
-		
-    	if (buttonState[i] == 0 || buttonState[i] == 2)
-    		buttonState[i]=1;
-    	else if (buttonState[i] == 1) {
-    		mSoundManager.stopSound(i);
-        	buttonState[i]=2;
-    	}
-    }
+	public int numberButtonPressed() {
+		int number = 0;
+		for (int i = 1; i < 25; ++i) {
+			if (buttonState[i] == 1) {
+				number = number + 1;
+			}
+		}
+		return number;
+	}
+
+	public void buttonClick(String str) {
+
+		int i = Integer.parseInt(str);
+		int color = Color.argb(255, (int) numberButtonPressed()*51/2, (int) numberButtonPressed()*51/2,(int) numberButtonPressed()*51/2);
+		backgroundlayout.setBackgroundColor(color);
+
+		if (buttonState[i] == 0 || buttonState[i] == 2)
+			buttonState[i] = 1;
+		else if (buttonState[i] == 1) {
+			mSoundManager.stopSound(i);
+			buttonState[i] = 2;
+		}
+	}
 }
