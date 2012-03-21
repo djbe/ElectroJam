@@ -12,33 +12,60 @@ import android.util.Log;
 
 public class SoundManager {
 	private final static String TAG = "SoundManager";
+	private final static Random RANDOM = new Random();
 	
 	private Context m_context;
 	private Map<Integer, MediaPlayer> m_sounds;
-	private final Random RANDOM = new Random();
 	
+	/**
+	 * Constructor
+	 * @param context The activity's context
+	 */
 	public SoundManager(Context context) {
 		m_context = context;
 	    m_sounds = new HashMap<Integer, MediaPlayer>();
 	}
-
-	public int addSound(int id) {
+	
+	/**
+	 * Load a sound and prepare it for playback
+	 * @param resid The resource ID to load from
+	 * @return The sound's ID
+	 */
+	public int loadSound(int resid) {
 		int r = RANDOM.nextInt();
-		m_sounds.put(r, create(m_context, id));
+		m_sounds.put(r, create(m_context, resid));
 		
 		return r;
 	}
 	
-	public void playSound(int id) {
-		playSound(id, false);
+	/**
+	 * Free up the resources used by a sound
+	 * @param id The sound's ID
+	 */
+	public void unloadSound(int id) {
+		MediaPlayer player = m_sounds.get(id);
+		
+		player.stop();
+		player.release();
+		m_sounds.remove(id);
 	}
 	
+	/**
+	 * Play a sound, looping if need be
+	 * @param id The sound's ID
+	 * @param looped Will loop if true
+	 */
 	public void playSound(int id, boolean looped) {
 		MediaPlayer player = m_sounds.get(id);
+		
 		player.setLooping(looped);
 		player.start();
 	}
 	
+	/**
+	 * Stop a sound which is playing, and prepare it for playback again
+	 * @param id The sound's ID
+	 */
 	public void stopSound(int id) {
 		if (m_sounds.containsKey(id)) {			
 			m_sounds.get(id).stop();
@@ -50,11 +77,17 @@ public class SoundManager {
 		}
 	}
 	
-	// create MediaPlayer, but don't wait for prepare to finish
+	/**
+	 * Create MediaPlayer, but don't wait for prepare to finish 
+	 * @param context The activity context
+	 * @param resid The resource ID
+	 * @return A MediaPlayer instance
+	 */
 	public static MediaPlayer create(Context context, int resid) {
         try {
             AssetFileDescriptor afd = context.getResources().openRawResourceFd(resid);
-            if (afd == null) return null;
+            if (afd == null)
+            	return null;
 
             MediaPlayer mp = new MediaPlayer();
             mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
@@ -64,13 +97,10 @@ public class SoundManager {
             return mp;
         } catch (IOException ex) {
             Log.d(TAG, "create failed:", ex);
-            // fall through
         } catch (IllegalArgumentException ex) {
             Log.d(TAG, "create failed:", ex);
-           // fall through
         } catch (SecurityException ex) {
             Log.d(TAG, "create failed:", ex);
-            // fall through
         }
         
         return null;

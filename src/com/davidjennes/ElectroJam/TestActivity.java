@@ -16,6 +16,34 @@ public class TestActivity extends Activity {
     private TableLayout m_background;
     private int m_totalPressed;
     
+    public TestActivity() {
+        Map<Integer, Integer> m_buttonSound = new HashMap<Integer, Integer>();
+        m_buttonSound.put(R.id.LooperDrum1, R.raw.bass_egg_snare_test);
+        m_buttonSound.put(R.id.LooperDrum2, R.raw.bass_egg_snare_test);
+        m_buttonSound.put(R.id.LooperDrum3, R.raw.bass_egg_snare_test);
+        m_buttonSound.put(R.id.LooperDrum4, R.raw.bass_egg_snare_test);
+        m_buttonSound.put(R.id.LooperSnare1, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperSnare2, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperSnare3, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperSnare4, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperBass1, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperBass2, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperBass3, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperBass4, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperRythmic1, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperRythmic2, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperRythmic3, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperRythmic4, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperLead1, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperLead2, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperLead3, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperLead4, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperFX1, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperFX2, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperFX3, R.raw.clap_egg_test);
+        m_buttonSound.put(R.id.LooperFX4, R.raw.clap_egg_test);
+    }
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.instrument_looper);
@@ -23,44 +51,23 @@ public class TestActivity extends Activity {
         m_background = (TableLayout) findViewById(R.id.LooperTable);
         m_totalPressed = 0;
         
-        // initialize sound manager
+        // initialize and load sounds
         m_soundManager = new SoundManager(getBaseContext());
-        
-        // connect buttons to corresponding sounds
-        m_buttonSound = new HashMap<Integer, Integer>();
-        m_buttonSound.put(R.id.LooperDrum1, m_soundManager.addSound(R.raw.bass_egg_snare_test));
-        m_buttonSound.put(R.id.LooperDrum2, m_soundManager.addSound(R.raw.bass_egg_snare_test));
-        m_buttonSound.put(R.id.LooperDrum3, m_soundManager.addSound(R.raw.bass_egg_snare_test));
-        m_buttonSound.put(R.id.LooperDrum4, m_soundManager.addSound(R.raw.bass_egg_snare_test));
-        m_buttonSound.put(R.id.LooperSnare1, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperSnare2, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperSnare3, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperSnare4, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperBass1, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperBass2, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperBass3, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperBass4, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperRythmic1, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperRythmic2, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperRythmic3, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperRythmic4, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperLead1, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperLead2, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperLead3, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperLead4, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperFX1, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperFX2, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperFX3, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperFX4, m_soundManager.addSound(R.raw.clap_egg_test));
+        for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet())
+        	m_buttonSound.put(entry.getKey(), m_soundManager.loadSound(entry.getValue()));
     }
     
     public void onDestroy() {
         super.onDestroy();
         
         for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet())
-    		m_soundManager.stopSound(entry.getValue());
+    		m_soundManager.unloadSound(entry.getValue());
     }
-
+    
+    /**
+     * Called on click of one of the buttons
+     * @param view The clicked button
+     */
     public void buttonClick(View view) {
     	if (view == null)
     		return;
