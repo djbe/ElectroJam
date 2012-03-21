@@ -258,9 +258,6 @@ public class TestActivity extends Activity {
 			mSoundManager.stopSound(i);
 			buttonState[i] = 2;
 		}
-
-		int color = Color.argb(255, 0, (int) numberButtonPressed()*102/20,(int) numberButtonPressed()*255/20);
-		backgroundlayout.setBackgroundColor(color);
 		
 	}
 }
