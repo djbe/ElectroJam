@@ -2,20 +2,24 @@ package com.davidjennes.ElectroJam;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Timer;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TableLayout;
 import android.widget.ToggleButton;
 
 public class TestActivity extends Activity {
 	private SoundManager m_soundManager;
 	private Map<Integer, Integer> m_buttonSound;
+    private TableLayout m_background;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.instrument_looper);
+        
+        m_background = (TableLayout) findViewById(R.id.LooperTable);
         
         // initialize sound manager
         m_soundManager = new SoundManager(getBaseContext());
@@ -46,5 +50,18 @@ public class TestActivity extends Activity {
     		m_soundManager.playSound(m_buttonSound.get(button.getId()), true);
     	else
     		m_soundManager.stopSound(m_buttonSound.get(button.getId()));
+    	
+    	int color = Color.argb(255, 0, (int) numberButtonPressed()*102/20,(int) numberButtonPressed()*255/20);
+    	m_background.setBackgroundColor(color);
     }
+
+	private int numberButtonPressed() {
+		int number = 0;
+		
+		for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet())
+			if (((ToggleButton) findViewById(entry.getKey())).isChecked())
+				++number;
+		
+		return number;
+	}
 }
