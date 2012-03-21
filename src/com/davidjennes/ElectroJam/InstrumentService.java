@@ -64,7 +64,10 @@ public class InstrumentService extends Service {
 			    };
 			    jmdns.addServiceListener(type, listener);
 			    
-			    // ...
+			    // wait
+			    try {
+			    	Thread.sleep(5000);
+			    } catch(InterruptedException e) {}
 			    
 			    jmdns.removeServiceListener(type, listener);
 			    jmdns.close();
