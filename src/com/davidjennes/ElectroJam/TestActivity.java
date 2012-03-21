@@ -249,16 +249,18 @@ public class TestActivity extends Activity {
 	}
 
 	public void buttonClick(String str) {
-
+		
 		int i = Integer.parseInt(str);
-		int color = Color.argb(255, (int) numberButtonPressed()*51/2, (int) numberButtonPressed()*51/2,(int) numberButtonPressed()*51/2);
-		backgroundlayout.setBackgroundColor(color);
-
+		
 		if (buttonState[i] == 0 || buttonState[i] == 2)
 			buttonState[i] = 1;
 		else if (buttonState[i] == 1) {
 			mSoundManager.stopSound(i);
 			buttonState[i] = 2;
 		}
+
+		int color = Color.argb(255, 0, (int) numberButtonPressed()*102/10,(int) numberButtonPressed()*255/10);
+		backgroundlayout.setBackgroundColor(color);
+		
 	}
 }
