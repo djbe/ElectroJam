@@ -17,8 +17,8 @@ public class TestActivity extends Activity {
     private int m_totalPressed;
     
     public TestActivity() {
-        Map<Integer, Integer> m_buttonSound = new HashMap<Integer, Integer>();
-        m_buttonSound.put(R.id.LooperDrum1, R.raw.bass_egg_snare_test);
+    	m_buttonSound = new HashMap<Integer, Integer>();
+    	m_buttonSound.put(R.id.LooperDrum1, R.raw.bass_egg_snare_test);
         m_buttonSound.put(R.id.LooperDrum2, R.raw.bass_egg_snare_test);
         m_buttonSound.put(R.id.LooperDrum3, R.raw.bass_egg_snare_test);
         m_buttonSound.put(R.id.LooperDrum4, R.raw.bass_egg_snare_test);
@@ -54,7 +54,7 @@ public class TestActivity extends Activity {
         // initialize and load sounds
         m_soundManager = new SoundManager(getBaseContext());
         for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet())
-        	m_buttonSound.put(entry.getKey(), m_soundManager.loadSound(entry.getValue()));
+        	entry.setValue(m_soundManager.loadSound(entry.getValue()));
     }
     
     public void onDestroy() {
