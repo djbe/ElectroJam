@@ -29,13 +29,29 @@ public class TestActivity extends Activity {
         // connect buttons to corresponding sounds
         m_buttonSound = new HashMap<Integer, Integer>();
         m_buttonSound.put(R.id.LooperDrum1, m_soundManager.addSound(R.raw.bass_egg_snare_test));
-        m_buttonSound.put(R.id.LooperDrum2, m_soundManager.addSound(R.raw.warpdrumogg));
-        m_buttonSound.put(R.id.LooperDrum3, m_soundManager.addSound(R.raw.filterdrumogg));
-        m_buttonSound.put(R.id.LooperDrum4, m_soundManager.addSound(R.raw.bassdrumchorusogg));
+        m_buttonSound.put(R.id.LooperDrum2, m_soundManager.addSound(R.raw.bass_egg_snare_test));
+        m_buttonSound.put(R.id.LooperDrum3, m_soundManager.addSound(R.raw.bass_egg_snare_test));
+        m_buttonSound.put(R.id.LooperDrum4, m_soundManager.addSound(R.raw.bass_egg_snare_test));
         m_buttonSound.put(R.id.LooperSnare1, m_soundManager.addSound(R.raw.clap_egg_test));
-        m_buttonSound.put(R.id.LooperSnare2, m_soundManager.addSound(R.raw.hithatfuzzogg));
-        m_buttonSound.put(R.id.LooperSnare3, m_soundManager.addSound(R.raw.snareclapogg));
-        m_buttonSound.put(R.id.LooperSnare4, m_soundManager.addSound(R.raw.snareclapreverbogg));
+        m_buttonSound.put(R.id.LooperSnare2, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperSnare3, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperSnare4, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperBass1, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperBass2, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperBass3, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperBass4, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperRythmic1, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperRythmic2, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperRythmic3, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperRythmic4, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperLead1, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperLead2, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperLead3, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperLead4, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperFX1, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperFX2, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperFX3, m_soundManager.addSound(R.raw.clap_egg_test));
+        m_buttonSound.put(R.id.LooperFX4, m_soundManager.addSound(R.raw.clap_egg_test));
     }
     
     public void onDestroy() {
