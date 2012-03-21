@@ -1,13 +1,11 @@
 package com.davidjennes.ElectroJam;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.util.Log;
 
 public class SoundManager {
 	private Context m_context;
@@ -22,7 +20,7 @@ public class SoundManager {
 	public int addSound(int id) {
 		int r = RANDOM.nextInt();
 		m_sounds.put(r, MediaPlayer.create(m_context, id));
-		Log.d("SoundManager", "MediaPlayer: " + r);
+		
 		return r;
 	}
 	
@@ -40,10 +38,8 @@ public class SoundManager {
 		if (m_sounds.containsKey(id)) {			
 			m_sounds.get(id).stop();
 			try {
-				m_sounds.get(id).prepare();
+				m_sounds.get(id).prepareAsync();
 			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
