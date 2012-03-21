@@ -3,6 +3,7 @@
 	android:id="@+id/LooperTable"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:background="@drawable/metalbackground"
 	android:shrinkColumns="*"
 	android:stretchColumns="*" >
 
@@ -222,7 +223,7 @@
 			android:id="@+id/LooperFX1"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorfx"
 			android:onClick="buttonClick"
 			android:textOff=""
 			android:textOn="" />
@@ -231,7 +232,7 @@
 			android:id="@+id/LooperFX2"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorfx"
 			android:onClick="buttonClick"
 			android:textOff=""
 			android:textOn="" />
@@ -240,7 +241,7 @@
 			android:id="@+id/LooperFX3"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorfx"
 			android:onClick="buttonClick"
 			android:textOff=""
 			android:textOn="" />
@@ -249,7 +250,7 @@
 			android:id="@+id/LooperFX4"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorfx"
 			android:onClick="buttonClick"
 			android:textOff=""
 			android:textOn="" />
