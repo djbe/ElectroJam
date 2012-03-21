@@ -164,7 +164,7 @@
 			android:id="@+id/LooperLead1"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorlead"
 			android:textOff=""
 			android:textOn="" />
 
@@ -172,7 +172,7 @@
 			android:id="@+id/LooperLead2"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorlead"
 			android:textOff=""
 			android:textOn="" />
 
@@ -180,7 +180,7 @@
 			android:id="@+id/LooperLead3"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorlead"
 			android:textOff=""
 			android:textOn="" />
 
@@ -188,7 +188,7 @@
 			android:id="@+id/LooperLead4"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorlead"
 			android:textOff=""
 			android:textOn="" />
 	</TableRow>
