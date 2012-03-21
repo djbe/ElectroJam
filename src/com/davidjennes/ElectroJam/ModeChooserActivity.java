@@ -29,7 +29,7 @@ public class ModeChooserActivity extends Activity {
     }
     
     public void startLooper(View view) {
-    	Intent intent = new Intent(this, ServerMode.class);
+    	Intent intent = new Intent(this, TestActivity.class);
     	startActivity(intent);
     }
 }
