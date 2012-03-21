@@ -13,21 +13,21 @@
 		<ToggleButton
 			android:id="@+id/LooperDrum1"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorbass"
+			android:background="@drawable/selectordrum"
 			android:textOff=""
 			android:textOn="" />
 
 		<ToggleButton
 			android:id="@+id/LooperDrum2"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorbass"
+			android:background="@drawable/selectordrum"
 			android:textOff=""
 			android:textOn="" />
 
 		<ToggleButton
 			android:id="@+id/LooperDrum3"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorbass"
+			android:background="@drawable/selectordrum"
 			android:textOff=""
 			android:textOn="" />
 
@@ -35,7 +35,7 @@
 			android:id="@+id/LooperDrum4"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorbass"
+			android:background="@drawable/selectordrum"
 			android:textOff=""
 			android:textOn="" />
 	</TableRow>
