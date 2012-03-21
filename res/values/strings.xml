@@ -5,4 +5,11 @@
 	<string name="mode_server">Server</string>
 	<string name="permlab_instrumentService">Instrument Service</string>
 	<string name="permdesc_instrumentService">Transmit data through the instrument service of ElectroJam.</string>
+	<string name="server_name">ElectroJam</string>
+	<string name="server_name_label">Name</string>
+	<string name="server_description">ElectroJam Server</string>
+	<string name="server_description_label">Description</string>
+	<string name="working">Working&#8230;</string>
+	<string name="starting_server">Starting server.</string>
+	<string name="stopping_server">Stopping server.</string>
 </resources>

@@ -1,20 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:gravity="center_horizontal"
-	android:orientation="vertical" >
+	android:layout_height="fill_parent" >
 
-	<Button
+	<TextView
+		android:id="@+id/label_name"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/server_name_label" />
+
+	<EditText
+		android:id="@+id/edit_name"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/label_name"
+		android:inputType="textPersonName"
+		android:text="@string/server_name" />
+
+	<TextView
+		android:id="@+id/label_description"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/edit_name"
+		android:text="@string/server_description_label" />
+
+	<EditText
+		android:id="@+id/edit_description"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/label_description"
+		android:inputType="textLongMessage"
+		android:text="@string/server_description" />
+
+	<ToggleButton
+		android:id="@+id/toggleServer"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:onClick="startServer"
-		android:text="Start Server" />
-	
-	<Button
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:onClick="stopServer"
-		android:text="Stop Server" />
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		android:onClick="toggleServer" />
 
-</LinearLayout>
+</RelativeLayout>
