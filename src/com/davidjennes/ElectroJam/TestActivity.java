@@ -23,8 +23,6 @@ public class TestActivity extends Activity {
     
     private TableLayout backgroundlayout;
     
-    private String[] urlSons = new String[24];
-    
     private int[] buttonState = new int [25];
     
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +45,7 @@ public class TestActivity extends Activity {
         mSoundManager.addSound(5, R.raw.hithatdelayogg);
         mSoundManager.addSound(6, R.raw.hithatfuzzogg);
         mSoundManager.addSound(7, R.raw.snareclapogg);
-        mSoundManager.addSound(8, R.raw.snareclapreverbogg);
+        mSoundManager.addSound(8, R.raw.snareclapreverbogg);        
         
         backgroundlayout = (TableLayout) findViewById(R.id.LooperTable);
         
@@ -131,82 +129,76 @@ public class TestActivity extends Activity {
         		buttonClick("10");
         	}
         });
-        /*button11.setOnClickListener(new View.OnClickListener() {
+        buttonTab[11].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("11");
         	}
         });
-        button12.setOnClickListener(new View.OnClickListener() {
+        buttonTab[12].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("12");
         	}
         });
-        button13.setOnClickListener(new View.OnClickListener() {
+        buttonTab[13].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("13");
         	}
         });
-        button14.setOnClickListener(new View.OnClickListener() {
+        buttonTab[14].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("14");
         	}
         });
-        button15.setOnClickListener(new View.OnClickListener() {
+        buttonTab[15].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("15");
         	}
         });
-        button16.setOnClickListener(new View.OnClickListener() {
+        buttonTab[16].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("16");
         	}
         });
-        button17.setOnClickListener(new View.OnClickListener() {
+        buttonTab[17].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("17");
         	}
         });
-        button18.setOnClickListener(new View.OnClickListener() {
+        buttonTab[18].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("18");
         	}
         });
-        button19.setOnClickListener(new View.OnClickListener() {
+        buttonTab[19].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("19");
         	}
         });
-        button20.setOnClickListener(new View.OnClickListener() {
+        buttonTab[20].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("20");
         	}
         });
-        button21.setOnClickListener(new View.OnClickListener() {
+        buttonTab[21].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("21");
         	}
         });
-        button22.setOnClickListener(new View.OnClickListener() {
+        buttonTab[22].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("22");
         	}
         });
-        button23.setOnClickListener(new View.OnClickListener() {
+        buttonTab[23].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("23");
         	}
         });
-        button24.setOnClickListener(new View.OnClickListener() {
+        buttonTab[24].setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		buttonClick("24");
         	}
-        }); */
-        
-        
-            for (int j = 0; j < 3; j++) {
-              this.urlSons[j] = "Son"+j+".wav";
-            }
-
+        });
             
             for (int j = 0; j < 24; j++) {
                 this.buttonState[j] = 0;
@@ -252,12 +244,14 @@ public class TestActivity extends Activity {
 		
 		int i = Integer.parseInt(str);
 		
-		if (buttonState[i] == 0 || buttonState[i] == 2)
-			buttonState[i] = 1;
-		else if (buttonState[i] == 1) {
+		if (buttonState[i] == 1) {
 			mSoundManager.stopSound(i);
 			buttonState[i] = 2;
 		}
+		
+		else if (buttonState[i] == 0 || buttonState[i] == 2)
+			buttonState[i] = 1;
+		
 		
 	}
 }

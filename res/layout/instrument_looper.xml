@@ -1,236 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/LooperTable"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:shrinkColumns="*"
-	android:stretchColumns="*" 
-	android:background="@drawable/metalbackground"
-	>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
-	<TableRow
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1" >
+    <TableLayout
+        android:id="@+id/LooperTable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/metalbackground"
+        android:shrinkColumns="*"
+        android:stretchColumns="*" >
 
-		<ToggleButton
-			android:id="@+id/LooperDrum1"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectordrum"
-			android:textOff=""
-			android:textOn="" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
 
-		<ToggleButton
-			android:id="@+id/LooperDrum2"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectordrum"
-			android:textOff=""
-			android:textOn="" />
+            <ToggleButton
+                android:id="@+id/LooperDrum1"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectordrum"
+                android:textOff=""
+                android:textOn="" />
 
-		<ToggleButton
-			android:id="@+id/LooperDrum3"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectordrum"
-			android:textOff=""
-			android:textOn="" />
+            <ToggleButton
+                android:id="@+id/LooperDrum2"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectordrum"
+                android:textOff=""
+                android:textOn="" />
 
-		<ToggleButton
-			android:id="@+id/LooperDrum4"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectordrum"
-			android:textOff=""
-			android:textOn="" />
-	</TableRow>
+            <ToggleButton
+                android:id="@+id/LooperDrum3"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectordrum"
+                android:textOff=""
+                android:textOn="" />
 
-	<TableRow
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1" >
+            <ToggleButton
+                android:id="@+id/LooperDrum4"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectordrum"
+                android:textOff=""
+                android:textOn="" />
+        </TableRow>
 
-		<ToggleButton
-			android:id="@+id/LooperSnare1"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
-			android:textOff=""
-			android:textOn="" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
 
-		<ToggleButton
-			android:id="@+id/LooperSnare2"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
-			android:textOff=""
-			android:textOn="" />
+            <ToggleButton
+                android:id="@+id/LooperSnare1"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorsnare"
+                android:textOff=""
+                android:textOn="" />
 
-		<ToggleButton
-			android:id="@+id/LooperSnare3"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
-			android:textOff=""
-			android:textOn="" />
+            <ToggleButton
+                android:id="@+id/LooperSnare2"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorsnare"
+                android:textOff=""
+                android:textOn="" />
 
-		<ToggleButton
-			android:id="@+id/LooperSnare4"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
-			android:textOff=""
-			android:textOn="" />
-	</TableRow>
+            <ToggleButton
+                android:id="@+id/LooperSnare3"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorsnare"
+                android:textOff=""
+                android:textOn="" />
 
-	<TableRow
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1" >
+            <ToggleButton
+                android:id="@+id/LooperSnare4"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorsnare"
+                android:textOff=""
+                android:textOn="" />
+        </TableRow>
 
-		<ToggleButton
-			android:id="@+id/LooperBass1"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorbass"
-			android:textOff=""
-			android:textOn="" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
 
-		<ToggleButton
-			android:id="@+id/LooperBass2"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorbass"
-			android:textOff=""
-			android:textOn="" />
+            <ToggleButton
+                android:id="@+id/LooperBass1"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorbass"
+                android:textOff=""
+                android:textOn="" />
 
-		<ToggleButton
-			android:id="@+id/LooperBass3"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorbass"
-			android:textOff=""
-			android:textOn="" />
+            <ToggleButton
+                android:id="@+id/LooperBass2"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorbass"
+                android:textOff=""
+                android:textOn="" />
 
-		<ToggleButton
-			android:id="@+id/LooperBass4"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorbass"
-			android:textOff=""
-			android:textOn="" />
-	</TableRow>
+            <ToggleButton
+                android:id="@+id/LooperBass3"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorbass"
+                android:textOff=""
+                android:textOn="" />
 
-	<TableRow
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1" >
+            <ToggleButton
+                android:id="@+id/LooperBass4"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorbass"
+                android:textOff=""
+                android:textOn="" />
+        </TableRow>
 
-		<ToggleButton
-			android:id="@+id/LooperRythmic1"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorrythmic"
-			android:textOff=""
-			android:textOn="" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
 
-		<ToggleButton
-			android:id="@+id/LooperRythmic2"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorrythmic"
-			android:textOff=""
-			android:textOn="" />
+            <ToggleButton
+                android:id="@+id/LooperRythmic1"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorrythmic"
+                android:textOff=""
+                android:textOn="" />
 
-		<ToggleButton
-			android:id="@+id/LooperRythmic3"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorrythmic"
-			android:textOff=""
-			android:textOn="" />
+            <ToggleButton
+                android:id="@+id/LooperRythmic2"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorrythmic"
+                android:textOff=""
+                android:textOn="" />
 
-		<ToggleButton
-			android:id="@+id/LooperRythmic4"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorrythmic"
-			android:textOff=""
-			android:textOn="" />
-	</TableRow>
+            <ToggleButton
+                android:id="@+id/LooperRythmic3"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorrythmic"
+                android:textOff=""
+                android:textOn="" />
 
-	<TableRow
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1" >
+            <ToggleButton
+                android:id="@+id/LooperRythmic4"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorrythmic"
+                android:textOff=""
+                android:textOn="" />
+        </TableRow>
 
-		<ToggleButton
-			android:id="@+id/LooperLead1"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorlead"
-			android:textOff=""
-			android:textOn="" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
 
-		<ToggleButton
-			android:id="@+id/LooperLead2"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorlead"
-			android:textOff=""
-			android:textOn="" />
+            <ToggleButton
+                android:id="@+id/LooperLead1"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorlead"
+                android:textOff=""
+                android:textOn="" />
 
-		<ToggleButton
-			android:id="@+id/LooperLead3"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorlead"
-			android:textOff=""
-			android:textOn="" />
+            <ToggleButton
+                android:id="@+id/LooperLead2"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorlead"
+                android:textOff=""
+                android:textOn="" />
 
-		<ToggleButton
-			android:id="@+id/LooperLead4"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorlead"
-			android:textOff=""
-			android:textOn="" />
-	</TableRow>
+            <ToggleButton
+                android:id="@+id/LooperLead3"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorlead"
+                android:textOff=""
+                android:textOn="" />
 
-	<TableRow
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1" >
+            <ToggleButton
+                android:id="@+id/LooperLead4"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorlead"
+                android:textOff=""
+                android:textOn="" />
+        </TableRow>
 
-		<ToggleButton
-			android:id="@+id/LooperFX1"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorfx"
-			android:textOff=""
-			android:textOn="" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
 
-		<ToggleButton
-			android:id="@+id/LooperFX2"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorfx"
-			android:textOff=""
-			android:textOn="" />
+            <ToggleButton
+                android:id="@+id/LooperFX1"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorfx"
+                android:textOff=""
+                android:textOn="" />
 
-		<ToggleButton
-			android:id="@+id/LooperFX3"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorfx"
-			android:textOff=""
-			android:textOn="" />
+            <ToggleButton
+                android:id="@+id/LooperFX2"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorfx"
+                android:textOff=""
+                android:textOn="" />
 
-		<ToggleButton
-			android:id="@+id/LooperFX4"
-			android:layout_height="fill_parent"
-			android:layout_margin="5dp"
-			android:background="@drawable/selectorfx"
-			android:textOff=""
-			android:textOn="" />
-	</TableRow>
+            <ToggleButton
+                android:id="@+id/LooperFX3"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorfx"
+                android:textOff=""
+                android:textOn="" />
 
-</TableLayout>
+            <ToggleButton
+                android:id="@+id/LooperFX4"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/selectorfx"
+                android:textOff=""
+                android:textOn="" />
+        </TableRow>
+    </TableLayout>
+
+    <SlidingDrawer
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:content="@+id/content"
+        android:handle="@+id/handle"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/metalbackground"
+                />
+
+            <ImageView
+                android:id="@+id/handle"
+                android:layout_width="22dip"
+                android:layout_height="176dip"
+                android:src="@drawable/slidingdrawerhandle" />
+        </LinearLayout>
+    </SlidingDrawer>
+
+</FrameLayout>
