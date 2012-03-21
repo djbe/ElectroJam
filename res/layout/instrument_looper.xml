@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="horizontal" >
+
+	<LinearLayout
+		android:id="@+id/linearLayout1"
+		android:layout_width="0dp"
+		android:layout_height="fill_parent"
+		android:layout_weight="1"
+		android:orientation="vertical" >
+
+		<LinearLayout
+			android:id="@+id/LinearLayout01"
+			android:layout_width="fill_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/ToggleButton1"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorbass"
+				android:ellipsize="marquee"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton2"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorbass"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton3"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorbass"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton4"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorbass"
+				android:text="ToggleButton" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/LinearLayout02"
+			android:layout_width="fill_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/ToggleButton5"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton6"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton7"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton8"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/LinearLayout03"
+			android:layout_width="fill_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/ToggleButton9"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton10"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton11"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton12"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/LinearLayout04"
+			android:layout_width="fill_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/ToggleButton13"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton14"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton15"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton16"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/LinearLayout05"
+			android:layout_width="fill_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/ToggleButton17"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton18"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton19"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton20"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/linearLayout06"
+			android:layout_width="fill_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/ToggleButton21"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton22"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton23"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+
+			<ToggleButton
+				android:id="@+id/ToggleButton24"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:layout_weight="1"
+				android:background="@drawable/selectorsnare"
+				android:text="ToggleButton" />
+		</LinearLayout>
+	</LinearLayout>
+
+</LinearLayout>
