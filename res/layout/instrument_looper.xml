@@ -87,7 +87,7 @@
 			android:id="@+id/LooperBass1"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorbass"
 			android:textOff=""
 			android:textOn="" />
 
@@ -95,7 +95,7 @@
 			android:id="@+id/LooperBass2"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorbass"
 			android:textOff=""
 			android:textOn="" />
 
@@ -103,7 +103,7 @@
 			android:id="@+id/LooperBass3"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorbass"
 			android:textOff=""
 			android:textOn="" />
 
@@ -111,7 +111,7 @@
 			android:id="@+id/LooperBass4"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorbass"
 			android:textOff=""
 			android:textOn="" />
 	</TableRow>
@@ -125,7 +125,7 @@
 			android:id="@+id/LooperRythmic1"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorrythmic"
 			android:textOff=""
 			android:textOn="" />
 
@@ -133,7 +133,7 @@
 			android:id="@+id/LooperRythmic2"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorrythmic"
 			android:textOff=""
 			android:textOn="" />
 
@@ -141,7 +141,7 @@
 			android:id="@+id/LooperRythmic3"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorrythmic"
 			android:textOff=""
 			android:textOn="" />
 
@@ -149,7 +149,7 @@
 			android:id="@+id/LooperRythmic4"
 			android:layout_height="fill_parent"
 			android:layout_margin="5dp"
-			android:background="@drawable/selectorsnare"
+			android:background="@drawable/selectorrythmic"
 			android:textOff=""
 			android:textOn="" />
 	</TableRow>
