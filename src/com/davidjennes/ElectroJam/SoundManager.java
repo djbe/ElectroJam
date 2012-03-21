@@ -27,9 +27,9 @@ public class SoundManager {
 	}
 	
 	public void playSound(int index, boolean looped) {
-		float streamVolume = m_audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-		streamVolume = streamVolume / m_audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-	    m_soundPool.play(m_soundMap.get(index), streamVolume, streamVolume, 1, (looped ? -1 : 0), 1f);
+		//float streamVolume = m_audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+		//streamVolume = streamVolume / m_audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+	    m_soundPool.play(m_soundMap.get(index), 0.5f,0.5f, 1, (looped ? -1 : 0), 1f);
 	}
 	
 	public void stopSound(int index) {

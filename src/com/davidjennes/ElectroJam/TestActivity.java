@@ -210,7 +210,9 @@ public class TestActivity extends Activity {
     public void onDestroy()
     {
         super.onDestroy();
-        
+        for (int i = 1; i < 25 ; ++i) {
+        		mSoundManager.stopSound(i);
+        }
         mtimer.cancel();
     }
     
