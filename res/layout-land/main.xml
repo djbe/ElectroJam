@@ -6,17 +6,17 @@
 	android:orientation="horizontal" >
 
     <Button
-    	android:id="@+id/button_client"
     	android:layout_width="200dp"
     	android:layout_height="wrap_content"
     	android:layout_margin="20dp"
-    	android:text="@string/mode_client" />
+    	android:text="@string/mode_client"
+		android:onClick="chooseInstrument" />
 
     <Button
-    	android:id="@+id/button_server"
     	android:layout_width="200dp"
     	android:layout_height="wrap_content"
     	android:layout_margin="20dp"
-    	android:text="@string/mode_server" />
+    	android:text="@string/mode_server"
+		android:onClick="startServer" />
 
 </LinearLayout>

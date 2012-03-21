@@ -5,18 +5,26 @@
 	android:gravity="center_horizontal"
 	android:orientation="vertical" >
 
-    <Button
-    	android:id="@+id/button_client"
-    	android:layout_width="match_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_margin="20dp"
-    	android:text="@string/mode_client" />
+	<Button
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:onClick="chooseInstrument"
+		android:text="@string/mode_client" />
 
-    <Button
-    	android:id="@+id/button_server"
-    	android:layout_width="match_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_margin="20dp"
-    	android:text="@string/mode_server" />
+	<Button
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:onClick="startServer"
+		android:text="@string/mode_server" />
+
+	<Button
+		android:id="@+id/button_looper"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:onClick="startLooper"
+		android:text="Looper" />
 
 </LinearLayout>

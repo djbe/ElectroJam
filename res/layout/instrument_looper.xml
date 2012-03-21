@@ -5,14 +5,12 @@
 	android:orientation="horizontal" >
 
 	<LinearLayout
-		android:id="@+id/linearLayout1"
 		android:layout_width="0dp"
 		android:layout_height="fill_parent"
 		android:layout_weight="1"
 		android:orientation="vertical" >
 
 		<LinearLayout
-			android:id="@+id/LinearLayout01"
 			android:layout_width="fill_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" >
@@ -24,8 +22,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorbass"
-				android:ellipsize="marquee"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton2"
@@ -34,7 +32,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorbass"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton3"
@@ -43,7 +42,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorbass"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton4"
@@ -52,11 +52,11 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorbass"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/LinearLayout02"
 			android:layout_width="fill_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" >
@@ -68,7 +68,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton6"
@@ -77,7 +78,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton7"
@@ -86,7 +88,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton8"
@@ -95,11 +98,11 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/LinearLayout03"
 			android:layout_width="fill_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" >
@@ -111,7 +114,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton10"
@@ -120,7 +124,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton11"
@@ -129,7 +134,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton12"
@@ -138,11 +144,11 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/LinearLayout04"
 			android:layout_width="fill_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" >
@@ -154,7 +160,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton14"
@@ -163,7 +170,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton15"
@@ -172,7 +180,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton16"
@@ -181,11 +190,11 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/LinearLayout05"
 			android:layout_width="fill_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" >
@@ -197,7 +206,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton18"
@@ -206,7 +216,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton19"
@@ -215,7 +226,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton20"
@@ -224,11 +236,11 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/linearLayout06"
 			android:layout_width="fill_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" >
@@ -240,7 +252,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton22"
@@ -249,7 +262,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton23"
@@ -258,7 +272,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 
 			<ToggleButton
 				android:id="@+id/ToggleButton24"
@@ -267,7 +282,8 @@
 				android:layout_margin="5dp"
 				android:layout_weight="1"
 				android:background="@drawable/selectorsnare"
-				android:text="ToggleButton" />
+				android:textOff=""
+				android:textOn="" />
 		</LinearLayout>
 	</LinearLayout>
 

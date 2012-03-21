@@ -72,10 +72,8 @@ public class TestActivity extends Activity {
         buttonTab[24] = (ToggleButton) findViewById(R.id.ToggleButton24);
         
         for (int i=1;i<25;i++) {
-        	buttonState[i]=0;
+        	buttonState[i] = 0;
         	buttonTab[i].setText("");
-        	buttonTab[i].setTextOn("");
-        	buttonTab[i].setTextOff("");
         }
         
         
