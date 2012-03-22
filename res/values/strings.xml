@@ -13,4 +13,5 @@
 	<string name="starting_server">Starting server.</string>
 	<string name="stopping_server">Stopping server.</string>
 	<string name="client_error_connect">Unable to connect to server.</string>
+	<string name="reload">Reload</string>
 </resources>

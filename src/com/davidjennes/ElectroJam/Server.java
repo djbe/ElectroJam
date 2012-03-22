@@ -23,6 +23,7 @@ public class Server implements Runnable {
 	private ProgressDialog m_progress;
 	private String m_name, m_description;
 	private Context m_context;
+	private ServerSocket m_server;
 	private final Set<ServerWorker> m_workers; 
 	private volatile boolean m_running, m_stop;
 	
@@ -37,6 +38,7 @@ public class Server implements Runnable {
 		m_workers = new CopyOnWriteArraySet<ServerWorker>();
 		m_running = false;
 		m_stop = true;
+		m_server = null;
 		initJmDNS();
 	}
 	
@@ -80,6 +82,9 @@ public class Server implements Runnable {
 		// progress dialog
 		m_progress = ProgressDialog.show(m_context, m_context.getString(R.string.working), m_context.getString(R.string.stopping_server), true, false);
 		m_stop = true;
+		try {
+			m_server.close();
+		} catch (Throwable e) {}
 	}
 	
 	/**
@@ -87,42 +92,44 @@ public class Server implements Runnable {
 	 * Listen for incoming instrument connections and publish service on ZeroConf
 	 */
 	public void run() {
+		m_stop = false;
+		m_running = true;
+		m_server = null;
+
+		// --- startup sequence ---
 		try {
-			m_stop = false;
-			m_running = true;
-			ServerSocket server = new ServerSocket(PORT);
-			
-			// --- startup sequence ---
-			try {
-				ServiceInfo info = ServiceInfo.create(TYPE, m_name, PORT, m_description);
-				m_jmdns.registerService(info);
-			} catch (IOException e) {
-				Log.e(TAG, "Error while starting server.");
-				e.printStackTrace();
-			}
-			m_progress.dismiss();
-			m_progress = null;
-			
-			// --- main loop ---
+			m_server = new ServerSocket(PORT);
+			ServiceInfo info = ServiceInfo.create(TYPE, m_name, PORT, m_description);
+			m_jmdns.registerService(info);
+		} catch (IOException e) {
+			m_stop = true;
+			Log.e(TAG, "Error while starting server.");
+			e.printStackTrace();
+		}
+		m_progress.dismiss();
+		m_progress = null;
+
+		// --- main loop ---
+		try {
 			while (!m_stop) {
-				Socket client = server.accept();
+				Socket client = m_server.accept();
 				ServerWorker worker = new ServerWorker(this, client);
 				m_workers.add(worker);
 				worker.start();
 			}
-			
-			// --- shutdown sequence ---
-			m_jmdns.unregisterAllServices();
-			for (ServerWorker worker : m_workers)
-				worker.shutdown();
-			m_workers.clear();
-			
-			m_progress.dismiss();
-			m_progress = null;
-			m_running = false;
-		} catch (IOException e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
+		
+		// --- shutdown sequence ---
+		m_jmdns.unregisterAllServices();
+		for (ServerWorker worker : m_workers)
+			worker.shutdown();
+		m_workers.clear();
+		
+		m_progress.dismiss();
+		m_progress = null;
+		m_running = false;
 	}
 	
 	/**

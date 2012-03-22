@@ -18,7 +18,7 @@ public class ModeChooserActivity extends Activity {
     
     public void chooseInstrument(View view) {
     	// TODO: choose instruments
-    	Intent intent = new Intent(this, InstrumentActivity.class);
+    	Intent intent = new Intent(this, SelectServerActivity.class);
     	startActivity(intent);
     }
     

@@ -92,6 +92,7 @@ public class InstrumentService extends Service {
 			synchronized(m_services) {
 				if (m_services.containsKey(id)) {
 					Map<String, String> result = new HashMap<String, String>();
+					result.put("id", Integer.toString(id));
 					result.put("name", m_services.get(id).getName());
 					result.put("description", m_services.get(id).getNiceTextString());
 					return result;

@@ -5,17 +5,17 @@
 	android:gravity="center_horizontal"
 	android:orientation="vertical" >
 
-	<TextView
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:text="Instrument!" />
-
 	<Button
-		android:id="@+id/button1"
+		android:id="@+id/button_reload"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:onClick="contactService"
-		android:text="Send IPC" />
+		android:onClick="reloadList"
+		android:text="@string/reload" />
+
+	<ListView
+		android:id="@+id/server_list"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" >
+	</ListView>
 
 </LinearLayout>
