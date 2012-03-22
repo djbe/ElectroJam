@@ -28,7 +28,7 @@
 		</activity>
 		<activity android:name=".ServerActivity"></activity>
 		<activity android:name=".SelectServerActivity"></activity>
-		<activity android:name="TestActivity"></activity>
+		<activity android:name="TestActivity" android:configChanges="keyboardHidden|orientation"></activity>
 		<service android:name="InstrumentService" android:enabled="true" android:exported="true" android:permission="com.davidjennes.ElectroJam.INSTRUMENT" />
 	</application>
 

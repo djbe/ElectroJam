@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ToggleButton;
@@ -11,6 +14,7 @@ import android.widget.ToggleButton;
 public class TestActivity extends Activity {
 	private SoundManager m_soundManager;
 	private Map<Integer, Integer> m_buttonSound;
+	private ProgressDialog m_progress;
     
     public TestActivity() {
         m_buttonSound = new HashMap<Integer, Integer>();
@@ -44,10 +48,36 @@ public class TestActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.instrument_looper);
         
+        // show progress dialog during loading
+        m_progress = ProgressDialog.show(this, getString(R.string.working), getString(R.string.loading_sounds), true, false);
+        
         // initialize and load sounds
-        m_soundManager = new SoundManager(getBaseContext());
-        for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet())
-        	entry.setValue(m_soundManager.loadSound(entry.getValue()));
+        new AsyncTask<Void, Void, Void>() {
+    		protected Void doInBackground(Void... params) {
+				m_soundManager = new SoundManager(getBaseContext());
+		        for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet())
+		        	entry.setValue(m_soundManager.loadSound(entry.getValue()));
+		        
+    			return null;
+    		}
+    		
+    		protected void onPostExecute(Void param) {
+    			m_progress.dismiss();
+    			m_progress = null;
+    		}
+    	}.execute();
+    }
+    
+    /**
+     * Do not reload sounds on screen rotation 
+     */
+    public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		setContentView(R.layout.instrument_looper);
+		
+		for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet())
+			if (m_soundManager.isPlaying(entry.getValue()))
+				((ToggleButton) findViewById(entry.getKey())).setChecked(true);
     }
     
     public void onDestroy() {
