@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@drawable/metalbackground" >
 
     <TableLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,7 +13,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="20dp"
-        android:background="@drawable/metalbackground"
         android:shrinkColumns="*"
         android:stretchColumns="*" >
 
@@ -318,89 +318,81 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:background="#000000" />
-
+
                 <LinearLayout
                     android:id="@+id/LinearLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal" >
+                    android:orientation="vertical" >
 
-                    <Space
-                        android:layout_width="0dp"
+                    <ToggleButton
+                        android:id="@+id/ToggleButton01"
+                        android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_weight="1" />
-
-                    <Space
-                        android:layout_width="1dp"
-                        android:layout_height="116dp"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_weight="1" />
-
-                    <LinearLayout
-                        android:id="@+id/linearLayout3"
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_margin="5dp"
                         android:layout_weight="1"
-                        android:orientation="vertical" >
+                        android:background="@drawable/selectordrum_trigger"
+                        android:onClick="buttonClick"
+                        android:textOff=""
+                        android:textOn="" />
 
-                        <ToggleButton
-                            android:id="@+id/ToggleButton01"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/selectordrum_trigger"
-                            android:onClick="buttonClick" />
+                    <ToggleButton
+                        android:id="@+id/ToggleButton02"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selectordrum_trigger"
+                        android:onClick="buttonClick"
+                        android:textOff=""
+                        android:textOn="" />
 
-                        <ToggleButton
-                            android:id="@+id/ToggleButton02"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/selectordrum_trigger"
-                            android:onClick="buttonClick" />
+                    <ToggleButton
+                        android:id="@+id/ToggleButton03"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selectordrum_trigger"
+                        android:onClick="buttonClick"
+                        android:textOff=""
+                        android:textOn="" />
 
-                        <ToggleButton
-                            android:id="@+id/ToggleButton03"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/selectordrum_trigger"
-                            android:onClick="buttonClick" />
+                    <ToggleButton
+                        android:id="@+id/ToggleButton04"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selectorsnare_trigger"
+                        android:onClick="buttonClick"
+                        android:textOff=""
+                        android:textOn="" />
 
-                        <ToggleButton
-                            android:id="@+id/ToggleButton04"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/selectordrum_trigger"
-                            android:onClick="buttonClick" />
+                    <ToggleButton
+                        android:id="@+id/ToggleButton05"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="left"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selectorsnare_trigger"
+                        android:onClick="buttonClick"
+                        android:textOff=""
+                        android:textOn="" />
 
-                        <ToggleButton
-                            android:id="@+id/ToggleButton05"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/selectordrum_trigger"
-                            android:onClick="buttonClick" />
-
-                        <ToggleButton
-                            android:id="@+id/ToggleButton06"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/selectordrum_trigger"
-                            android:onClick="buttonClick" />
-                    </LinearLayout>
-
+                    <ToggleButton
+                        android:id="@+id/ToggleButton06"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selectorsnare_trigger"
+                        android:onClick="buttonClick"
+                        android:textOff=""
+                        android:textOn="" />
                 </LinearLayout>
-
             </RelativeLayout>
         </SlidingDrawer>
     </LinearLayout>
