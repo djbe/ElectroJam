@@ -82,7 +82,7 @@ public class TestActivity extends Activity {
     		m_soundManager.stopSound(m_buttonSound.get(button.getId()));
     	
     	// change background depending on number of sounds
-    	int color = Color.argb(255, 0, (int) m_totalPressed * 102 / 20, (int) m_totalPressed * 255 / 20);
-    	m_background.setBackgroundColor(color);
+//    	int color = Color.argb(255, 0, (int) m_totalPressed * 102 / 20, (int) m_totalPressed * 255 / 20);
+//    	m_background.setBackgroundColor(color);
     }
 }
