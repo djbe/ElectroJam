@@ -273,19 +273,21 @@
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
-
+
         <LinearLayout
-            android:id="@+id/LinearLayout02"
+            android:id="@+id/LinearLayoutSpace1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.6" >
+
         </LinearLayout>
-
+
         <LinearLayout
-            android:id="@+id/LinearLayout01"
+            android:id="@+id/LinearLayoutSpace2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.6" >
+
         </LinearLayout>
 
         <SlidingDrawer
@@ -300,7 +302,7 @@
             <ImageView
                 android:id="@id/handle"
                 android:layout_width="20dip"
-                android:layout_height="176dip"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/slidingdrawerhandle" />
 
@@ -309,24 +311,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal" >
-
+
                 <ImageView
-                    android:id="@+id/ImageView1"
+                    android:id="@+id/ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:background="#000000" />
-
+
                 <LinearLayout
-                    android:id="@+id/LinearLayout1"
+                    android:id="@+id/LinearLayoutTrigger"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical" >
 
                     <ToggleButton
-                        android:id="@+id/ToggleButton01"
+                        android:id="@+id/TriggerButton1"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_gravity="left"
@@ -338,7 +340,7 @@
                         android:textOn="" />
 
                     <ToggleButton
-                        android:id="@+id/ToggleButton02"
+                        android:id="@+id/TriggerButton2"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_margin="5dp"
@@ -349,7 +351,7 @@
                         android:textOn="" />
 
                     <ToggleButton
-                        android:id="@+id/ToggleButton03"
+                        android:id="@+id/TriggerButton3"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_margin="5dp"
@@ -360,7 +362,7 @@
                         android:textOn="" />
 
                     <ToggleButton
-                        android:id="@+id/ToggleButton04"
+                        android:id="@+id/TriggerButton4"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_margin="5dp"
@@ -371,7 +373,7 @@
                         android:textOn="" />
 
                     <ToggleButton
-                        android:id="@+id/ToggleButton05"
+                        android:id="@+id/TriggerButton5"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_gravity="left"
@@ -383,7 +385,7 @@
                         android:textOn="" />
 
                     <ToggleButton
-                        android:id="@+id/ToggleButton06"
+                        android:id="@+id/TriggerButton6"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_margin="5dp"

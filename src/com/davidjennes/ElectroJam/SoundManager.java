@@ -18,6 +18,7 @@ import android.util.Log;
 public class SoundManager {
 	private final static String TAG = "SoundManager";
 	private final static Random RANDOM = new Random();
+	private final static int SAMPLE_LENGTH = 1875;
 
 	private Context m_context;
 	private Map<Integer, Sound> m_sounds;
@@ -32,7 +33,7 @@ public class SoundManager {
 		m_context = context;
 		m_sounds = new HashMap<Integer, Sound>();
 		m_soundQueue = new LinkedList<ScheduledSound>();
-		m_timer.scheduleAtFixedRate(new Action(), 0, 3750);
+		m_timer.scheduleAtFixedRate(new Action(), 0, SAMPLE_LENGTH);
 	}
 	
 	protected void finalize() throws Throwable {
@@ -104,13 +105,19 @@ public class SoundManager {
 				Queue<ScheduledSound> looped = new LinkedList<ScheduledSound>();
 				
 				while (!m_soundQueue.isEmpty()) {
-					ScheduledSound sound = m_soundQueue.remove();
-					if (m_sounds.containsKey(sound.id))
-						m_sounds.get(sound.id).play();
+					ScheduledSound schedule = m_soundQueue.remove();
+					Sound sound = m_sounds.containsKey(schedule.id) ? m_sounds.get(schedule.id) : null;
 					
+					// keep track of skip count and play only when skip limit is reached
+					if (sound != null) {
+						schedule.skipped = (schedule.skipped + 1) % sound.skipLimit;
+						if (schedule.skipped == 0)
+							sound.play();
+					}
+								
 					// store looped sounds
-					if (sound.looped)
-						looped.add(sound);
+					if (schedule.looped)
+						looped.add(schedule);
 				}
 				
 				// re-enqueue looped sounds
@@ -124,7 +131,7 @@ public class SoundManager {
 	 */
 	class Sound {
 		private MediaPlayer m_mp1, m_mp2, m_current;
-		public int id;
+		public int id, skipLimit;
 		
 		/**
 		 * Constructor
@@ -136,6 +143,9 @@ public class SoundManager {
 			m_mp2 = create(context, resid);
 			m_current = null;
 			this.id = id;
+			
+			skipLimit = (int) m_mp1.getDuration() / SAMPLE_LENGTH;
+			Log.d(TAG, skipLimit + " - " + m_mp1.getDuration());
 		}
 		
 		/**
@@ -168,8 +178,10 @@ public class SoundManager {
 			if (old != null)
 				try {
 					old.stop();
-					old.prepareAsync();
+					old.prepare();
 				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
 					e.printStackTrace();
 				}				
 			
@@ -233,12 +245,13 @@ public class SoundManager {
 	 * Used for scheduling sound until next timer beat
 	 */
 	class ScheduledSound {
-		public int id;
+		public int id, skipped;
 		public boolean looped;
 		
 		public ScheduledSound(int i, boolean b) {
 			id = i;
-			looped =b;
+			looped = b;
+			skipped = -1;
 		}
 	}
 }
