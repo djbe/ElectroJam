@@ -4,17 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TableLayout;
 import android.widget.ToggleButton;
 
 public class TestActivity extends Activity {
 	private SoundManager m_soundManager;
 	private Map<Integer, Integer> m_buttonSound;
-    private TableLayout m_background;
-    private int m_totalPressed;
     
     public TestActivity() {
         m_buttonSound = new HashMap<Integer, Integer>();
@@ -48,9 +44,6 @@ public class TestActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.instrument_looper);
         
-        m_background = (TableLayout) findViewById(R.id.LooperTable);
-        m_totalPressed = 0;
-        
         // initialize and load sounds
         m_soundManager = new SoundManager(getBaseContext());
         for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet())
@@ -73,16 +66,11 @@ public class TestActivity extends Activity {
     		return;
     	
     	ToggleButton button = (ToggleButton) view;
-    	m_totalPressed += button.isChecked() ? 1 : -1;
     	
     	// play or stop
     	if (button.isChecked())
     		m_soundManager.playSound(m_buttonSound.get(button.getId()), true);
     	else
     		m_soundManager.stopSound(m_buttonSound.get(button.getId()));
-    	
-    	// change background depending on number of sounds
-//    	int color = Color.argb(255, 0, (int) m_totalPressed * 102 / 20, (int) m_totalPressed * 255 / 20);
-//    	m_background.setBackgroundColor(color);
     }
 }
