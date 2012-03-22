@@ -26,7 +26,7 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".ServerMode"></activity>
+		<activity android:name=".ServerActivity"></activity>
 		<activity android:name=".InstrumentActivity"></activity>
 		<activity android:name="TestActivity"></activity>
 		<service android:name="InstrumentService" android:enabled="true" android:exported="true" android:permission="com.davidjennes.ElectroJam.INSTRUMENT" />
