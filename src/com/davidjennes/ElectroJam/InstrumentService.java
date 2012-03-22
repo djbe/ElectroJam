@@ -72,7 +72,6 @@ public class InstrumentService extends Service {
 			    jmdns.removeServiceListener(type, listener);
 			    jmdns.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

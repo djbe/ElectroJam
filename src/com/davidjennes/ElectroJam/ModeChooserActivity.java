@@ -7,7 +7,6 @@ import android.os.StrictMode;
 import android.view.View;
 
 public class ModeChooserActivity extends Activity {
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -23,8 +22,8 @@ public class ModeChooserActivity extends Activity {
     	startActivity(intent);
     }
     
-    public void startServer(View view) {
-    	Intent intent = new Intent(this, ServerMode.class);
+    public void serverActivity(View view) {
+    	Intent intent = new Intent(this, ServerActivity.class);
     	startActivity(intent);
     }
     
