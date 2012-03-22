@@ -19,6 +19,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiManager.MulticastLock;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
@@ -28,7 +29,7 @@ public class InstrumentService extends Service {
 	private static final String TAG = "InstrumentService";
 	private static final String LOCK_NAME = "ElectroJamInstrument-BonjourLock";
 //	private static final String TYPE = "_eljam._tcp.local.";
-	private static final String TYPE = "_workstation._tcp.local.";
+	private static final String TYPE = "_ssh._tcp.local.";
 	private final static Random RANDOM = new Random();
 	
 	private MulticastLock m_lock;
@@ -51,8 +52,13 @@ public class InstrumentService extends Service {
         m_lock.setReferenceCounted(true);
         m_lock.acquire();
         
-        // init JmDNS
-        initJmDNS();
+        // init JmDNS (async)
+        new AsyncTask<Void, Void, Void>() {
+        	protected Void doInBackground(Void... params) {
+        		initJmDNS();
+    			return null;
+    		}        	
+        }.execute();
     }
 	
     public IBinder onBind(Intent intent) {
@@ -91,6 +97,11 @@ public class InstrumentService extends Service {
      * Service implementation
      */
 	private final IInstrumentService.Stub m_binder = new IInstrumentService.Stub() {
+		/**
+		 * List of discovered servers
+		 * @return List of server IDs (Integers)
+		 */
+		@SuppressWarnings("rawtypes")
 		public List availableServers() throws RemoteException {
 			List<Integer> result = new ArrayList<Integer>();
 			
@@ -102,6 +113,12 @@ public class InstrumentService extends Service {
 			return result;
 		}
 		
+		/**
+		 * Get discovered server info
+		 * @param id Server ID
+		 * @return Server info (name & description)
+		 */
+		@SuppressWarnings("rawtypes")
 		public Map serverInfo(int id) throws RemoteException {
 			synchronized(m_services) {
 				if (m_services.containsKey(id)) {
@@ -115,6 +132,10 @@ public class InstrumentService extends Service {
 			}
 		}
 		
+		/**
+		 * Connect to a certain server
+		 * @param id Server ID
+		 */
 		public void connect(int id) throws RemoteException {
 			ServiceInfo info = null;
 			
@@ -139,10 +160,21 @@ public class InstrumentService extends Service {
 			}
 		}
 		
+		/**
+		 * Load samples for current instrument
+		 * This WILL take a while, so make sure to use a Handler or aSyncTask
+		 * @param samples A map from sample names to filenames
+		 */
+		@SuppressWarnings("rawtypes")
 		public void loadSamples(Map samples) throws RemoteException {
 			Log.d(TAG, "Load samples.");
 		}
 		
+		/**
+		 * Send an instrument event
+		 * @param sample The name of the sample
+		 * @param mode The play mode (single, loop)
+		 */
 		public void sendEvent(int sample, int mode) throws RemoteException {
 			if (m_socket == null || m_writer == null)
 				return;

@@ -33,7 +33,8 @@ public class SelectServerActivity extends Activity {
     final Handler handler = new Handler();
 	
     /**
-     * Wait until we're connected to the local service (if at all)
+     * Wait until we're connected to the bounded service (if at all)
+     * Then connect the ListView with an adapter and start filling it with data
      */
 	private ServiceConnection m_connection = new ServiceConnection() {
 		public void onServiceConnected(ComponentName className, IBinder service) {
@@ -67,10 +68,10 @@ public class SelectServerActivity extends Activity {
         if (getResources().getBoolean(R.bool.developer_mode))
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
         
-        // repeat server discovery
+        // automated server discovery every few seconds
         m_timer.scheduleAtFixedRate(new RepeatServerDiscovery(), 0, REPEAT_DISCOVERY);
 
-        // connect to service
+        // connect to bounded instrument service
         Intent intent = new Intent();
         intent.setClassName(APP_ID, APP_ID + ".InstrumentService");
         boolean bound = getApplicationContext().bindService(intent, m_connection, Context.BIND_AUTO_CREATE);
@@ -91,6 +92,9 @@ public class SelectServerActivity extends Activity {
 	private class ServerDiscoveryTask extends AsyncTask<Void, Void, Void> {
 		private List<Map<String, String>> m_tempData;
 		
+		/**
+		 * Fetch discovered servers and their info
+		 */
 		@SuppressWarnings("unchecked")
 		protected Void doInBackground(Void... params) {
 			try {
@@ -112,6 +116,9 @@ public class SelectServerActivity extends Activity {
 			return null;
 		}
 		
+		/**
+		 * Replace data and notify observer
+		 */
 		protected void onPostExecute(Void param) {
 			m_data.clear();
 			m_data.addAll(m_tempData);
@@ -120,7 +127,7 @@ public class SelectServerActivity extends Activity {
 	}
 
 	/**
-	 * server discovery timer task
+	 * Server discovery timer task
 	 */
 	class RepeatServerDiscovery extends TimerTask {
 		public void run() {
