@@ -2,6 +2,7 @@ package com.davidjennes.ElectroJam;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
@@ -70,8 +71,15 @@ public class SoundManager {
 	 * @param id The sound's ID
 	 */
 	public void stopSound(int id) {
-		if (m_sounds.containsKey(id))
-			m_sounds.get(id).stop();
+		synchronized (m_soundQueue) {
+			if (m_sounds.containsKey(id))
+				m_sounds.get(id).stop();
+			
+			for (Iterator<ScheduledSound> it = m_soundQueue.iterator(); it.hasNext(); ) {
+				if (it.next().id == id)
+					it.remove();
+			}
+		}
 	}
 	
 	/**
