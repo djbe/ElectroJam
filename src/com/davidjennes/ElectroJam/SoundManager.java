@@ -34,6 +34,19 @@ public class SoundManager {
 		m_soundQueue = new LinkedList<ScheduledSound>();
 		m_timer.scheduleAtFixedRate(new Action(), 0, 3750);
 	}
+	
+	protected void finalize() throws Throwable {
+		try {
+			m_timer.cancel();
+			m_timer = null;
+			
+			for (Map.Entry<Integer, Sound> entry : m_sounds.entrySet())
+				entry.getValue().stop();
+			m_sounds.clear();
+		} finally {
+			super.finalize();
+		}
+	}
 
 	/**
 	 * Load a sound and prepare it for playback
@@ -92,7 +105,8 @@ public class SoundManager {
 				
 				while (!m_soundQueue.isEmpty()) {
 					ScheduledSound sound = m_soundQueue.remove();
-					m_sounds.get(sound.id).play();
+					if (m_sounds.containsKey(sound.id))
+						m_sounds.get(sound.id).play();
 					
 					// store looped sounds
 					if (sound.looped)
@@ -128,11 +142,14 @@ public class SoundManager {
 		 * Destructor
 		 */
 		protected void finalize() throws Throwable {
-			m_mp1.stop();
-			m_mp2.stop();
-			m_mp1.release();
-			m_mp2.release();
-			super.finalize();
+			try {
+				m_mp1.stop();
+				m_mp2.stop();
+				m_mp1.release();
+				m_mp2.release();
+			} finally {
+				super.finalize();
+			}
 		}
 		
 		/**
