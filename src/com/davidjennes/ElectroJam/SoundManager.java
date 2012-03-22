@@ -97,6 +97,15 @@ public class SoundManager {
 	}
 	
 	/**
+	 * Check if a sound is playing
+	 * @param id The sound's ID
+	 * @return True if playing
+	 */
+	public boolean isPlaying(int id) {
+		return m_sounds.get(id).isPlaying();
+	}
+	
+	/**
 	 * Beat timer task
 	 */
 	class Action extends TimerTask {
@@ -147,7 +156,7 @@ public class SoundManager {
 			skipLimit = (int) m_mp1.getDuration() / SAMPLE_LENGTH;
 			Log.d(TAG, skipLimit + " - " + m_mp1.getDuration());
 		}
-		
+
 		/**
 		 * Destructor
 		 */
@@ -207,6 +216,14 @@ public class SoundManager {
 				m_current = m_mp1;
 			else
 				m_current = m_mp2;
+		}
+		
+		/**
+		 * Check whether this sound is playing or not
+		 * @return True if playing
+		 */
+		public boolean isPlaying() {
+			return m_current != null && m_current.isPlaying();
 		}
 		
 		/**
