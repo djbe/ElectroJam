@@ -29,6 +29,7 @@ public class ServerActivity extends Activity {
     }
 	
 	public void onDestroy() {
+		super.onDestroy();
 		m_server = null;
 	}
 	

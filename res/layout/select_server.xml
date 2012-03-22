@@ -5,12 +5,11 @@
 	android:gravity="center_horizontal"
 	android:orientation="vertical" >
 
-	<Button
-		android:id="@+id/button_reload"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:onClick="reloadList"
-		android:text="@string/reload" />
+    <TextView
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text="@string/found_servers"
+    	android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	<ListView
 		android:id="@+id/server_list"

@@ -98,10 +98,13 @@ public class Server implements Runnable {
 
 		// --- startup sequence ---
 		try {
+			if (m_jmdns == null)
+				throw new Throwable("JmDNS not initialized.");
+			
 			m_server = new ServerSocket(PORT);
 			ServiceInfo info = ServiceInfo.create(TYPE, m_name, PORT, m_description);
 			m_jmdns.registerService(info);
-		} catch (IOException e) {
+		} catch (Throwable e) {
 			m_stop = true;
 			Log.e(TAG, "Error while starting server.");
 			e.printStackTrace();
@@ -117,12 +120,11 @@ public class Server implements Runnable {
 				m_workers.add(worker);
 				worker.start();
 			}
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
+		} catch (Throwable e) {}
 		
 		// --- shutdown sequence ---
-		m_jmdns.unregisterAllServices();
+		if (m_jmdns != null)
+			m_jmdns.unregisterAllServices();
 		for (ServerWorker worker : m_workers)
 			worker.shutdown();
 		m_workers.clear();

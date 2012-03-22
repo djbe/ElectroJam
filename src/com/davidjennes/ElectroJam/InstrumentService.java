@@ -27,12 +27,14 @@ import android.widget.Toast;
 public class InstrumentService extends Service {
 	private static final String TAG = "InstrumentService";
 	private static final String LOCK_NAME = "ElectroJamInstrument-BonjourLock";
+//	private static final String TYPE = "_eljam._tcp.local.";
 	private static final String TYPE = "_workstation._tcp.local.";
 	private final static Random RANDOM = new Random();
 	
 	private MulticastLock m_lock;
 	private JmDNS m_jmdns;
 	private Map<Integer, ServiceInfo> m_services;
+	private Map<String, Integer> m_serviceNames;
 	private Socket m_socket;
 	private PrintWriter m_writer;
 	
@@ -40,6 +42,8 @@ public class InstrumentService extends Service {
         super.onCreate();
         m_socket = null;
         m_writer = null;
+        m_services = new HashMap<Integer, ServiceInfo>();
+        m_serviceNames = new HashMap<String, Integer>();
         
         // Acquire lock to be able to process multicast
         WifiManager wifi = (WifiManager) getSystemService(android.content.Context.WIFI_SERVICE);
@@ -48,13 +52,7 @@ public class InstrumentService extends Service {
         m_lock.acquire();
         
         // init JmDNS
-        try {
-			m_jmdns = JmDNS.create();
-			m_jmdns.addServiceListener(TYPE, m_listener);
-		} catch (IOException e) {
-			e.printStackTrace();
-			m_jmdns = null;
-		}
+        initJmDNS();
     }
 	
     public IBinder onBind(Intent intent) {
@@ -62,30 +60,46 @@ public class InstrumentService extends Service {
     }
 	
     public void onDestroy() {
-    	if (m_jmdns != null) {
-		    try {
-		    	m_jmdns.removeServiceListener(TYPE, m_listener);
-				m_jmdns.close();
-			} catch (IOException e) {}    		
-    	}
+    	super.onDestroy();
     	
+    	stopJmDNS();
     	if (m_lock != null)
     		m_lock.release();
 	}
+    
+    private void initJmDNS() {
+    	try {
+			m_jmdns = JmDNS.create();
+			m_jmdns.addServiceListener(TYPE, m_listener);
+		} catch (IOException e) {
+			e.printStackTrace();
+			m_jmdns = null;
+		}
+    }
+    
+    private void stopJmDNS() {
+    	if (m_jmdns == null)
+    		return;
+    	
+	    try {
+	    	m_jmdns.removeServiceListener(TYPE, m_listener);
+			m_jmdns.close();
+		} catch (IOException e) {}
+    }
 	
     /**
      * Service implementation
      */
 	private final IInstrumentService.Stub m_binder = new IInstrumentService.Stub() {
 		public List availableServers() throws RemoteException {
+			List<Integer> result = new ArrayList<Integer>();
+			
 			synchronized(m_services) {
-				List<Integer> result = new ArrayList<Integer>();
-				
 				for (Integer id : m_services.keySet())
 					result.add(id);
-				
-				return result;
 			}
+			
+			return result;
 		}
 		
 		public Map serverInfo(int id) throws RemoteException {
@@ -142,27 +156,40 @@ public class InstrumentService extends Service {
 	 * Listener for ZeroConf events
 	 */
 	private final ServiceListener m_listener = new ServiceListener() {
+		/**
+		 * We found all the info on a service
+		 */
 		public void serviceResolved(ServiceEvent ev) {
+			String name = ev.getInfo().getQualifiedName();
+			
 			synchronized(m_services) {
-				m_services.put(RANDOM.nextInt(), ev.getInfo());
+				if (m_serviceNames.containsKey(name))
+					m_services.put(m_serviceNames.get(name), ev.getInfo());
+				else {
+					m_serviceNames.put(name, RANDOM.nextInt());
+					m_services.put(m_serviceNames.get(name), ev.getInfo());
+					Log.d(TAG, "Found: " + ev.getInfo().getQualifiedName());
+				}
 			}
         }
 		
+		/**
+		 * Remove a (known?) service
+		 */
         public void serviceRemoved(ServiceEvent ev) {
         	String name = ev.getInfo().getQualifiedName();
-        	int key = 0;
         	
         	synchronized(m_services) {
-        		for (Map.Entry<Integer, ServiceInfo> entry : m_services.entrySet())
-        			if (entry.getValue().getQualifiedName().equals(name)) {
-        				key = entry.getKey();
-        				break;
-        			}
-        		
-        		m_services.remove(key);
+        		if (m_serviceNames.containsKey(name)) {
+        			m_services.remove(m_serviceNames.get(name));
+        			m_serviceNames.remove(name);
+        		}
 			}
         }
         
+        /**
+         * Found a new service, now resolve it's info
+         */
         public void serviceAdded(ServiceEvent event) {
             // Required to force serviceResolved to be called again (after the first search)
             m_jmdns.requestServiceInfo(event.getType(), event.getName(), 1);
