@@ -34,7 +34,7 @@ public class SoundManager {
 	public SoundManager(Context context) {
 		m_context = context;
 		m_sounds = new HashMap<Integer, MediaPlayer>();
-		mtimer.scheduleAtFixedRate(new Action(), 0, 3750);
+		mtimer.scheduleAtFixedRate(new Action(), 0, 7500);
 	}
 
 	/**
@@ -143,8 +143,8 @@ public class SoundManager {
 							.returnSoundToPlayId());
 
 					if (!player.isPlaying()) {
-						player.setLooping(soundsToPlayList.get(i)
-								.returnSoundToPlayLooped());
+						
+						player.setLooping(soundsToPlayList.get(i).returnSoundToPlayLooped());
 						player.start();
 					}
 				}
