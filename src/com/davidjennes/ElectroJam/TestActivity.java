@@ -17,31 +17,31 @@ public class TestActivity extends Activity {
     private int m_totalPressed;
     
     public TestActivity() {
-    	m_buttonSound = new HashMap<Integer, Integer>();
-    	m_buttonSound.put(R.id.LooperDrum1, R.raw.bass_egg_snare_test);
-        m_buttonSound.put(R.id.LooperDrum2, R.raw.bass_egg_snare_test);
-        m_buttonSound.put(R.id.LooperDrum3, R.raw.bass_egg_snare_test);
-        m_buttonSound.put(R.id.LooperDrum4, R.raw.bass_egg_snare_test);
-        m_buttonSound.put(R.id.LooperSnare1, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperSnare2, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperSnare3, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperSnare4, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperBass1, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperBass2, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperBass3, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperBass4, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperRythmic1, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperRythmic2, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperRythmic3, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperRythmic4, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperLead1, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperLead2, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperLead3, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperLead4, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperFX1, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperFX2, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperFX3, R.raw.clap_egg_test);
-        m_buttonSound.put(R.id.LooperFX4, R.raw.clap_egg_test);
+        m_buttonSound = new HashMap<Integer, Integer>();
+        m_buttonSound.put(R.id.LooperDrum1, R.raw.drum1);
+        m_buttonSound.put(R.id.LooperDrum2, R.raw.drum2);
+        m_buttonSound.put(R.id.LooperDrum3, R.raw.drum3);
+        m_buttonSound.put(R.id.LooperDrum4, R.raw.drum4);
+        m_buttonSound.put(R.id.LooperSnare1, R.raw.snare1);
+        m_buttonSound.put(R.id.LooperSnare2, R.raw.snare2);
+        m_buttonSound.put(R.id.LooperSnare3, R.raw.snare3);
+        m_buttonSound.put(R.id.LooperSnare4, R.raw.snare4);
+        m_buttonSound.put(R.id.LooperBass1, R.raw.bass1);
+        m_buttonSound.put(R.id.LooperBass2, R.raw.bass1);
+        m_buttonSound.put(R.id.LooperBass3, R.raw.bass1);
+        m_buttonSound.put(R.id.LooperBass4, R.raw.bass1);
+        /*m_buttonSound.put(R.id.LooperRythmic1, R.raw.snare);
+        m_buttonSound.put(R.id.LooperRythmic2, R.raw.snare);
+        m_buttonSound.put(R.id.LooperRythmic3, R.raw.snare);
+        m_buttonSound.put(R.id.LooperRythmic4, R.raw.snare);
+        m_buttonSound.put(R.id.LooperLead1, R.raw.snare);
+        m_buttonSound.put(R.id.LooperLead2, R.raw.snare);
+        m_buttonSound.put(R.id.LooperLead3, R.raw.snare);
+        m_buttonSound.put(R.id.LooperLead4, R.raw.snare);
+        m_buttonSound.put(R.id.LooperFX1, R.raw.snare);
+        m_buttonSound.put(R.id.LooperFX2, R.raw.snare);
+        m_buttonSound.put(R.id.LooperFX3, R.raw.snare);
+        m_buttonSound.put(R.id.LooperFX4, R.raw.snare);*/
     }
     
     public void onCreate(Bundle savedInstanceState) {
