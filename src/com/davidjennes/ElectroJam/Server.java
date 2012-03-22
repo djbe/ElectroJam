@@ -3,6 +3,8 @@ package com.davidjennes.ElectroJam;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
@@ -21,6 +23,7 @@ public class Server implements Runnable {
 	private ProgressDialog m_progress;
 	private String m_name, m_description;
 	private Context m_context;
+	private final Set<ServerWorker> m_workers; 
 	private volatile boolean m_running, m_stop;
 	
 	/**
@@ -31,6 +34,7 @@ public class Server implements Runnable {
 		super();
 		
 		m_context = context;
+		m_workers = new CopyOnWriteArraySet<ServerWorker>();
 		m_running = false;
 		m_stop = true;
 		initJmDNS();
@@ -102,18 +106,31 @@ public class Server implements Runnable {
 			// --- main loop ---
 			while (!m_stop) {
 				Socket client = server.accept();
-				Thread thread = new Thread(new ServerWorker(client));
-				thread.start();
+				ServerWorker worker = new ServerWorker(this, client);
+				m_workers.add(worker);
+				worker.start();
 			}
 			
 			// --- shutdown sequence ---
 			m_jmdns.unregisterAllServices();
+			for (ServerWorker worker : m_workers)
+				worker.shutdown();
+			m_workers.clear();
+			
 			m_progress.dismiss();
 			m_progress = null;
 			m_running = false;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Called when a worker thread finished
+	 * @param thread The worker thread
+	 */
+	public void threadFinished(Thread thread) {
+		m_workers.remove(thread);
 	}
 	
 	/**
