@@ -10,9 +10,11 @@
 	<string name="server_description">ElectroJam Server</string>
 	<string name="server_description_label">Description</string>
 	<string name="working">Working&#8230;</string>
-	<string name="starting_server">Starting server.</string>
-	<string name="stopping_server">Stopping server.</string>
+	<string name="starting_server">Starting server&#8230;</string>
+	<string name="server_started">Server started.</string>
+	<string name="stopping_server">Stopping server&#8230;</string>
+	<string name="server_stopped">Server stopped.</string>
 	<string name="client_error_connect">Unable to connect to server.</string>
 	<string name="found_servers">Found Servers:</string>
-	<string name="loading_sounds">Loading sounds.</string>
+	<string name="loading_sounds">Loading sounds&#8230;</string>
 </resources>
