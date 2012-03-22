@@ -113,6 +113,7 @@ public class SoundManager {
 			m_mp1 = create(context, resid);
 			m_mp2 = create(context, resid);
 			m_current = null;
+			this.id = id;
 		}
 		
 		/**
