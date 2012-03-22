@@ -30,7 +30,7 @@ public class InstrumentActivity extends Activity {
 	    }
 	};
 	
-	private class ReallyLongTask extends AsyncTask<String, Void, String> {
+	private class ServerDiscoveryTask extends AsyncTask<String, Void, String> {
 		protected String doInBackground(String... files) {
 			try {
 				m_instrumentService.loadSamples(new HashMap<String, String>());
@@ -67,7 +67,7 @@ public class InstrumentActivity extends Activity {
 		if (m_instrumentService == null)
 			return;
 		
-		ReallyLongTask task = new ReallyLongTask();
+		ServerDiscoveryTask task = new ServerDiscoveryTask();
 		task.execute("Hey", "Hallo");
 	}
 }

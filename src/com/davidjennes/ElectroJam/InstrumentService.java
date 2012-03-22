@@ -1,6 +1,8 @@
 package com.davidjennes.ElectroJam;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.jmdns.JmDNS;
@@ -20,7 +22,6 @@ public class InstrumentService extends Service {
 	private static final String LOCK_NAME = "ElectroJamInstrument-BonjourLock";
 	private MulticastLock m_lock;
 	
-	@Override
     public void onCreate() {
         super.onCreate();
         
@@ -31,7 +32,6 @@ public class InstrumentService extends Service {
         m_lock.acquire();
     }
 	
-	@Override
     public IBinder onBind(Intent intent) {
         return m_binder;
     }
@@ -42,6 +42,17 @@ public class InstrumentService extends Service {
    }
 	
 	private final IInstrumentService.Stub m_binder = new IInstrumentService.Stub() {
+		public List availableServers() throws RemoteException {
+			return null;
+		}
+		
+		public Map serverInfo(int id) throws RemoteException {
+			return null;
+		}
+		
+		public void connect(int id) throws RemoteException {
+		}
+		
 		public void loadSamples(Map samples) throws RemoteException {
 			try {
 				final JmDNS jmdns = JmDNS.create();
@@ -76,7 +87,7 @@ public class InstrumentService extends Service {
 			}
 		}
 
-		public void sendEvent(String sample, int mode) throws RemoteException {
+		public void sendEvent(int sample, int mode) throws RemoteException {
 			Log.d(TAG, "playing sample: " + sample + " mode: " + mode);
 		}
 	};
