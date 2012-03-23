@@ -15,7 +15,7 @@
 			android:layout_width="200dp"
 			android:layout_height="wrap_content"
 			android:layout_margin="20dp"
-			android:onClick="chooseInstrument"
+			android:onClick="clientActivity"
 			android:text="@string/mode_client" />
 
 		<Button
@@ -30,7 +30,7 @@
 		android:layout_width="200dp"
 		android:layout_height="wrap_content"
 		android:layout_margin="20dp"
-		android:onClick="startLooper"
-		android:text="Looper" />
+		android:onClick="chooseInstrument"
+		android:text="@string/mode_instrument" />
 
 </LinearLayout>

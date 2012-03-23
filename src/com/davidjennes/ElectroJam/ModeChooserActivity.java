@@ -17,18 +17,17 @@ public class ModeChooserActivity extends Activity {
     }
     
     public void chooseInstrument(View view) {
-    	// TODO: choose instruments
+    	Intent intent = new Intent("com.davidjennes.ElectroJam.INSTRUMENT");
+    	startActivity(Intent.createChooser(intent, getString(R.string.mode_instrument)));
+    }
+    
+    public void clientActivity(View view) {
     	Intent intent = new Intent(this, SelectServerActivity.class);
     	startActivity(intent);
     }
     
     public void serverActivity(View view) {
     	Intent intent = new Intent(this, ServerActivity.class);
-    	startActivity(intent);
-    }
-    
-    public void startLooper(View view) {
-    	Intent intent = new Intent(this, LooperInstrument.class);
     	startActivity(intent);
     }
 }
