@@ -28,8 +28,7 @@ import android.widget.Toast;
 public class InstrumentService extends Service {
 	private static final String TAG = "InstrumentService";
 	private static final String LOCK_NAME = "ElectroJamInstrument-BonjourLock";
-//	private static final String TYPE = "_eljam._tcp.local.";
-	private static final String TYPE = "_ssh._tcp.local.";
+	private static final String TYPE = "_eljam._tcp.local.";
 	private final static Random RANDOM = new Random();
 	
 	private MulticastLock m_lock;
@@ -200,7 +199,7 @@ public class InstrumentService extends Service {
 				else {
 					m_serviceNames.put(name, RANDOM.nextInt());
 					m_services.put(m_serviceNames.get(name), ev.getInfo());
-					Log.d(TAG, "Found: " + ev.getInfo().getQualifiedName());
+					Log.i(TAG, "Found: " + ev.getInfo().getQualifiedName());
 				}
 			}
         }

@@ -52,6 +52,7 @@ public class ServerService extends Service {
 			m_server.stop();
 			m_running = false;
 			Toast.makeText(this, R.string.server_stopped, Toast.LENGTH_SHORT).show();
+			stopSelf();
 		}
 		
 		// We want this service to continue running until it is explicitly

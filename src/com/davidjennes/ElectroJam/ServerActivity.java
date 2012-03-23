@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.StrictMode;
@@ -45,6 +46,21 @@ public class ServerActivity extends Activity {
         // connect to service
         m_toggle = (ToggleButton) findViewById(R.id.toggleServer);
         bindService(new Intent(this, ServerService.class), m_connection, Context.BIND_AUTO_CREATE);
+    }
+
+    /**
+     * Do not reload sounds on screen rotation 
+     */
+    public void onConfigurationChanged(Configuration newConfig) {
+    	super.onConfigurationChanged(newConfig);
+        setContentView(R.layout.server);
+        
+        // enable toggle
+        m_toggle = (ToggleButton) findViewById(R.id.toggleServer);
+        if (m_service != null) {
+	        m_toggle.setChecked(m_service.isServerRunning());
+	    	m_toggle.setEnabled(true);
+        }
     }
 	
 	public void onDestroy() {

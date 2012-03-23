@@ -11,6 +11,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,8 +19,12 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class SelectServerActivity extends Activity {
 	private static final String TAG = "InstrumentActivity";
@@ -39,19 +44,7 @@ public class SelectServerActivity extends Activity {
 	private ServiceConnection m_connection = new ServiceConnection() {
 		public void onServiceConnected(ComponentName className, IBinder service) {
 			m_instrumentService = IInstrumentService.Stub.asInterface(service);
-			
-	        // connect ListView to data
-	        m_data = new ArrayList<Map<String, String>>();
-	        m_adapter = new SimpleAdapter(getApplicationContext(), m_data,
-	        		android.R.layout.simple_list_item_2,
-	        		new String[] {"name", "description"},
-	        		new int[] {android.R.id.text1, android.R.id.text2});
-	        ListView listView = (ListView) findViewById(R.id.server_list);
-	        listView.setAdapter(m_adapter);
-			
-	        // fetch servers
-	        ServerDiscoveryTask task = new ServerDiscoveryTask();
-	    	task.execute();
+			initListView();
 		}
 		
 		public void onServiceDisconnected(ComponentName className) {
@@ -74,9 +67,19 @@ public class SelectServerActivity extends Activity {
         // connect to bounded instrument service
         Intent intent = new Intent();
         intent.setClassName(APP_ID, APP_ID + ".InstrumentService");
-        boolean bound = getApplicationContext().bindService(intent, m_connection, Context.BIND_AUTO_CREATE);
-        if (!bound)
+        if (!bindService(intent, m_connection, Context.BIND_AUTO_CREATE))
         	Log.e(TAG, "Couldn't bind to local service");
+    }
+
+    /**
+     * Do not reload sounds on screen rotation 
+     */
+    public void onConfigurationChanged(Configuration newConfig) {
+    	super.onConfigurationChanged(newConfig);
+    	setContentView(R.layout.select_server);
+    	
+    	// re-init view list
+    	initListView();
     }
     
     public void onDestroy() {
@@ -84,6 +87,34 @@ public class SelectServerActivity extends Activity {
     	
 		m_timer.cancel();
 		m_timer = null;
+		unbindService(m_connection);
+    }
+    
+    /**
+     * Finish initializing the list view (called when the service is connected)
+     */
+    private void initListView() {
+    	// connect ListView to data
+        m_data = new ArrayList<Map<String, String>>();
+        m_adapter = new SimpleAdapter(getApplicationContext(), m_data,
+        		android.R.layout.simple_list_item_2,
+        		new String[] {"name", "description"},
+        		new int[] {android.R.id.text1, android.R.id.text2});
+        ListView listView = (ListView) findViewById(R.id.server_list);
+        listView.setAdapter(m_adapter);
+        
+        // listen to clicks on items
+        listView.setOnItemClickListener(new OnItemClickListener() {
+        	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        		Log.d(TAG, "Clicked item: " + position);
+        		Integer server = Integer.parseInt(m_data.get(position).get("id"));
+        		new ServerConnectTask().execute(server);
+        	}
+        });
+        
+        // fetch servers
+        ServerDiscoveryTask task = new ServerDiscoveryTask();
+    	task.execute();
     }
     
     /**
@@ -123,6 +154,29 @@ public class SelectServerActivity extends Activity {
 			m_data.clear();
 			m_data.addAll(m_tempData);
 			m_adapter.notifyDataSetChanged();
+		}
+	}
+	
+	/**
+     * Connect local instrument service to a given server
+     */
+	private class ServerConnectTask extends AsyncTask<Integer, Void, Void> {
+		protected Void doInBackground(Integer... params) {
+			if (params.length != 1)
+				return null;
+			
+			try {
+				m_instrumentService.connect(params[0]);
+				m_instrumentService.sendEvent(1234, 1);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			
+			return null;
+		}
+		
+		protected void onPostExecute(Void param) {
+    		Toast.makeText(getApplicationContext(), "Finished connecting to server!", Toast.LENGTH_SHORT).show();
 		}
 	}
 
