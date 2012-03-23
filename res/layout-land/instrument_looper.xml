@@ -274,7 +274,7 @@
 			android:layout_gravity="left"
 			android:layout_margin="5dp"
 			android:layout_weight="1"
-			android:background="@drawable/selectordrum_trigger"
+			android:background="@drawable/selectortrigger"
 			android:onClick="buttonClick" />
 
 		<Button
@@ -283,7 +283,7 @@
 			android:layout_height="0dp"
 			android:layout_margin="5dp"
 			android:layout_weight="1"
-			android:background="@drawable/selectorsnare_trigger"
+			android:background="@drawable/selectortrigger"
 			android:onClick="buttonClick" />
 
 		<Button
@@ -292,7 +292,7 @@
 			android:layout_height="0dp"
 			android:layout_margin="5dp"
 			android:layout_weight="1"
-			android:background="@drawable/selectordrum_trigger"
+			android:background="@drawable/selectortrigger"
 			android:onClick="buttonClick" />
 
 		<Button
@@ -301,7 +301,7 @@
 			android:layout_height="0dp"
 			android:layout_margin="5dp"
 			android:layout_weight="1"
-			android:background="@drawable/selectorsnare_trigger"
+			android:background="@drawable/selectortrigger"
 			android:onClick="buttonClick" />
 
 		<Button
@@ -311,7 +311,7 @@
 			android:layout_gravity="left"
 			android:layout_margin="5dp"
 			android:layout_weight="1"
-			android:background="@drawable/selectorsnare_trigger"
+			android:background="@drawable/selectortrigger"
 			android:onClick="buttonClick" />
 
 		<Button
@@ -320,7 +320,7 @@
 			android:layout_height="0dp"
 			android:layout_margin="5dp"
 			android:layout_weight="1"
-			android:background="@drawable/selectorsnare_trigger"
+			android:background="@drawable/selectortrigger"
 			android:onClick="buttonClick" />
 	</LinearLayout>
 
