@@ -19,10 +19,12 @@ public class SoundManager {
 	private final static String TAG = "SoundManager";
 	private final static Random RANDOM = new Random();
 	private final static int SAMPLE_LENGTH = 1875;
+	private final static int BEATS_LIMIT = 4;
 
 	private Context m_context;
 	private Map<Integer, Sound> m_sounds;
 	private Timer m_timer = new Timer();
+	private int m_beats;
 	
 	private Queue<ScheduledSound> m_soundQueue;
 	private Map<Integer, ScheduledSound> m_soundQueueMap;
@@ -36,6 +38,7 @@ public class SoundManager {
 		m_sounds = new HashMap<Integer, Sound>();
 		m_soundQueue = new LinkedList<ScheduledSound>();
 		m_soundQueueMap = new HashMap<Integer, ScheduledSound>();
+		m_beats = -1;
 		
 		m_timer.scheduleAtFixedRate(new Action(), 0, SAMPLE_LENGTH);
 	}
@@ -70,6 +73,7 @@ public class SoundManager {
 	 * @param id The sound's ID
 	 */
 	public void unloadSound(int id) {
+		stopSound(id);
 		m_sounds.remove(id);
 	}
 
@@ -93,7 +97,7 @@ public class SoundManager {
 		else {
 			Sound sound = m_sounds.get(id);
 			if (!sound.isPlaying())
-				sound.stop();
+				sound.play();
 		}
 	}
 
@@ -130,6 +134,7 @@ public class SoundManager {
 	class Action extends TimerTask {
 		public void run() {
 			List<ScheduledSound> soundQueue = null;
+			m_beats = (m_beats + 1) % BEATS_LIMIT;
 			
 			// get queued sounds
 			synchronized (m_soundQueue) {
@@ -139,14 +144,16 @@ public class SoundManager {
 			// play each scheduled sound
 			for (ScheduledSound schedule : soundQueue) {
 				Sound sound = m_sounds.containsKey(schedule.id) ? m_sounds.get(schedule.id) : null;
+				if (sound == null)
+					continue;
 				
-				// keep track of skip count and play only when skip limit is reached
-				if (sound != null) {
+				// keep track of skip count, connected to beats counter
+				if (schedule.skipped != -1 || (schedule.skipped == -1 && (m_beats % sound.skipLimit) == 0))
 					schedule.skipped = (schedule.skipped + 1) % sound.skipLimit;
-					
-					if (schedule.skipped == 0)
-						sound.play();
-				}
+				
+				// play only when skip limit is reached
+				if (schedule.skipped == 0)
+					sound.play();
 			}
 		}
 	}
@@ -193,12 +200,6 @@ public class SoundManager {
 		 */
 		public void play() {
 			try {
-				// stop old one
-				if (m_current != null) {
-					m_current.stop();
-					m_current.prepareAsync();
-				}
-				
 				// switch players
 				m_current = (m_current == m_mp1) ? m_mp2 : m_mp1;
 
@@ -216,8 +217,9 @@ public class SoundManager {
 			try {
 				// stop current (and prepare it again)
 				if (m_current != null) {
-					m_current.stop();
-					m_current.prepareAsync();
+					if (m_current.isPlaying())
+						m_current.pause();
+					m_current.seekTo(0);
 				}
 				
 				// switch players
