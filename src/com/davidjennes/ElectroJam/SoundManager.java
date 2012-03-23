@@ -2,8 +2,8 @@ package com.davidjennes.ElectroJam;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
@@ -23,7 +23,9 @@ public class SoundManager {
 	private Context m_context;
 	private Map<Integer, Sound> m_sounds;
 	private Timer m_timer = new Timer();
+	
 	private Queue<ScheduledSound> m_soundQueue;
+	private Map<Integer, ScheduledSound> m_soundQueueMap;
 
 	/**
 	 * Constructor
@@ -33,6 +35,8 @@ public class SoundManager {
 		m_context = context;
 		m_sounds = new HashMap<Integer, Sound>();
 		m_soundQueue = new LinkedList<ScheduledSound>();
+		m_soundQueueMap = new HashMap<Integer, ScheduledSound>();
+		
 		m_timer.scheduleAtFixedRate(new Action(), 0, SAMPLE_LENGTH);
 	}
 	
@@ -75,8 +79,21 @@ public class SoundManager {
 	 * @param looped Will loop if true
 	 */
 	public void playSound(int id, boolean looped) {
-		synchronized (m_soundQueue) {
-			m_soundQueue.add(new ScheduledSound(id, looped));
+		// looped sounds get scheduled to sync with timer beats
+		if (looped)
+			synchronized (m_soundQueue) {
+				if (!m_soundQueueMap.containsKey(id)) {
+					ScheduledSound schedule = new ScheduledSound(id, looped);
+					m_soundQueue.add(schedule);
+					m_soundQueueMap.put(id, schedule);
+				}
+			}
+		
+		// otherwise play directly (if not already playing)
+		else {
+			Sound sound = m_sounds.get(id);
+			if (!sound.isPlaying())
+				sound.stop();
 		}
 	}
 
@@ -89,9 +106,11 @@ public class SoundManager {
 			if (m_sounds.containsKey(id))
 				m_sounds.get(id).stop();
 			
-			for (Iterator<ScheduledSound> it = m_soundQueue.iterator(); it.hasNext(); ) {
-				if (it.next().id == id)
-					it.remove();
+			if (m_soundQueueMap.containsKey(id)) {
+				ScheduledSound schedule = m_soundQueueMap.get(id);
+				
+				m_soundQueue.remove(schedule);
+				m_soundQueueMap.remove(id);
 			}
 		}
 	}
@@ -110,27 +129,24 @@ public class SoundManager {
 	 */
 	class Action extends TimerTask {
 		public void run() {
+			List<ScheduledSound> soundQueue = null;
+			
+			// get queued sounds
 			synchronized (m_soundQueue) {
-				Queue<ScheduledSound> looped = new LinkedList<ScheduledSound>();
+				soundQueue = new LinkedList<ScheduledSound>(m_soundQueue);
+			}
+			
+			// play each scheduled sound
+			for (ScheduledSound schedule : soundQueue) {
+				Sound sound = m_sounds.containsKey(schedule.id) ? m_sounds.get(schedule.id) : null;
 				
-				while (!m_soundQueue.isEmpty()) {
-					ScheduledSound schedule = m_soundQueue.remove();
-					Sound sound = m_sounds.containsKey(schedule.id) ? m_sounds.get(schedule.id) : null;
+				// keep track of skip count and play only when skip limit is reached
+				if (sound != null) {
+					schedule.skipped = (schedule.skipped + 1) % sound.skipLimit;
 					
-					// keep track of skip count and play only when skip limit is reached
-					if (sound != null) {
-						schedule.skipped = (schedule.skipped + 1) % sound.skipLimit;
-						if (schedule.skipped == 0)
-							sound.play();
-					}
-								
-					// store looped sounds
-					if (schedule.looped)
-						looped.add(schedule);
+					if (schedule.skipped == 0)
+						sound.play();
 				}
-				
-				// re-enqueue looped sounds
-				m_soundQueue.addAll(looped);
 			}
 		}
 	}
@@ -139,7 +155,8 @@ public class SoundManager {
 	 * Stores MediaPlayers connected to a single sound 
 	 */
 	class Sound {
-		private MediaPlayer m_mp1, m_mp2, m_current;
+		private MediaPlayer m_mp1, m_mp2;
+		private volatile MediaPlayer m_current;
 		public int id, skipLimit;
 		
 		/**
@@ -175,47 +192,39 @@ public class SoundManager {
 		 * Start playing (with new media player, and prepare old one)
 		 */
 		public void play() {
-			MediaPlayer old = m_current;
-			
-			// switch players
-			if (m_current == m_mp2)
-				m_current = m_mp1;
-			else
-				m_current = m_mp2;
-			
-			// stop old (and prepare it)
-			if (old != null)
-				try {
-					old.stop();
-					old.prepare();
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}				
-			
-			// start new one
-			m_current.start();
+			try {
+				// stop old one
+				if (m_current != null) {
+					m_current.stop();
+					m_current.prepareAsync();
+				}
+				
+				// switch players
+				m_current = (m_current == m_mp1) ? m_mp2 : m_mp1;
+
+				// start new one
+				m_current.start();
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		/**
 		 * Stop current media player and prepare it again
 		 */
 		public void stop() {
-			// stop current (and prepare it again)
-			if (m_current != null)
-				try {
+			try {
+				// stop current (and prepare it again)
+				if (m_current != null) {
 					m_current.stop();
 					m_current.prepareAsync();
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
 				}
-			
-			// switch players
-			if (m_current == m_mp2)
-				m_current = m_mp1;
-			else
-				m_current = m_mp2;
+				
+				// switch players
+				m_current = (m_current == m_mp1) ? m_mp2 : m_mp1;
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		/**
@@ -243,7 +252,7 @@ public class SoundManager {
 				mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(),
 						afd.getLength());
 				afd.close();
-				mp.prepareAsync();
+				mp.prepare();
 
 				return mp;
 			} catch (IOException ex) {
