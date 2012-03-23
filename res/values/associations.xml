@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<array name="buttons">
+		<item>@id/ButtonDrum1</item>
+		<item>@id/ButtonDrum2</item>
+		<item>@id/ButtonDrum3</item>
+		<item>@id/ButtonDrum4</item>
+		<item>@id/ButtonSnare1</item>
+		<item>@id/ButtonSnare2</item>
+		<item>@id/ButtonSnare3</item>
+		<item>@id/ButtonSnare4</item>
+		<item>@id/ButtonBass1</item>
+		<item>@id/ButtonBass2</item>
+		<item>@id/ButtonBass3</item>
+		<item>@id/ButtonBass4</item>
+		<item>@id/ButtonRythmic1</item>
+		<item>@id/ButtonRythmic2</item>
+		<item>@id/ButtonRythmic3</item>
+		<item>@id/ButtonRythmic4</item>
+		<item>@id/ButtonLead1</item>
+		<item>@id/ButtonLead2</item>
+		<item>@id/ButtonLead3</item>
+		<item>@id/ButtonLead4</item>
+		<item>@id/ButtonFX1</item>
+		<item>@id/ButtonFX2</item>
+		<item>@id/ButtonFX3</item>
+		<item>@id/ButtonFX4</item>
+		<item>@id/ButtonTrigger1</item>
+		<item>@id/ButtonTrigger2</item>
+		<item>@id/ButtonTrigger3</item>
+		<item>@id/ButtonTrigger4</item>
+		<item>@id/ButtonTrigger5</item>
+		<item>@id/ButtonTrigger6</item>
+	</array>
+	<array name="progress_bars">
+		<item>@id/ProgressDrum1</item>
+		<item>@id/ProgressDrum2</item>
+		<item>@id/ProgressDrum3</item>
+		<item>@id/ProgressDrum4</item>
+		<item>@id/ProgressSnare1</item>
+		<item>@id/ProgressSnare2</item>
+		<item>@id/ProgressSnare3</item>
+		<item>@id/ProgressSnare4</item>
+		<item>@id/ProgressBass1</item>
+		<item>@id/ProgressBass2</item>
+		<item>@id/ProgressBass3</item>
+		<item>@id/ProgressBass4</item>
+		<item>@id/ProgressRythmic1</item>
+		<item>@id/ProgressRythmic2</item>
+		<item>@id/ProgressRythmic3</item>
+		<item>@id/ProgressRythmic4</item>
+		<item>@id/ProgressLead1</item>
+		<item>@id/ProgressLead2</item>
+		<item>@id/ProgressLead3</item>
+		<item>@id/ProgressLead4</item>
+		<item>@id/ProgressFX1</item>
+		<item>@id/ProgressFX2</item>
+		<item>@id/ProgressFX3</item>
+		<item>@id/ProgressFX4</item>
+	</array>
+	<array name="sounds">
+		<item>@raw/drum1</item>
+		<item>@raw/drum2</item>
+		<item>@raw/drum3</item>
+		<item>@raw/drum4</item>
+		<item>@raw/snare1</item>
+		<item>@raw/snare2</item>
+		<item>@raw/snare3</item>
+		<item>@raw/snare4</item>
+		<item>@raw/bass1</item>
+		<item>@raw/bass2</item>
+		<item>@raw/bass3</item>
+		<item>@raw/bass4</item>
+		<item>@raw/rythmic1</item>
+		<item>@raw/rythmic2</item>
+		<item>@raw/rythmic3</item>
+		<item>@raw/rythmic4</item>
+		<item>@raw/lead1</item>
+		<item>@raw/lead2</item>
+		<item>@raw/lead3</item>
+		<item>@raw/lead4</item>
+		<item>@raw/fx1</item>
+		<item>@raw/fx2</item>
+		<item>@raw/fx3</item>
+		<item>@raw/fx4</item>
+		<item>@raw/trigger1</item>
+		<item>@raw/trigger2</item>
+		<item>@raw/trigger3</item>
+		<item>@raw/trigger4</item>
+		<item>@raw/trigger5</item>
+		<item>@raw/trigger6</item>
+	</array>
+
+</resources>

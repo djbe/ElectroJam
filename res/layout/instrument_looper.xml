@@ -19,19 +19,19 @@
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" >
-
-			<ToggleButton
-			    android:id="@+id/LooperDrum1"
-			    android:layout_height="match_parent"
-			    android:layout_margin="5dp"
-			    android:background="@drawable/selectordrum"
-			    android:onClick="buttonClick"
-			    android:tag="1"
-			    android:textOff="BASS"
-			    android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperDrum2"
+				android:id="@+id/ButtonDrum1"
+				android:layout_height="match_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectordrum"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff="BASS"
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonDrum2"
 				android:layout_height="match_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectordrum"
@@ -41,7 +41,7 @@
 				android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperDrum3"
+				android:id="@+id/ButtonDrum3"
 				android:layout_height="match_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectordrum"
@@ -51,7 +51,7 @@
 				android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperDrum4"
+				android:id="@+id/ButtonDrum4"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectordrum"
@@ -102,19 +102,19 @@
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" >
-
-			<ToggleButton
-			    android:id="@+id/LooperSnare1"
-			    android:layout_height="fill_parent"
-			    android:layout_margin="5dp"
-			    android:background="@drawable/selectorsnare"
-			    android:onClick="buttonClick"
-			    android:tag="1"
-			    android:textOff="SNARE"
-			    android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperSnare2"
+				android:id="@+id/ButtonSnare1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorsnare"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff="SNARE"
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonSnare2"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorsnare"
@@ -124,7 +124,7 @@
 				android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperSnare3"
+				android:id="@+id/ButtonSnare3"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorsnare"
@@ -134,7 +134,7 @@
 				android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperSnare4"
+				android:id="@+id/ButtonSnare4"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorsnare"
@@ -185,19 +185,19 @@
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" >
-
-			<ToggleButton
-			    android:id="@+id/LooperBass1"
-			    android:layout_height="fill_parent"
-			    android:layout_margin="5dp"
-			    android:background="@drawable/selectorbass"
-			    android:onClick="buttonClick"
-			    android:tag="1"
-			    android:textOff="BASS"
-			    android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperBass2"
+				android:id="@+id/ButtonBass1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorbass"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff="BASS"
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonBass2"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorbass"
@@ -207,7 +207,7 @@
 				android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperBass3"
+				android:id="@+id/ButtonBass3"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorbass"
@@ -217,7 +217,7 @@
 				android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperBass4"
+				android:id="@+id/ButtonBass4"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorbass"
@@ -268,19 +268,19 @@
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" >
-
-			<ToggleButton
-			    android:id="@+id/LooperRythmic1"
-			    android:layout_height="fill_parent"
-			    android:layout_margin="5dp"
-			    android:background="@drawable/selectorrythmic"
-			    android:onClick="buttonClick"
-			    android:tag="1"
-			    android:textOff="RYTHM"
-			    android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperRythmic2"
+				android:id="@+id/ButtonRythmic1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorrythmic"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff="RYTHM"
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonRythmic2"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorrythmic"
@@ -290,7 +290,7 @@
 				android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperRythmic3"
+				android:id="@+id/ButtonRythmic3"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorrythmic"
@@ -300,7 +300,7 @@
 				android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperRythmic4"
+				android:id="@+id/ButtonRythmic4"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorrythmic"
@@ -351,19 +351,19 @@
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" >
-
-			<ToggleButton
-			    android:id="@+id/LooperLead1"
-			    android:layout_height="fill_parent"
-			    android:layout_margin="5dp"
-			    android:background="@drawable/selectorlead"
-			    android:onClick="buttonClick"
-			    android:tag="1"
-			    android:textOff="LEAD"
-			    android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperLead2"
+				android:id="@+id/ButtonLead1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorlead"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff="LEAD"
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonLead2"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorlead"
@@ -373,7 +373,7 @@
 				android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperLead3"
+				android:id="@+id/ButtonLead3"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorlead"
@@ -383,7 +383,7 @@
 				android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperLead4"
+				android:id="@+id/ButtonLead4"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorlead"
@@ -434,19 +434,19 @@
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" >
-
-			<ToggleButton
-			    android:id="@+id/LooperFX1"
-			    android:layout_height="fill_parent"
-			    android:layout_margin="5dp"
-			    android:background="@drawable/selectorfx"
-			    android:onClick="buttonClick"
-			    android:tag="1"
-			    android:textOff="FX"
-			    android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperFX2"
+				android:id="@+id/ButtonFX1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorfx"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff="FX"
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonFX2"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorfx"
@@ -456,7 +456,7 @@
 				android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperFX3"
+				android:id="@+id/ButtonFX3"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorfx"
@@ -466,7 +466,7 @@
 				android:textOn="" />
 
 			<ToggleButton
-				android:id="@+id/LooperFX4"
+				android:id="@+id/ButtonFX4"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorfx"
@@ -575,7 +575,7 @@
 					android:orientation="vertical" >
 
 					<Button
-						android:id="@+id/TriggerButton1"
+						android:id="@+id/ButtonTrigger1"
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
 						android:layout_gravity="left"
@@ -586,7 +586,7 @@
 						android:tag="0" />
 
 					<Button
-						android:id="@+id/TriggerButton2"
+						android:id="@+id/ButtonTrigger2"
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
 						android:layout_margin="5dp"
@@ -596,7 +596,7 @@
 						android:tag="0" />
 
 					<Button
-						android:id="@+id/TriggerButton3"
+						android:id="@+id/ButtonTrigger3"
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
 						android:layout_margin="5dp"
@@ -606,7 +606,7 @@
 						android:tag="0" />
 
 					<Button
-						android:id="@+id/TriggerButton4"
+						android:id="@+id/ButtonTrigger4"
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
 						android:layout_margin="5dp"
@@ -616,7 +616,7 @@
 						android:tag="0" />
 
 					<Button
-						android:id="@+id/TriggerButton5"
+						android:id="@+id/ButtonTrigger5"
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
 						android:layout_gravity="left"
@@ -627,7 +627,7 @@
 						android:tag="0" />
 
 					<Button
-						android:id="@+id/TriggerButton6"
+						android:id="@+id/ButtonTrigger6"
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
 						android:layout_margin="5dp"
