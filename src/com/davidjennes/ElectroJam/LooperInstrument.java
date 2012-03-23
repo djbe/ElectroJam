@@ -38,13 +38,13 @@ public class LooperInstrument extends Activity {
         
         m_buttonSound.put(R.id.LooperRythmic1, R.raw.rythmic1);
         m_buttonSound.put(R.id.LooperRythmic2, R.raw.rythmic2);
-        m_buttonSound.put(R.id.LooperRythmic3, R.raw.rythmic1);
-        m_buttonSound.put(R.id.LooperRythmic4, R.raw.rythmic1);
+        m_buttonSound.put(R.id.LooperRythmic3, R.raw.rythmic3);
+        m_buttonSound.put(R.id.LooperRythmic4, R.raw.rythmic4);
         
         m_buttonSound.put(R.id.LooperLead1, R.raw.lead1);
         m_buttonSound.put(R.id.LooperLead2, R.raw.lead2);
-        m_buttonSound.put(R.id.LooperLead3, R.raw.lead1);
-        m_buttonSound.put(R.id.LooperLead4, R.raw.lead1);
+        m_buttonSound.put(R.id.LooperLead3, R.raw.lead3);
+        m_buttonSound.put(R.id.LooperLead4, R.raw.lead4);
         
         m_buttonSound.put(R.id.LooperFX1, R.raw.fx1);
         m_buttonSound.put(R.id.LooperFX2, R.raw.fx2);
