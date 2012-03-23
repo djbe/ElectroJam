@@ -15,10 +15,8 @@ class Sound {
 	private final static String TAG = "Sound";
 	public final static int SAMPLE_LENGTH = 1875;
 	
-	private MediaPlayer m_mp1, m_mp2;
-	private volatile MediaPlayer m_current;
-	
-	public ProgressBar progressBar = null;
+	private MediaPlayer m_mp;
+	public ProgressBar progressBar;
 	public int id, skipLimit;
 	
 	/**
@@ -26,14 +24,12 @@ class Sound {
 	 * @param context The activity's context
 	 * @param resid The resource ID to load from
 	 */
-	public Sound(int id, Context context, int resid) {
-		m_mp1 = create(context, resid);
-		m_mp2 = create(context, resid);
-		m_current = null;
-		this.id = id;
+	public Sound(int newID, Context context, int resid) {
+		m_mp = create(context, resid);
 		
-		skipLimit = (int) m_mp1.getDuration() / SAMPLE_LENGTH;
-		Log.d(TAG, skipLimit + " - " + m_mp1.getDuration());
+		id = newID;
+		progressBar = null; 
+		skipLimit = (int) m_mp.getDuration() / SAMPLE_LENGTH;
 	}
 
 	/**
@@ -41,10 +37,8 @@ class Sound {
 	 */
 	protected void finalize() throws Throwable {
 		try {
-			m_mp1.stop();
-			m_mp2.stop();
-			m_mp1.release();
-			m_mp2.release();
+			m_mp.stop();
+			m_mp.release();
 		} finally {
 			super.finalize();
 		}
@@ -55,11 +49,13 @@ class Sound {
 	 */
 	public void play() {
 		try {
-			// switch players
-			m_current = (m_current == m_mp1) ? m_mp2 : m_mp1;
-
 			// start new one
-			m_current.start();
+			if (m_mp.isPlaying()) {
+				m_mp.pause();
+				m_mp.seekTo(0);
+			}
+			
+			m_mp.start();
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		}
@@ -70,21 +66,16 @@ class Sound {
 	 */
 	public void stop() {
 		try {
-			// stop current (and prepare it again)
-			if (m_current != null) {
-				if (m_current.isPlaying())
-					m_current.pause();
-				m_current.seekTo(0);
-			}
+			// stop player (and prepare it again)
+			m_mp.pause();
+			m_mp.seekTo(0);
 			
-			// switch players
-			m_current = (m_current == m_mp1) ? m_mp2 : m_mp1;
+			// reset progress bar
+			if (progressBar != null)
+				progressBar.setProgress(0);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		}
-		
-		// reset progress bar
-		progressBar.setProgress(0);
 	}
 	
 	/**
@@ -92,7 +83,7 @@ class Sound {
 	 * @return True if playing
 	 */
 	public boolean isPlaying() {
-		return m_current != null && m_current.isPlaying();
+		return m_mp.isPlaying();
 	}
 	
 	public void setProgressBar(ProgressBar bar) {
