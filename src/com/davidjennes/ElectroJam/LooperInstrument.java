@@ -11,12 +11,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ToggleButton;
 
-public class TestActivity extends Activity {
+public class LooperInstrument extends Activity {
 	private SoundManager m_soundManager;
 	private Map<Integer, Integer> m_buttonSound;
 	private ProgressDialog m_progress;
     
-    public TestActivity() {
+    public LooperInstrument() {
         m_buttonSound = new HashMap<Integer, Integer>();
         m_buttonSound.put(R.id.LooperDrum1, R.raw.drum1);
         m_buttonSound.put(R.id.LooperDrum2, R.raw.drum2);
