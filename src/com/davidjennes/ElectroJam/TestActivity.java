@@ -95,12 +95,18 @@ public class TestActivity extends Activity {
     	if (view == null)
     		return;
     	
-    	ToggleButton button = (ToggleButton) view;
+    	// looped is stored in tag field
+    	boolean looped = view.getTag().equals("1");
     	
-    	// play or stop
-    	if (button.isChecked())
-    		m_soundManager.playSound(m_buttonSound.get(button.getId()), true);
-    	else
-    		m_soundManager.stopSound(m_buttonSound.get(button.getId()));
+    	// play/stop depending on ToggleButton state, otherwise just play
+    	boolean play = true;
+    	if (view instanceof ToggleButton && !((ToggleButton) view).isChecked())
+    		play = false;
+    	
+    	// either play or stop
+    	if (play)
+    		m_soundManager.playSound(m_buttonSound.get(view.getId()), looped);
+	    else
+	    	m_soundManager.stopSound(m_buttonSound.get(view.getId()));
     }
 }

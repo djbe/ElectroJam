@@ -26,6 +26,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectordrum"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -35,6 +36,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectordrum"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -44,6 +46,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectordrum"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -53,6 +56,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectordrum"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 		</TableRow>
@@ -68,6 +72,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorsnare"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -77,6 +82,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorsnare"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -86,6 +92,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorsnare"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -95,6 +102,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorsnare"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 		</TableRow>
@@ -110,6 +118,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorbass"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -119,6 +128,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorbass"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -128,6 +138,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorbass"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -137,6 +148,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorbass"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 		</TableRow>
@@ -152,6 +164,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorrythmic"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -161,6 +174,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorrythmic"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -170,6 +184,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorrythmic"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -179,6 +194,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorrythmic"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 		</TableRow>
@@ -194,6 +210,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorlead"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -203,6 +220,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorlead"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -212,6 +230,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorlead"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -221,6 +240,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorlead"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 		</TableRow>
@@ -236,6 +256,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorfx"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -245,6 +266,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorfx"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -254,6 +276,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorfx"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 
@@ -263,6 +286,7 @@
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorfx"
 				android:onClick="buttonClick"
+				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
 		</TableRow>
@@ -278,14 +302,14 @@
 			android:layout_height="match_parent"
 			android:layout_weight="1" >
 		</LinearLayout>
-		
+
 		<LinearLayout
 			android:id="@+id/drawerSpace2"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_weight="1" >
 		</LinearLayout>
-		
+
 		<LinearLayout
 			android:id="@+id/drawerSpace3"
 			android:layout_width="match_parent"
@@ -297,10 +321,10 @@
 			android:id="@+id/drawer"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:layout_weight="1"
 			android:content="@+id/content"
 			android:handle="@+id/handle"
-			android:orientation="horizontal"
-			android:layout_weight="1" >
+			android:orientation="horizontal" >
 
 			<ImageView
 				android:id="@id/handle"
@@ -336,7 +360,8 @@
 						android:layout_margin="5dp"
 						android:layout_weight="1"
 						android:background="@drawable/selectordrum_trigger"
-						android:onClick="buttonClick" />
+						android:onClick="buttonClick"
+						android:tag="0" />
 
 					<Button
 						android:id="@+id/TriggerButton2"
@@ -345,7 +370,8 @@
 						android:layout_margin="5dp"
 						android:layout_weight="1"
 						android:background="@drawable/selectordrum_trigger"
-						android:onClick="buttonClick" />
+						android:onClick="buttonClick"
+						android:tag="0" />
 
 					<Button
 						android:id="@+id/TriggerButton3"
@@ -354,7 +380,8 @@
 						android:layout_margin="5dp"
 						android:layout_weight="1"
 						android:background="@drawable/selectordrum_trigger"
-						android:onClick="buttonClick" />
+						android:onClick="buttonClick"
+						android:tag="0" />
 
 					<Button
 						android:id="@+id/TriggerButton4"
@@ -363,7 +390,8 @@
 						android:layout_margin="5dp"
 						android:layout_weight="1"
 						android:background="@drawable/selectorsnare_trigger"
-						android:onClick="buttonClick" />
+						android:onClick="buttonClick"
+						android:tag="0" />
 
 					<Button
 						android:id="@+id/TriggerButton5"
@@ -373,7 +401,8 @@
 						android:layout_margin="5dp"
 						android:layout_weight="1"
 						android:background="@drawable/selectorsnare_trigger"
-						android:onClick="buttonClick" />
+						android:onClick="buttonClick"
+						android:tag="0" />
 
 					<Button
 						android:id="@+id/TriggerButton6"
@@ -382,7 +411,8 @@
 						android:layout_margin="5dp"
 						android:layout_weight="1"
 						android:background="@drawable/selectorsnare_trigger"
-						android:onClick="buttonClick" />
+						android:onClick="buttonClick"
+						android:tag="0" />
 				</LinearLayout>
 			</RelativeLayout>
 		</SlidingDrawer>
