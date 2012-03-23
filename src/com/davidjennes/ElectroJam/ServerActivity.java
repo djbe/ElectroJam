@@ -17,24 +17,26 @@ import android.widget.ToggleButton;
 
 public class ServerActivity extends Activity {
 	private ServerService m_service;
-	private ToggleButton m_toggle;
+	private boolean m_running;
 	
 	private ServiceConnection m_connection = new ServiceConnection() {
 	    public void onServiceConnected(ComponentName className, IBinder service) {
 	    	m_service = ((ServerService.LocalBinder) service).getService();
-	    	m_toggle.setChecked(m_service.isServerRunning());
-	    	m_toggle.setEnabled(true);
+	    	m_running = m_service.isServerRunning();
+	    	
+	    	updateUI();
 	    }
 
 	    public void onServiceDisconnected(ComponentName className) {
 	        m_service = null;
+	        m_running = false;
 	    }
 	};
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.server);
-
+        
         // strict mode
         if (getResources().getBoolean(R.bool.developer_mode))
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
@@ -44,10 +46,10 @@ public class ServerActivity extends Activity {
         e.setText(e.getText().toString() + "-" + new Random().nextInt());
         
         // connect to service
-        m_toggle = (ToggleButton) findViewById(R.id.toggleServer);
+        m_running = false;
         bindService(new Intent(this, ServerService.class), m_connection, Context.BIND_AUTO_CREATE);
     }
-
+    
     /**
      * Do not reload sounds on screen rotation 
      */
@@ -55,12 +57,8 @@ public class ServerActivity extends Activity {
     	super.onConfigurationChanged(newConfig);
         setContentView(R.layout.server);
         
-        // enable toggle
-        m_toggle = (ToggleButton) findViewById(R.id.toggleServer);
-        if (m_service != null) {
-	        m_toggle.setChecked(m_service.isServerRunning());
-	    	m_toggle.setEnabled(true);
-        }
+        // update UI
+        updateUI();
     }
 	
 	public void onDestroy() {
@@ -74,8 +72,9 @@ public class ServerActivity extends Activity {
 	 */
 	public void toggleServer(View view) {
 		ToggleButton button = (ToggleButton) view;
+		m_running = button.isChecked();
 		
-		if (button.isChecked()) {
+		if (m_running) {
 			Intent intent = new Intent(this, ServerService.class);
 			intent.setAction("start");
 			intent.putExtra("name", ((EditText) findViewById(R.id.edit_name)).getText().toString());
@@ -86,5 +85,26 @@ public class ServerActivity extends Activity {
 			intent.setAction("stop");
 			m_service.startService(intent);
 		}
+		
+		updateUI();
+	}
+	
+	/**
+	 * Update fields depending on server status
+	 */
+	private void updateUI() {
+		ToggleButton toggle = (ToggleButton) findViewById(R.id.toggleServer);
+		View name = findViewById(R.id.edit_name);
+		View description = findViewById(R.id.edit_description);
+		
+		if (m_service != null)
+			toggle.setEnabled(true);
+		
+		// toggle = server status
+		toggle.setChecked(m_running);
+		
+		// disable edit fields when running
+		name.setEnabled(!m_running);
+		description.setEnabled(!m_running);
 	}
 }

@@ -3,6 +3,13 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent" >
 
+	<LinearLayout
+		android:id="@+id/grabFocusLayout"
+		android:layout_width="0px"
+		android:layout_height="0px"
+		android:focusable="true"
+		android:focusableInTouchMode="true" />
+
 	<TextView
 		android:id="@+id/label_name"
 		android:layout_width="fill_parent"
@@ -14,6 +21,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@id/label_name"
+		android:enabled="false"
 		android:inputType="textPersonName"
 		android:text="@string/server_name" />
 
@@ -29,6 +37,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@id/label_description"
+		android:enabled="false"
 		android:inputType="textLongMessage"
 		android:text="@string/server_description" />
 

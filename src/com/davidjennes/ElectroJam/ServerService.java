@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 public class ServerService extends Service {
 	private static final String TAG = "ServerService";
@@ -30,7 +29,6 @@ public class ServerService extends Service {
 	
 	public void onCreate() {
         m_nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        showNotification();
         
         // init server
         m_running = false;
@@ -47,11 +45,15 @@ public class ServerService extends Service {
 		if (intent.getAction().equals("start")) {
 			m_server.start(intent.getStringExtra("name"),  intent.getStringExtra("description"));
 			m_running = true;
-			Toast.makeText(this, R.string.server_started, Toast.LENGTH_SHORT).show();
+			
+			// Notifications
+			showNotification();
 		} else if (intent.getAction().equals("stop")) {
 			m_server.stop();
 			m_running = false;
-			Toast.makeText(this, R.string.server_stopped, Toast.LENGTH_SHORT).show();
+			
+			// Notifications
+			m_nm.cancel(NOTIFICATION);
 			stopSelf();
 		}
 		
@@ -88,11 +90,10 @@ public class ServerService extends Service {
 		CharSequence text = getText(R.string.server_started);
 		
 		// Set the scrolling text and timestamp
-		Notification notification = new Notification();
-		notification.tickerText = text;
-		notification.when = System.currentTimeMillis();
+		Notification notification = new Notification(R.drawable.ic_launcher, text, System.currentTimeMillis());
+		notification.flags |= Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
         
-        // The PendingIntent to launch our activity if the user selects this notification
+        // The PendingIntent to launch our activity if the user selects this notification 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, ServerActivity.class), 0);
         notification.setLatestEventInfo(this, getText(R.string.server_name), text, contentIntent);
         
