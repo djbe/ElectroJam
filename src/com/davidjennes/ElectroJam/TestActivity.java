@@ -27,10 +27,10 @@ public class TestActivity extends Activity {
         m_buttonSound.put(R.id.LooperSnare3, R.raw.snare3);
         m_buttonSound.put(R.id.LooperSnare4, R.raw.snare4);
         m_buttonSound.put(R.id.LooperBass1, R.raw.bass1);
-        m_buttonSound.put(R.id.LooperBass2, R.raw.bass1);
-        m_buttonSound.put(R.id.LooperBass3, R.raw.bass1);
-        m_buttonSound.put(R.id.LooperBass4, R.raw.bass1);
-        m_buttonSound.put(R.id.LooperRythmic1, R.raw.bass1);
+        m_buttonSound.put(R.id.LooperBass2, R.raw.bass3);
+        m_buttonSound.put(R.id.LooperBass3, R.raw.bass3);
+        m_buttonSound.put(R.id.LooperBass4, R.raw.bass4);
+        m_buttonSound.put(R.id.LooperRythmic1, R.raw.rythmic1);
         m_buttonSound.put(R.id.LooperRythmic2, R.raw.bass1);
         m_buttonSound.put(R.id.LooperRythmic3, R.raw.bass1);
         m_buttonSound.put(R.id.LooperRythmic4, R.raw.bass1);
