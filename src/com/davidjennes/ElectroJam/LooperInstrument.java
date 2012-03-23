@@ -46,17 +46,17 @@ public class LooperInstrument extends Activity {
         m_buttonSound.put(R.id.LooperLead3, R.raw.lead1);
         m_buttonSound.put(R.id.LooperLead4, R.raw.lead1);
         
-        m_buttonSound.put(R.id.LooperFX1, R.raw.bass1);
-        m_buttonSound.put(R.id.LooperFX2, R.raw.bass1);
-        m_buttonSound.put(R.id.LooperFX3, R.raw.bass1);
-        m_buttonSound.put(R.id.LooperFX4, R.raw.bass1);
+        m_buttonSound.put(R.id.LooperFX1, R.raw.fx1);
+        m_buttonSound.put(R.id.LooperFX2, R.raw.fx2);
+        m_buttonSound.put(R.id.LooperFX3, R.raw.fx3);
+        m_buttonSound.put(R.id.LooperFX4, R.raw.fx4);
         
         m_buttonSound.put(R.id.TriggerButton1, R.raw.trigger1);
         m_buttonSound.put(R.id.TriggerButton2, R.raw.trigger2);
-        m_buttonSound.put(R.id.TriggerButton3, R.raw.trigger1);
-        m_buttonSound.put(R.id.TriggerButton4, R.raw.trigger1);
-        m_buttonSound.put(R.id.TriggerButton5, R.raw.trigger1);
-        m_buttonSound.put(R.id.TriggerButton6, R.raw.trigger1);
+        m_buttonSound.put(R.id.TriggerButton3, R.raw.trigger3);
+        m_buttonSound.put(R.id.TriggerButton4, R.raw.trigger4);
+        m_buttonSound.put(R.id.TriggerButton5, R.raw.trigger5);
+        m_buttonSound.put(R.id.TriggerButton6, R.raw.trigger6);
 
         // Connect buttons to progress bars
         m_buttonProgress.put(R.id.LooperDrum1, R.id.ProgressDrum1);
