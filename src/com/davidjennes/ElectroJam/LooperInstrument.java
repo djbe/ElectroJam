@@ -135,7 +135,8 @@ public class LooperInstrument extends Activity {
 				((ToggleButton) findViewById(entry.getKey())).setChecked(true);
 			
 			// re-associate progress bars
-			m_soundManager.setProgressBar(sound, findViewById(m_buttonProgress.get(entry.getKey())));
+			if (m_buttonProgress.containsKey(entry.getKey()))
+				m_soundManager.setProgressBar(sound, findViewById(m_buttonProgress.get(entry.getKey())));
 		}
     }
     

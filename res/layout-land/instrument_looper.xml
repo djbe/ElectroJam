@@ -81,7 +81,6 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
@@ -202,7 +201,6 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/TableRow01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
@@ -323,7 +321,6 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
@@ -444,7 +441,6 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
