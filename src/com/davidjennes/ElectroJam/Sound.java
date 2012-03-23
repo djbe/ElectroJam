@@ -16,7 +16,7 @@ class Sound {
 	public final static int SAMPLE_LENGTH = 1875;
 	
 	private MediaPlayer m_mp;
-	public ProgressBar progressBar;
+	public ProgressBar m_progressBar;
 	public int id, skipLimit;
 	
 	/**
@@ -28,7 +28,7 @@ class Sound {
 		m_mp = create(context, resid);
 		
 		id = newID;
-		progressBar = null; 
+		m_progressBar = null; 
 		skipLimit = (int) m_mp.getDuration() / SAMPLE_LENGTH;
 	}
 
@@ -49,13 +49,12 @@ class Sound {
 	 */
 	public void play() {
 		try {
-			// start new one
-			if (m_mp.isPlaying()) {
-				m_mp.pause();
-				m_mp.seekTo(0);
-			}
+			// reset to beginning
+			m_mp.seekTo(0);
 			
-			m_mp.start();
+			// start again if needed
+			if (!m_mp.isPlaying())
+				m_mp.start();
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		}
@@ -67,12 +66,13 @@ class Sound {
 	public void stop() {
 		try {
 			// stop player (and prepare it again)
-			m_mp.pause();
+			if (m_mp.isPlaying())
+				m_mp.pause();
 			m_mp.seekTo(0);
 			
 			// reset progress bar
-			if (progressBar != null)
-				progressBar.setProgress(0);
+			if (m_progressBar != null)
+				m_progressBar.setProgress(0);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		}
@@ -86,9 +86,22 @@ class Sound {
 		return m_mp.isPlaying();
 	}
 	
+	/**
+	 * Connect a ProgressBar to this sound
+	 * @param bar The new progress bar
+	 */
 	public void setProgressBar(ProgressBar bar) {
-		progressBar = bar;
-		progressBar.setSecondaryProgress(skipLimit * 25);
+		m_progressBar = bar;
+		m_progressBar.setSecondaryProgress(skipLimit * 25);
+	}
+	
+	/**
+	 * Show the specified progress on the progress bar associated with this sound
+	 * @param progress The new progress to set to (in skips, from 0 to skip limit)
+	 */
+	public void setProgress(int progress) {
+		progress = (progress < skipLimit) ? progress + 1 : skipLimit;
+		m_progressBar.setProgress(progress * 25);
 	}
 	
 	/**
@@ -99,14 +112,12 @@ class Sound {
 	 */
 	private MediaPlayer create(Context context, int resid) {
 		try {
-			AssetFileDescriptor afd = context.getResources().openRawResourceFd(
-					resid);
+			AssetFileDescriptor afd = context.getResources().openRawResourceFd(resid);
 			if (afd == null)
 				return null;
 
 			MediaPlayer mp = new MediaPlayer();
-			mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(),
-					afd.getLength());
+			mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
 			afd.close();
 			mp.prepare();
 

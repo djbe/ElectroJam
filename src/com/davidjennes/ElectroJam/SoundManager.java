@@ -83,18 +83,14 @@ public class SoundManager {
 		if (looped)
 			synchronized (m_soundQueue) {
 				if (!m_soundQueueMap.containsKey(id)) {
-					ScheduledSound schedule = new ScheduledSound(id, looped);
+					ScheduledSound schedule = new ScheduledSound(m_sounds.get(id));
 					m_soundQueue.add(schedule);
 					m_soundQueueMap.put(id, schedule);
 				}
 			}
-		
-		// otherwise play directly (if not already playing)
-		else {
-			Sound sound = m_sounds.get(id);
-			if (!sound.isPlaying())
-				sound.play();
-		}
+		// otherwise play directly
+		else
+			m_sounds.get(id).play();
 	}
 
 	/**
@@ -103,15 +99,16 @@ public class SoundManager {
 	 */
 	public void stopSound(int id) {
 		synchronized (m_soundQueue) {
-			if (m_sounds.containsKey(id))
-				m_sounds.get(id).stop();
-			
+			// Stop looping if it is
 			if (m_soundQueueMap.containsKey(id)) {
 				ScheduledSound schedule = m_soundQueueMap.get(id);
-				
 				m_soundQueue.remove(schedule);
 				m_soundQueueMap.remove(id);
 			}
+			
+			// Actually stop playing
+			if (m_sounds.containsKey(id))
+				m_sounds.get(id).stop();
 		}
 	}
 	
@@ -147,56 +144,8 @@ public class SoundManager {
 			}
 			
 			// play each scheduled sound
-			for (ScheduledSound schedule : soundQueue) {
-				Sound sound = m_sounds.containsKey(schedule.id) ? m_sounds.get(schedule.id) : null;
-				if (sound == null)
-					continue;
-				
-				// keep track of skip count, connected to beats counter
-				if (schedule.getSkipped() != -1 || (schedule.getSkipped() == -1 && (m_beats % sound.skipLimit) == 0))
-					schedule.skip();
-				
-				// play only when skip limit is reached
-				if (schedule.getSkipped() == 0)
-					sound.play();
-			}
-		}
-	}
-	
-	/**
-	 * Used for scheduling sound until next timer beat
-	 */
-	class ScheduledSound {
-		private int m_skipped;
-		public int id;
-		public boolean looped;
-		
-		public ScheduledSound(int i, boolean b) {
-			id = i;
-			looped = b;
-			m_skipped = -1;
-		}
-		
-		/**
-		 * Check how many times we've been skipped
-		 * @return The number of skip-times
-		 */
-		public int getSkipped() {
-			return m_skipped;
-		}
-		
-		/**
-		 * Update the skip count
-		 * @param limit Limit the skip count, past which it'll be reset to 0
-		 */
-		public void skip() {
-			Sound sound = m_sounds.get(id);
-			
-			// update skip counter
-			m_skipped = (m_skipped + 1) % sound.skipLimit;
-			
-			// update progress bar
-			sound.progressBar.setProgress((m_skipped + 1) * 25);
+			for (ScheduledSound schedule : soundQueue)
+				schedule.skipBeat(m_beats);
 		}
 	}
 }
