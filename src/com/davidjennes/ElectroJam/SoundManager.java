@@ -1,6 +1,5 @@
 package com.davidjennes.ElectroJam;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,20 +10,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
-import android.media.MediaPlayer;
-import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 
 public class SoundManager {
-	private final static String TAG = "SoundManager";
 	private final static Random RANDOM = new Random();
-	private final static int SAMPLE_LENGTH = 1875;
 	private final static int BEATS_LIMIT = 4;
 
 	private Context m_context;
 	private Map<Integer, Sound> m_sounds;
-	private Map<Integer,ProgressBar> m_progressbar;
 	private Timer m_timer = new Timer();
 	private int m_beats;
 	
@@ -42,7 +36,7 @@ public class SoundManager {
 		m_soundQueueMap = new HashMap<Integer, ScheduledSound>();
 		m_beats = -1;
 		
-		m_timer.scheduleAtFixedRate(new Action(), 0, SAMPLE_LENGTH);
+		m_timer.scheduleAtFixedRate(new Action(), 0, Sound.SAMPLE_LENGTH);
 	}
 	
 	protected void finalize() throws Throwable {
@@ -131,6 +125,15 @@ public class SoundManager {
 	}
 	
 	/**
+	 * Associate a progress bar with a sound
+	 * @param id The sound's ID
+	 * @param progressbar The ProgressBar to associate with
+	 */
+	public void setProgressBar(Integer id, View progressbar) {
+		m_sounds.get(id).setProgressBar((ProgressBar) progressbar);
+	}
+	
+	/**
 	 * Beat timer task
 	 */
 	class Action extends TimerTask {
@@ -150,124 +153,13 @@ public class SoundManager {
 					continue;
 				
 				// keep track of skip count, connected to beats counter
-				if (schedule.skipped != -1 || (schedule.skipped == -1 && (m_beats % sound.skipLimit) == 0))
-					schedule.skipped = (schedule.skipped + 1) % sound.skipLimit;
+				if (schedule.getSkipped() != -1 || (schedule.getSkipped() == -1 && (m_beats % sound.skipLimit) == 0))
+					schedule.skip();
 				
 				// play only when skip limit is reached
-				if (schedule.skipped == 0)
+				if (schedule.getSkipped() == 0)
 					sound.play();
 			}
-		}
-	}
-	
-	/**
-	 * Stores MediaPlayers connected to a single sound 
-	 */
-	class Sound {
-		private MediaPlayer m_mp1, m_mp2;
-		private volatile MediaPlayer m_current;
-		public int id, skipLimit;
-		
-		/**
-		 * Constructor
-		 * @param context The activity's context
-		 * @param resid The resource ID to load from
-		 */
-		public Sound(int id, Context context, int resid) {
-			m_mp1 = create(context, resid);
-			m_mp2 = create(context, resid);
-			m_current = null;
-			this.id = id;
-			
-			skipLimit = (int) m_mp1.getDuration() / SAMPLE_LENGTH;
-			Log.d(TAG, skipLimit + " - " + m_mp1.getDuration());
-		}
-
-		/**
-		 * Destructor
-		 */
-		protected void finalize() throws Throwable {
-			try {
-				m_mp1.stop();
-				m_mp2.stop();
-				m_mp1.release();
-				m_mp2.release();
-			} finally {
-				super.finalize();
-			}
-		}
-		
-		/**
-		 * Start playing (with new media player, and prepare old one)
-		 */
-		public void play() {
-			try {
-				// switch players
-				m_current = (m_current == m_mp1) ? m_mp2 : m_mp1;
-
-				// start new one
-				m_current.start();
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		/**
-		 * Stop current media player and prepare it again
-		 */
-		public void stop() {
-			try {
-				// stop current (and prepare it again)
-				if (m_current != null) {
-					if (m_current.isPlaying())
-						m_current.pause();
-					m_current.seekTo(0);
-				}
-				
-				// switch players
-				m_current = (m_current == m_mp1) ? m_mp2 : m_mp1;
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		/**
-		 * Check whether this sound is playing or not
-		 * @return True if playing
-		 */
-		public boolean isPlaying() {
-			return m_current != null && m_current.isPlaying();
-		}
-		
-		/**
-		 * Create MediaPlayer, but don't wait for prepare to finish
-		 * @param context The activity context
-		 * @param resid The resource ID
-		 * @return A MediaPlayer instance
-		 */
-		private MediaPlayer create(Context context, int resid) {
-			try {
-				AssetFileDescriptor afd = context.getResources().openRawResourceFd(
-						resid);
-				if (afd == null)
-					return null;
-
-				MediaPlayer mp = new MediaPlayer();
-				mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(),
-						afd.getLength());
-				afd.close();
-				mp.prepare();
-
-				return mp;
-			} catch (IOException ex) {
-				Log.d(TAG, "create failed:", ex);
-			} catch (IllegalArgumentException ex) {
-				Log.d(TAG, "create failed:", ex);
-			} catch (SecurityException ex) {
-				Log.d(TAG, "create failed:", ex);
-			}
-
-			return null;
 		}
 	}
 	
@@ -275,18 +167,36 @@ public class SoundManager {
 	 * Used for scheduling sound until next timer beat
 	 */
 	class ScheduledSound {
-		public int id, skipped;
+		private int m_skipped;
+		public int id;
 		public boolean looped;
 		
 		public ScheduledSound(int i, boolean b) {
 			id = i;
 			looped = b;
-			skipped = -1;
+			m_skipped = -1;
 		}
-	}
-
-	public void setProgressBar(Integer value, ProgressBar progressb) {
-		// TODO Auto-generated method stub
-		m_progressbar.put(value,progressb);
+		
+		/**
+		 * Check how many times we've been skipped
+		 * @return The number of skip-times
+		 */
+		public int getSkipped() {
+			return m_skipped;
+		}
+		
+		/**
+		 * Update the skip count
+		 * @param limit Limit the skip count, past which it'll be reset to 0
+		 */
+		public void skip() {
+			Sound sound = m_sounds.get(id);
+			
+			// update skip counter
+			m_skipped = (m_skipped + 1) % sound.skipLimit;
+			
+			// update progress bar
+			sound.progressBar.setProgress((m_skipped + 1) * 25);
+		}
 	}
 }
