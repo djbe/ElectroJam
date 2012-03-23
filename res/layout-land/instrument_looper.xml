@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/LooperLayout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/metalbackground" >
+
+	<TableLayout
+		android:id="@+id/LooperTable"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="8"
+		android:shrinkColumns="*"
+		android:stretchColumns="*" >
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/LooperDrum1"
+				android:layout_height="match_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectordrum"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperSnare1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorsnare"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperBass1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorbass"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperRythmic1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorrythmic"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperLead1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorlead"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperFX1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorfx"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/LooperDrum2"
+				android:layout_height="match_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectordrum"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperSnare2"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorsnare"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperBass2"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorbass"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperRythmic2"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorrythmic"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperLead2"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorlead"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperFX2"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorfx"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/LooperDrum3"
+				android:layout_height="match_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectordrum"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperSnare3"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorsnare"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperBass3"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorbass"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperRythmic3"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorrythmic"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperLead3"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorlead"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperFX3"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorfx"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/LooperDrum4"
+				android:layout_height="match_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectordrum"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperSnare4"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorsnare"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperBass4"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorbass"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperRythmic4"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorrythmic"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperLead4"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorlead"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperFX4"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorfx"
+				android:onClick="buttonClick"
+				android:textOff=""
+				android:textOn="" />
+		</TableRow>
+	</TableLayout>
+
+	<ImageView
+		android:id="@id/handle"
+		android:layout_width="20dip"
+		android:layout_height="match_parent"
+		android:src="@drawable/slidingdrawerhandle" />
+
+	<LinearLayout
+		android:id="@+id/LinearLayoutTrigger"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:orientation="vertical" >
+
+		<Button
+			android:id="@+id/TriggerButton1"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_gravity="left"
+			android:layout_margin="5dp"
+			android:layout_weight="1"
+			android:background="@drawable/selectordrum_trigger"
+			android:onClick="buttonClick" />
+
+		<Button
+			android:id="@+id/TriggerButton2"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_margin="5dp"
+			android:layout_weight="1"
+			android:background="@drawable/selectordrum_trigger"
+			android:onClick="buttonClick" />
+
+		<Button
+			android:id="@+id/TriggerButton3"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_margin="5dp"
+			android:layout_weight="1"
+			android:background="@drawable/selectordrum_trigger"
+			android:onClick="buttonClick" />
+
+		<Button
+			android:id="@+id/TriggerButton4"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_margin="5dp"
+			android:layout_weight="1"
+			android:background="@drawable/selectorsnare_trigger"
+			android:onClick="buttonClick" />
+
+		<Button
+			android:id="@+id/TriggerButton5"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_gravity="left"
+			android:layout_margin="5dp"
+			android:layout_weight="1"
+			android:background="@drawable/selectorsnare_trigger"
+			android:onClick="buttonClick" />
+
+		<Button
+			android:id="@+id/TriggerButton6"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_margin="5dp"
+			android:layout_weight="1"
+			android:background="@drawable/selectorsnare_trigger"
+			android:onClick="buttonClick" />
+	</LinearLayout>
+
+</LinearLayout>

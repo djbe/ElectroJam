@@ -3,20 +3,33 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:gravity="center_horizontal|center_vertical"
-	android:orientation="horizontal" >
+	android:orientation="vertical" >
+
+	<LinearLayout
+		android:id="@+id/linearLayout1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" >
+
+		<Button
+			android:layout_width="200dp"
+			android:layout_height="wrap_content"
+			android:layout_margin="20dp"
+			android:onClick="chooseInstrument"
+			android:text="@string/mode_client" />
+
+		<Button
+			android:layout_width="200dp"
+			android:layout_height="wrap_content"
+			android:layout_margin="20dp"
+			android:onClick="serverActivity"
+			android:text="@string/mode_server" />
+	</LinearLayout>
 
 	<Button
 		android:layout_width="200dp"
 		android:layout_height="wrap_content"
 		android:layout_margin="20dp"
-		android:onClick="chooseInstrument"
-		android:text="@string/mode_client" />
-
-	<Button
-		android:layout_width="200dp"
-		android:layout_height="wrap_content"
-		android:layout_margin="20dp"
-		android:onClick="serverActivity"
-		android:text="@string/mode_server" />
+		android:onClick="startLooper"
+		android:text="Looper" />
 
 </LinearLayout>

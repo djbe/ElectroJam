@@ -269,45 +269,49 @@
 	</TableLayout>
 
 	<LinearLayout
-		android:id="@+id/linearLayout1"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" >
 
 		<LinearLayout
-			android:id="@+id/LinearLayoutSpace1"
+			android:id="@+id/drawerSpace"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_weight="0.6" >
+			android:layout_weight="1" >
 		</LinearLayout>
-
+		
 		<LinearLayout
-			android:id="@+id/LinearLayoutSpace2"
+			android:id="@+id/drawerSpace2"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_weight="0.6" >
+			android:layout_weight="1" >
+		</LinearLayout>
+		
+		<LinearLayout
+			android:id="@+id/drawerSpace3"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1" >
 		</LinearLayout>
 
 		<SlidingDrawer
 			android:id="@+id/drawer"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_weight="0.5"
 			android:content="@+id/content"
 			android:handle="@+id/handle"
-			android:orientation="horizontal" >
+			android:orientation="horizontal"
+			android:layout_weight="1" >
 
 			<ImageView
 				android:id="@id/handle"
 				android:layout_width="20dip"
 				android:layout_height="match_parent"
-				android:layout_weight="1"
 				android:src="@drawable/slidingdrawerhandle" />
 
 			<RelativeLayout
 				android:id="@id/content"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:orientation="horizontal" >
+				android:layout_height="match_parent" >
 
 				<ImageView
 					android:id="@+id/ImageView"
@@ -324,7 +328,7 @@
 					android:layout_height="match_parent"
 					android:orientation="vertical" >
 
-					<ToggleButton
+					<Button
 						android:id="@+id/TriggerButton1"
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
@@ -332,44 +336,36 @@
 						android:layout_margin="5dp"
 						android:layout_weight="1"
 						android:background="@drawable/selectordrum_trigger"
-						android:onClick="buttonClick"
-						android:textOff=""
-						android:textOn="" />
+						android:onClick="buttonClick" />
 
-					<ToggleButton
+					<Button
 						android:id="@+id/TriggerButton2"
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
 						android:layout_margin="5dp"
 						android:layout_weight="1"
 						android:background="@drawable/selectordrum_trigger"
-						android:onClick="buttonClick"
-						android:textOff=""
-						android:textOn="" />
+						android:onClick="buttonClick" />
 
-					<ToggleButton
+					<Button
 						android:id="@+id/TriggerButton3"
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
 						android:layout_margin="5dp"
 						android:layout_weight="1"
 						android:background="@drawable/selectordrum_trigger"
-						android:onClick="buttonClick"
-						android:textOff=""
-						android:textOn="" />
+						android:onClick="buttonClick" />
 
-					<ToggleButton
+					<Button
 						android:id="@+id/TriggerButton4"
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
 						android:layout_margin="5dp"
 						android:layout_weight="1"
 						android:background="@drawable/selectorsnare_trigger"
-						android:onClick="buttonClick"
-						android:textOff=""
-						android:textOn="" />
+						android:onClick="buttonClick" />
 
-					<ToggleButton
+					<Button
 						android:id="@+id/TriggerButton5"
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
@@ -377,20 +373,16 @@
 						android:layout_margin="5dp"
 						android:layout_weight="1"
 						android:background="@drawable/selectorsnare_trigger"
-						android:onClick="buttonClick"
-						android:textOff=""
-						android:textOn="" />
+						android:onClick="buttonClick" />
 
-					<ToggleButton
+					<Button
 						android:id="@+id/TriggerButton6"
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
 						android:layout_margin="5dp"
 						android:layout_weight="1"
 						android:background="@drawable/selectorsnare_trigger"
-						android:onClick="buttonClick"
-						android:textOff=""
-						android:textOn="" />
+						android:onClick="buttonClick" />
 				</LinearLayout>
 			</RelativeLayout>
 		</SlidingDrawer>

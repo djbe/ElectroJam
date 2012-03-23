@@ -50,6 +50,7 @@ public class InstrumentService extends Service {
         m_lock = wifi.createMulticastLock(LOCK_NAME);
         m_lock.setReferenceCounted(true);
         m_lock.acquire();
+        Log.i(TAG, "Instrument service started.");
         
         // init JmDNS (async)
         new AsyncTask<Void, Void, Void>() {
@@ -70,6 +71,7 @@ public class InstrumentService extends Service {
     	stopJmDNS();
     	if (m_lock != null)
     		m_lock.release();
+        Log.i(TAG, "Instrument service stopped.");
 	}
     
     private void initJmDNS() {
