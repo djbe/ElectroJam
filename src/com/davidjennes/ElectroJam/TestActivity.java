@@ -32,19 +32,19 @@ public class TestActivity extends Activity {
         m_buttonSound.put(R.id.LooperBass4, R.raw.bass4);
         m_buttonSound.put(R.id.LooperRythmic1, R.raw.rythmic1);
         m_buttonSound.put(R.id.LooperRythmic2, R.raw.rythmic2);
-        m_buttonSound.put(R.id.LooperRythmic3, R.raw.bass1);
-        m_buttonSound.put(R.id.LooperRythmic4, R.raw.bass1);
+        m_buttonSound.put(R.id.LooperRythmic3, R.raw.rythmic1);
+        m_buttonSound.put(R.id.LooperRythmic4, R.raw.rythmic1);
         m_buttonSound.put(R.id.LooperLead1, R.raw.lead1);
         m_buttonSound.put(R.id.LooperLead2, R.raw.lead2);
-        m_buttonSound.put(R.id.LooperLead3, R.raw.bass1);
-        m_buttonSound.put(R.id.LooperLead4, R.raw.bass1);
+        m_buttonSound.put(R.id.LooperLead3, R.raw.lead1);
+        m_buttonSound.put(R.id.LooperLead4, R.raw.lead1);
         m_buttonSound.put(R.id.LooperFX1, R.raw.bass1);
         m_buttonSound.put(R.id.LooperFX2, R.raw.bass1);
         m_buttonSound.put(R.id.LooperFX3, R.raw.bass1);
         m_buttonSound.put(R.id.LooperFX4, R.raw.bass1);
         
         m_buttonSound.put(R.id.TriggerButton1, R.raw.trigger1);
-        m_buttonSound.put(R.id.TriggerButton2, R.raw.trigger1);
+        m_buttonSound.put(R.id.TriggerButton2, R.raw.trigger2);
         m_buttonSound.put(R.id.TriggerButton3, R.raw.trigger1);
         m_buttonSound.put(R.id.TriggerButton4, R.raw.trigger1);
         m_buttonSound.put(R.id.TriggerButton5, R.raw.trigger1);
