@@ -13,31 +13,38 @@ import android.widget.ToggleButton;
 
 public class LooperInstrument extends Activity {
 	private SoundManager m_soundManager;
-	private Map<Integer, Integer> m_buttonSound;
+	private Map<Integer, Integer> m_buttonSound, m_progressBar;
 	private ProgressDialog m_progress;
     
     public LooperInstrument() {
+    	
         m_buttonSound = new HashMap<Integer, Integer>();
+        
         m_buttonSound.put(R.id.LooperDrum1, R.raw.drum1);
         m_buttonSound.put(R.id.LooperDrum2, R.raw.drum2);
         m_buttonSound.put(R.id.LooperDrum3, R.raw.drum3);
         m_buttonSound.put(R.id.LooperDrum4, R.raw.drum4);
+        
         m_buttonSound.put(R.id.LooperSnare1, R.raw.snare1);
         m_buttonSound.put(R.id.LooperSnare2, R.raw.snare2);
         m_buttonSound.put(R.id.LooperSnare3, R.raw.snare3);
         m_buttonSound.put(R.id.LooperSnare4, R.raw.snare4);
+        
         m_buttonSound.put(R.id.LooperBass1, R.raw.bass1);
         m_buttonSound.put(R.id.LooperBass2, R.raw.bass2);
         m_buttonSound.put(R.id.LooperBass3, R.raw.bass3);
         m_buttonSound.put(R.id.LooperBass4, R.raw.bass4);
+        
         m_buttonSound.put(R.id.LooperRythmic1, R.raw.rythmic1);
         m_buttonSound.put(R.id.LooperRythmic2, R.raw.rythmic2);
         m_buttonSound.put(R.id.LooperRythmic3, R.raw.rythmic1);
         m_buttonSound.put(R.id.LooperRythmic4, R.raw.rythmic1);
+        
         m_buttonSound.put(R.id.LooperLead1, R.raw.lead1);
         m_buttonSound.put(R.id.LooperLead2, R.raw.lead2);
         m_buttonSound.put(R.id.LooperLead3, R.raw.lead1);
         m_buttonSound.put(R.id.LooperLead4, R.raw.lead1);
+        
         m_buttonSound.put(R.id.LooperFX1, R.raw.bass1);
         m_buttonSound.put(R.id.LooperFX2, R.raw.bass1);
         m_buttonSound.put(R.id.LooperFX3, R.raw.bass1);
@@ -50,6 +57,35 @@ public class LooperInstrument extends Activity {
         m_buttonSound.put(R.id.TriggerButton5, R.raw.trigger1);
         m_buttonSound.put(R.id.TriggerButton6, R.raw.trigger1);
 
+        m_progressBar.put(R.id.LooperDrum1, R.id.ProgressDrum1);
+        m_progressBar.put(R.id.LooperDrum2, R.id.ProgressDrum2);
+        m_progressBar.put(R.id.LooperDrum3, R.id.ProgressDrum3);
+        m_progressBar.put(R.id.LooperDrum4, R.id.ProgressDrum4);
+        
+        m_progressBar.put(R.id.LooperSnare1, R.id.ProgressSnare1);
+        m_progressBar.put(R.id.LooperSnare2, R.id.ProgressSnare1);
+        m_progressBar.put(R.id.LooperSnare3, R.id.ProgressSnare1);
+        m_progressBar.put(R.id.LooperSnare4, R.id.ProgressSnare1);
+        
+        m_progressBar.put(R.id.LooperBass1, R.id.ProgressBass1);
+        m_progressBar.put(R.id.LooperBass2, R.id.ProgressBass2);
+        m_progressBar.put(R.id.LooperBass3, R.id.ProgressBass3);
+        m_progressBar.put(R.id.LooperBass4, R.id.ProgressBass4);
+
+        m_progressBar.put(R.id.LooperRythmic1, R.id.ProgressRythmic1);
+        m_progressBar.put(R.id.LooperRythmic2, R.id.ProgressRythmic2);
+        m_progressBar.put(R.id.LooperRythmic3, R.id.ProgressRythmic3);
+        m_progressBar.put(R.id.LooperRythmic4, R.id.ProgressRythmic4);
+        
+        m_progressBar.put(R.id.LooperLead1, R.id.ProgressLead1);
+        m_progressBar.put(R.id.LooperLead2, R.id.ProgressLead2);
+        m_progressBar.put(R.id.LooperLead3, R.id.ProgressLead3);
+        m_progressBar.put(R.id.LooperLead4, R.id.ProgressLead4);
+        
+        m_progressBar.put(R.id.LooperFX1, R.id.ProgressFX1);
+        m_progressBar.put(R.id.LooperFX2, R.id.ProgressFX2);
+        m_progressBar.put(R.id.LooperFX3, R.id.ProgressFX3);
+        m_progressBar.put(R.id.LooperFX4, R.id.ProgressFX4);
     }
     
     public void onCreate(Bundle savedInstanceState) {
@@ -63,9 +99,10 @@ public class LooperInstrument extends Activity {
         new AsyncTask<Void, Void, Void>() {
     		protected Void doInBackground(Void... params) {
 				m_soundManager = new SoundManager(getBaseContext());
-		        for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet())
+		        for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet()) {
 		        	entry.setValue(m_soundManager.loadSound(entry.getValue()));
-		        
+		        	m_soundManager.setProgressBar(entry.getValue(),findViewById(m_progressBar.get(entry.getKey())));
+		        }
     			return null;
     		}
     		
@@ -83,9 +120,11 @@ public class LooperInstrument extends Activity {
 		super.onConfigurationChanged(newConfig);
 		setContentView(R.layout.instrument_looper);
 		
-		for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet())
+		for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet()) {
 			if (m_soundManager.isPlaying(entry.getValue()))
 				((ToggleButton) findViewById(entry.getKey())).setChecked(true);
+			m_soundManager.setProgressBar(entry.getValue(),findViewById(m_progressBar.get(entry.getKey())));
+		}
     }
     
     public void onDestroy() {

@@ -67,7 +67,7 @@
             android:layout_height="wrap_content" >
 
             <ProgressBar
-                android:id="@+id/ProgressBar03"
+                android:id="@+id/ProgressDrum1"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
                 android:layout_marginRight="10dp" />
 
             <ProgressBar
-                android:id="@+id/ProgressBar02"
+                android:id="@+id/ProgressDrum2"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,15 +83,15 @@
                 android:layout_marginRight="10dp" />
 
             <ProgressBar
-                android:id="@+id/ProgressBar01"
+                android:id="@+id/ProgressDrum3"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
-
+            
             <ProgressBar
-                android:id="@+id/progressBar1"
+                android:id="@+id/ProgressDrum4"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -150,38 +150,39 @@
             android:id="@+id/TableRow01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
+
             <ProgressBar
-                android:id="@+id/ProgressBar04"
+                android:id="@+id/ProgressSnare1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressSnare2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressSnare3"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressSnare4"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
 
-            <ProgressBar
-                android:id="@+id/ProgressBar06"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBar05"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBar07"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
         </TableRow>
 
         <TableRow
@@ -234,38 +235,39 @@
             android:id="@+id/TableRow05"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
+
             <ProgressBar
-                android:id="@+id/ProgressBar20"
+                android:id="@+id/ProgressBass1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressBass2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressBass3"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressBass4"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
 
-            <ProgressBar
-                android:id="@+id/ProgressBar22"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBar23"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBar21"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
         </TableRow>
 
         <TableRow
@@ -318,38 +320,39 @@
             android:id="@+id/TableRow03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
+
             <ProgressBar
-                android:id="@+id/ProgressBar13"
+                android:id="@+id/ProgressRythmic1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressRythmic2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressRythmic3"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressRythmic4"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
 
-            <ProgressBar
-                android:id="@+id/ProgressBar14"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBar15"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBar12"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
         </TableRow>
 
         <TableRow
@@ -402,38 +405,39 @@
             android:id="@+id/TableRow04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
+
             <ProgressBar
-                android:id="@+id/ProgressBar18"
+                android:id="@+id/ProgressLead1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressLead2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressLead3"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressLead4"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
 
-            <ProgressBar
-                android:id="@+id/ProgressBar16"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBar17"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBar19"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
         </TableRow>
 
         <TableRow
@@ -486,38 +490,39 @@
             android:id="@+id/TableRow02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
+
             <ProgressBar
-                android:id="@+id/ProgressBar09"
+                android:id="@+id/ProgressFX1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressFX2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressFX3"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ProgressBar
+                android:id="@+id/ProgressFX4"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
 
-            <ProgressBar
-                android:id="@+id/ProgressBar11"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBar10"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBar08"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
         </TableRow>
 
     </TableLayout>

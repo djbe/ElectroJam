@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 public class SoundManager {
 	private final static String TAG = "SoundManager";
@@ -23,6 +24,7 @@ public class SoundManager {
 
 	private Context m_context;
 	private Map<Integer, Sound> m_sounds;
+	private Map<Integer,ProgressBar> m_progressbar;
 	private Timer m_timer = new Timer();
 	private int m_beats;
 	
@@ -281,5 +283,10 @@ public class SoundManager {
 			looped = b;
 			skipped = -1;
 		}
+	}
+
+	public void setProgressBar(Integer value, ProgressBar progressb) {
+		// TODO Auto-generated method stub
+		m_progressbar.put(value,progressb);
 	}
 }
