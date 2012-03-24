@@ -39,6 +39,8 @@ class Sound {
 		try {
 			m_mp.stop();
 			m_mp.release();
+		} catch(IllegalStateException e) {
+			e.printStackTrace();
 		} finally {
 			super.finalize();
 		}
