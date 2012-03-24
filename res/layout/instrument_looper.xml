@@ -27,7 +27,7 @@
 				android:background="@drawable/selectordrum"
 				android:onClick="buttonClick"
 				android:tag="1"
-				android:textOff="BASS"
+				android:textOff="DRUM"
 				android:textOn="" />
 
 			<ToggleButton
