@@ -91,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
+                <!-- style="@style/Widget.ProgressBar.Vertical" -->
 
             <ProgressBar
                 android:id="@+id/ProgressSnare1"
