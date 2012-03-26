@@ -1,576 +1,569 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LooperLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/metalbackground" >
-
-    <TableLayout
-        android:id="@+id/LooperTable"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="8"
-        android:shrinkColumns="*"
-        android:stretchColumns="*" >
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" >
-
-            <ToggleButton
-                android:id="@+id/LooperDrum1"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectordrum"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperSnare1"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorsnare"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperBass1"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorbass"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperRythmic1"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorrythmic"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperLead1"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorlead"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperFX1"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorfx"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ProgressBar
-                android:id="@+id/ProgressDrum1"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-                <!-- style="@style/Widget.ProgressBar.Vertical" -->
-
-            <ProgressBar
-                android:id="@+id/ProgressSnare1"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBass1"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressRythmic1"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressLead1"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressFX1"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" >
-
-            <ToggleButton
-                android:id="@+id/LooperDrum2"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectordrum"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperSnare2"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorsnare"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperBass2"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorbass"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperRythmic2"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorrythmic"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperLead2"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorlead"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperFX2"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorfx"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ProgressBar
-                android:id="@+id/ProgressDrum2"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressSnare2"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBass2"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressRythmic2"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressLead2"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressFX2"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" >
-
-            <ToggleButton
-                android:id="@+id/LooperDrum3"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectordrum"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperSnare3"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorsnare"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperBass3"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorbass"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperRythmic3"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorrythmic"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperLead3"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorlead"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperFX3"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorfx"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ProgressBar
-                android:id="@+id/ProgressDrum3"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressSnare3"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBass3"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressRythmic3"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressLead3"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressFX3"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" >
-
-            <ToggleButton
-                android:id="@+id/LooperDrum4"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectordrum"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperSnare4"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorsnare"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperBass4"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorbass"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperRythmic4"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorrythmic"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperLead4"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorlead"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-
-            <ToggleButton
-                android:id="@+id/LooperFX4"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:background="@drawable/selectorfx"
-                android:onClick="buttonClick"
-                android:tag="1"
-                android:textOff=""
-                android:textOn="" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ProgressBar
-                android:id="@+id/ProgressDrum4"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressSnare4"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressBass4"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressRythmic4"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressLead4"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <ProgressBar
-                android:id="@+id/ProgressFX4"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-        </TableRow>
-
-    </TableLayout>
-
-    <ImageView
-        android:id="@id/handle"
-        android:layout_width="20dip"
-        android:layout_height="match_parent"
-        android:src="@drawable/slidingdrawerhandle" />
-
-    <LinearLayout
-        android:id="@+id/LinearLayoutTrigger"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical" >
-
-        <Button
-            android:id="@+id/TriggerButton1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="left"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/selectortrigger"
-            android:onClick="buttonClick"
-            android:tag="0" />
-
-        <Button
-            android:id="@+id/TriggerButton2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/selectortrigger"
-            android:onClick="buttonClick"
-            android:tag="0" />
-
-        <Button
-            android:id="@+id/TriggerButton3"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/selectortrigger"
-            android:onClick="buttonClick"
-            android:tag="0" />
-
-        <Button
-            android:id="@+id/TriggerButton4"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/selectortrigger"
-            android:onClick="buttonClick"
-            android:tag="0" />
-
-        <Button
-            android:id="@+id/TriggerButton5"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="left"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/selectortrigger"
-            android:onClick="buttonClick"
-            android:tag="0" />
-
-        <Button
-            android:id="@+id/TriggerButton6"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/selectortrigger"
-            android:onClick="buttonClick"
-            android:tag="0" />
-    </LinearLayout>
+	android:id="@+id/LooperLayout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/metalbackground" >
+
+	<TableLayout
+		android:id="@+id/LooperTable"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="8"
+		android:shrinkColumns="*"
+		android:stretchColumns="*" >
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/ButtonDrum1"
+				android:layout_height="match_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectordrum"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonSnare1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorsnare"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonBass1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorbass"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonRythmic1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorrythmic"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonLead1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorlead"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonFX1"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorfx"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" >
+
+			<ProgressBar
+				android:id="@+id/ProgressDrum1"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressSnare1"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressBass1"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressRythmic1"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressLead1"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressFX1"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/ButtonDrum2"
+				android:layout_height="match_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectordrum"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonSnare2"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorsnare"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonBass2"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorbass"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonRythmic2"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorrythmic"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonLead2"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorlead"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonFX2"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorfx"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" >
+
+			<ProgressBar
+				android:id="@+id/ProgressDrum2"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressSnare2"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressBass2"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressRythmic2"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressLead2"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressFX2"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/ButtonDrum3"
+				android:layout_height="match_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectordrum"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonSnare3"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorsnare"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonBass3"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorbass"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonRythmic3"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorrythmic"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonLead3"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorlead"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonFX3"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorfx"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" >
+
+			<ProgressBar
+				android:id="@+id/ProgressDrum3"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressSnare3"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressBass3"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressRythmic3"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressLead3"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressFX3"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" >
+
+			<ToggleButton
+				android:id="@+id/ButtonDrum4"
+				android:layout_height="match_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectordrum"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonSnare4"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorsnare"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonBass4"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorbass"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonRythmic4"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorrythmic"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/ButtonLead4"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorlead"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+
+			<ToggleButton
+				android:id="@+id/LooperFX4"
+				android:layout_height="fill_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/selectorfx"
+				android:onClick="buttonClick"
+				android:tag="1"
+				android:textOff=""
+				android:textOn="" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" >
+
+			<ProgressBar
+				android:id="@+id/ProgressDrum4"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressSnare4"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressBass4"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressRythmic4"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressLead4"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+
+			<ProgressBar
+				android:id="@+id/ProgressFX4"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp" />
+		</TableRow>
+	</TableLayout>
+
+	<ImageView
+		android:id="@id/handle"
+		android:layout_width="20dip"
+		android:layout_height="match_parent"
+		android:src="@drawable/slidingdrawerhandle" />
+
+	<LinearLayout
+		android:id="@+id/LinearLayoutTrigger"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:orientation="vertical" >
+
+		<Button
+			android:id="@+id/ButtonTrigger1"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_gravity="left"
+			android:layout_margin="5dp"
+			android:layout_weight="1"
+			android:background="@drawable/selectortrigger"
+			android:onClick="buttonClick"
+			android:tag="0" />
+
+		<Button
+			android:id="@+id/ButtonTrigger2"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_margin="5dp"
+			android:layout_weight="1"
+			android:background="@drawable/selectortrigger"
+			android:onClick="buttonClick"
+			android:tag="0" />
+
+		<Button
+			android:id="@+id/ButtonTrigger3"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_margin="5dp"
+			android:layout_weight="1"
+			android:background="@drawable/selectortrigger"
+			android:onClick="buttonClick"
+			android:tag="0" />
+
+		<Button
+			android:id="@+id/ButtonTrigger4"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_margin="5dp"
+			android:layout_weight="1"
+			android:background="@drawable/selectortrigger"
+			android:onClick="buttonClick"
+			android:tag="0" />
+
+		<Button
+			android:id="@+id/ButtonTrigger5"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_gravity="left"
+			android:layout_margin="5dp"
+			android:layout_weight="1"
+			android:background="@drawable/selectortrigger"
+			android:onClick="buttonClick"
+			android:tag="0" />
+
+		<Button
+			android:id="@+id/ButtonTrigger6"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_margin="5dp"
+			android:layout_weight="1"
+			android:background="@drawable/selectortrigger"
+			android:onClick="buttonClick"
+			android:tag="0" />
+	</LinearLayout>
 
 </LinearLayout>
