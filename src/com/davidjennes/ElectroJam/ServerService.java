@@ -86,6 +86,7 @@ public class ServerService extends Service {
 	/**
 	 * Show a notification while this service is running.
 	 */
+	@SuppressWarnings("deprecation")
 	private void showNotification() {
 		CharSequence text = getText(R.string.server_started);
 		

@@ -26,10 +26,12 @@ class Sound {
 	 */
 	public Sound(int newID, Context context, int resid) {
 		m_mp = create(context, resid);
-		
 		id = newID;
-		m_progressBar = null; 
+		m_progressBar = null;
+		
 		skipLimit = (int) m_mp.getDuration() / SAMPLE_LENGTH;
+		if (skipLimit < 1)
+			skipLimit = 1;
 	}
 
 	/**
