@@ -5,18 +5,21 @@ import java.io.IOException;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnErrorListener;
 import android.util.Log;
 import android.widget.ProgressBar;
 
 /**
  * Stores MediaPlayers connected to a single sound 
  */
-class Sound {
+class Sound implements OnErrorListener {
 	private final static String TAG = "Sound";
 	public final static int SAMPLE_LENGTH = 1875;
 	
 	private MediaPlayer m_mp;
-	public ProgressBar m_progressBar;
+	private ProgressBar m_progressBar;
+	private Context m_context;
+	private int m_resID;
 	public int id, skipLimit;
 	
 	/**
@@ -26,9 +29,12 @@ class Sound {
 	 */
 	public Sound(int newID, Context context, int resid) {
 		m_mp = create(context, resid);
-		id = newID;
+		m_resID = resid;
+		m_context = context;
 		m_progressBar = null;
+		id = newID;
 		
+		// calculate skip limit based on duration
 		skipLimit = (int) m_mp.getDuration() / SAMPLE_LENGTH;
 		if (skipLimit < 1)
 			skipLimit = 1;
@@ -123,6 +129,7 @@ class Sound {
 			MediaPlayer mp = new MediaPlayer();
 			mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
 			afd.close();
+			mp.setOnErrorListener(this);
 			mp.prepare();
 
 			return mp;
@@ -135,5 +142,27 @@ class Sound {
 		}
 
 		return null;
+	}
+	
+	/**
+	 * In case of error, reset the MediaPlayer so we can play again
+	 * @param player Our failed MediaPlayer
+	 * @param what The error code
+	 * @param extra Extra code, implementation dependent
+	 * @return True when error has been handled
+	 */
+	public boolean onError(MediaPlayer player, int what, int extra) {
+		m_mp.release();
+		m_mp = create(m_context, m_resID);
+		
+		switch (what) {
+		case MediaPlayer.MEDIA_ERROR_SERVER_DIED:
+			Log.e(TAG, "MediaPlayer error: server died");
+			break;
+		default:
+			Log.e(TAG, "MediaPlayer unknown error: " + what + " (" + extra + ")");
+	    }
+		
+		return true;
 	}
 }
