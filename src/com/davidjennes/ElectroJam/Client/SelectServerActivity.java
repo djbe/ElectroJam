@@ -1,4 +1,4 @@
-package com.davidjennes.ElectroJam;
+package com.davidjennes.ElectroJam.Client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
+
+import com.davidjennes.ElectroJam.R;
 
 public class SelectServerActivity extends Activity {
 	private static final String TAG = "InstrumentActivity";
@@ -66,7 +68,7 @@ public class SelectServerActivity extends Activity {
 
         // connect to bounded instrument service
         Intent intent = new Intent();
-        intent.setClassName(APP_ID, APP_ID + ".InstrumentService");
+        intent.setClassName(APP_ID, APP_ID + ".Client.InstrumentService");
         if (!bindService(intent, m_connection, Context.BIND_AUTO_CREATE))
         	Log.e(TAG, "Couldn't bind to local service");
     }

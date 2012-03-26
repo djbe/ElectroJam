@@ -1,4 +1,4 @@
-package com.davidjennes.ElectroJam;
+package com.davidjennes.ElectroJam.Server;
 
 import java.io.IOException;
 import java.net.ServerSocket;

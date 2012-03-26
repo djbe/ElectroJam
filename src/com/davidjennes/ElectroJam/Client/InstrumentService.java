@@ -1,4 +1,4 @@
-package com.davidjennes.ElectroJam;
+package com.davidjennes.ElectroJam.Client;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +21,8 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.davidjennes.ElectroJam.R;
 
 public class InstrumentService extends Service {
 	private static final String TAG = "InstrumentService";

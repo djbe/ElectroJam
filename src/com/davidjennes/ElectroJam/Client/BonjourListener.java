@@ -1,4 +1,4 @@
-package com.davidjennes.ElectroJam;
+package com.davidjennes.ElectroJam.Client;
 
 import java.util.HashMap;
 import java.util.Map;

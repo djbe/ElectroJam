@@ -1,5 +1,8 @@
 package com.davidjennes.ElectroJam;
 
+import com.davidjennes.ElectroJam.Client.SelectServerActivity;
+import com.davidjennes.ElectroJam.Server.ServerActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

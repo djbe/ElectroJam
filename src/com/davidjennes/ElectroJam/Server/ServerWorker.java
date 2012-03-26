@@ -1,4 +1,4 @@
-package com.davidjennes.ElectroJam;
+package com.davidjennes.ElectroJam.Server;
 
 import java.io.BufferedReader;
 import java.io.IOException;

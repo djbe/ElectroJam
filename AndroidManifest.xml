@@ -32,11 +32,11 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".ServerActivity"
+			android:name=".Server.ServerActivity"
 			android:configChanges="keyboardHidden|orientation|screenSize" >
 		</activity>
 		<activity
-			android:name=".SelectServerActivity"
+			android:name=".Client.SelectServerActivity"
 			android:configChanges="keyboardHidden|orientation|screenSize" >
 		</activity>
 		<activity
@@ -50,11 +50,11 @@
 		</activity>
 
 		<service
-			android:name="InstrumentService"
+			android:name=".Client.InstrumentService"
 			android:enabled="true"
 			android:exported="true"
 			android:permission="com.davidjennes.ElectroJam.INSTRUMENT" />
-		<service android:name=".ServerService" />
+		<service android:name=".Server.ServerService" />
 	</application>
 
 </manifest>

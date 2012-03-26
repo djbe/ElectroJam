@@ -1,4 +1,4 @@
-package com.davidjennes.ElectroJam;
+package com.davidjennes.ElectroJam.Server;
 
 import java.util.Random;
 
@@ -14,6 +14,8 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ToggleButton;
+
+import com.davidjennes.ElectroJam.R;
 
 public class ServerActivity extends Activity {
 	private ServerService m_service;
