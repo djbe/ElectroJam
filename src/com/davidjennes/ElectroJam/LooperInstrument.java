@@ -27,6 +27,7 @@ public class LooperInstrument extends Activity {
         // initialize and load sounds
         new AsyncTask<Void, Void, Void>() {
     		protected Void doInBackground(Void... params) {
+    			int button, progress, sound;
     			m_soundManager = new SoundManager(getBaseContext());
     			m_buttonSound = new HashMap<Integer, Integer>();
 		        m_buttonProgress = new HashMap<Integer, Integer>();
@@ -36,21 +37,19 @@ public class LooperInstrument extends Activity {
 		        TypedArray progressBars = getResources().obtainTypedArray(R.array.progress_bars);
 		        TypedArray sounds = getResources().obtainTypedArray(R.array.sounds);
 		        
-		        // create associations
+		        // load sounds and find progress bars
 		        for (int i = 0; i < buttons.length(); ++i) {
-		        	m_buttonSound.put(buttons.getResourceId(i, -1), sounds.getResourceId(i, -1));
-		        	if (i < progressBars.length())
-		        		m_buttonProgress.put(buttons.getResourceId(i, -1), progressBars.getResourceId(i, -1));
-		        }
-				
-				// load sounds and find progress bars
-		        for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet()) {
-		        	int sound = m_soundManager.loadSound(entry.getValue());
-		        	entry.setValue(sound);
+		        	button = buttons.getResourceId(i, -1);
+		        	sound = m_soundManager.loadSound(sounds.getResourceId(i, -1));
 		        	
-		        	if (m_buttonProgress.containsKey(entry.getKey()))
-		        		m_soundManager.setProgressBar(sound, findViewById(m_buttonProgress.get(entry.getKey())));
+		        	m_buttonSound.put(button, sound);
+		        	if (i < progressBars.length()) {
+		        		progress = progressBars.getResourceId(i, -1);
+		        		m_buttonProgress.put(button, progress);
+		        		m_soundManager.setProgressBar(sound, findViewById(progress));
+		        	}
 		        }
+		        
     			return null;
     		}
     		
