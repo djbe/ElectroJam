@@ -25,8 +25,16 @@
 				android:background="@drawable/selectordrum"
 				android:onClick="buttonClick"
 				android:tag="1"
-				android:textOff=""
+				android:textOff="DRUM"
 				android:textOn="" />
+
+			<ProgressBar
+				android:id="@+id/ProgressDrum1"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 
 			<ToggleButton
 				android:id="@+id/ButtonSnare1"
@@ -35,8 +43,16 @@
 				android:background="@drawable/selectorsnare"
 				android:onClick="buttonClick"
 				android:tag="1"
-				android:textOff=""
+				android:textOff="SNARE"
 				android:textOn="" />
+
+			<ProgressBar
+				android:id="@+id/ProgressSnare1"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 
 			<ToggleButton
 				android:id="@+id/ButtonBass1"
@@ -45,8 +61,16 @@
 				android:background="@drawable/selectorbass"
 				android:onClick="buttonClick"
 				android:tag="1"
-				android:textOff=""
+				android:textOff="BASS"
 				android:textOn="" />
+
+			<ProgressBar
+				android:id="@+id/ProgressBass1"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 
 			<ToggleButton
 				android:id="@+id/ButtonRythmic1"
@@ -55,8 +79,16 @@
 				android:background="@drawable/selectorrythmic"
 				android:onClick="buttonClick"
 				android:tag="1"
-				android:textOff=""
+				android:textOff="RYTHMIC"
 				android:textOn="" />
+
+			<ProgressBar
+				android:id="@+id/ProgressRythmic1"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 
 			<ToggleButton
 				android:id="@+id/ButtonLead1"
@@ -65,8 +97,16 @@
 				android:background="@drawable/selectorlead"
 				android:onClick="buttonClick"
 				android:tag="1"
-				android:textOff=""
+				android:textOff="LEAD"
 				android:textOn="" />
+
+			<ProgressBar
+				android:id="@+id/ProgressLead1"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 
 			<ToggleButton
 				android:id="@+id/ButtonFX1"
@@ -75,61 +115,16 @@
 				android:background="@drawable/selectorfx"
 				android:onClick="buttonClick"
 				android:tag="1"
-				android:textOff=""
+				android:textOff="FX"
 				android:textOn="" />
-		</TableRow>
-
-		<TableRow
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" >
-
-			<ProgressBar
-				android:id="@+id/ProgressDrum1"
-				style="@style/Widget.ProgressBar.Vertical"
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressSnare1"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressBass1"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressRythmic1"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressLead1"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
 
 			<ProgressBar
 				android:id="@+id/ProgressFX1"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 		</TableRow>
 
 		<TableRow
@@ -147,6 +142,14 @@
 				android:textOff=""
 				android:textOn="" />
 
+			<ProgressBar
+				android:id="@+id/ProgressDrum2"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
+
 			<ToggleButton
 				android:id="@+id/ButtonSnare2"
 				android:layout_height="fill_parent"
@@ -156,6 +159,14 @@
 				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
+
+			<ProgressBar
+				android:id="@+id/ProgressSnare2"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 
 			<ToggleButton
 				android:id="@+id/ButtonBass2"
@@ -167,6 +178,14 @@
 				android:textOff=""
 				android:textOn="" />
 
+			<ProgressBar
+				android:id="@+id/ProgressBass2"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
+
 			<ToggleButton
 				android:id="@+id/ButtonRythmic2"
 				android:layout_height="fill_parent"
@@ -176,6 +195,14 @@
 				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
+
+			<ProgressBar
+				android:id="@+id/ProgressRythmic2"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 
 			<ToggleButton
 				android:id="@+id/ButtonLead2"
@@ -187,6 +214,14 @@
 				android:textOff=""
 				android:textOn="" />
 
+			<ProgressBar
+				android:id="@+id/ProgressLead2"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
+
 			<ToggleButton
 				android:id="@+id/ButtonFX2"
 				android:layout_height="fill_parent"
@@ -196,59 +231,14 @@
 				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
-		</TableRow>
-
-		<TableRow
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" >
-
-			<ProgressBar
-				android:id="@+id/ProgressDrum2"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressSnare2"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressBass2"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressRythmic2"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressLead2"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
 
 			<ProgressBar
 				android:id="@+id/ProgressFX2"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 		</TableRow>
 
 		<TableRow
@@ -266,6 +256,14 @@
 				android:textOff=""
 				android:textOn="" />
 
+			<ProgressBar
+				android:id="@+id/ProgressDrum3"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
+
 			<ToggleButton
 				android:id="@+id/ButtonSnare3"
 				android:layout_height="fill_parent"
@@ -275,6 +273,14 @@
 				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
+
+			<ProgressBar
+				android:id="@+id/ProgressSnare3"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 
 			<ToggleButton
 				android:id="@+id/ButtonBass3"
@@ -286,6 +292,14 @@
 				android:textOff=""
 				android:textOn="" />
 
+			<ProgressBar
+				android:id="@+id/ProgressBass3"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
+
 			<ToggleButton
 				android:id="@+id/ButtonRythmic3"
 				android:layout_height="fill_parent"
@@ -295,6 +309,14 @@
 				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
+
+			<ProgressBar
+				android:id="@+id/ProgressRythmic3"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 
 			<ToggleButton
 				android:id="@+id/ButtonLead3"
@@ -306,6 +328,14 @@
 				android:textOff=""
 				android:textOn="" />
 
+			<ProgressBar
+				android:id="@+id/ProgressLead3"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
+
 			<ToggleButton
 				android:id="@+id/ButtonFX3"
 				android:layout_height="fill_parent"
@@ -315,59 +345,14 @@
 				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
-		</TableRow>
-
-		<TableRow
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" >
-
-			<ProgressBar
-				android:id="@+id/ProgressDrum3"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressSnare3"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressBass3"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressRythmic3"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressLead3"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
 
 			<ProgressBar
 				android:id="@+id/ProgressFX3"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 		</TableRow>
 
 		<TableRow
@@ -385,6 +370,14 @@
 				android:textOff=""
 				android:textOn="" />
 
+			<ProgressBar
+				android:id="@+id/ProgressDrum4"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
+
 			<ToggleButton
 				android:id="@+id/ButtonSnare4"
 				android:layout_height="fill_parent"
@@ -394,6 +387,14 @@
 				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
+
+			<ProgressBar
+				android:id="@+id/ProgressSnare4"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 
 			<ToggleButton
 				android:id="@+id/ButtonBass4"
@@ -405,6 +406,14 @@
 				android:textOff=""
 				android:textOn="" />
 
+			<ProgressBar
+				android:id="@+id/ProgressBass4"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
+
 			<ToggleButton
 				android:id="@+id/ButtonRythmic4"
 				android:layout_height="fill_parent"
@@ -414,6 +423,14 @@
 				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
+
+			<ProgressBar
+				android:id="@+id/ProgressRythmic4"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 
 			<ToggleButton
 				android:id="@+id/ButtonLead4"
@@ -425,8 +442,16 @@
 				android:textOff=""
 				android:textOn="" />
 
+			<ProgressBar
+				android:id="@+id/ProgressLead4"
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
+
 			<ToggleButton
-				android:id="@+id/LooperFX4"
+				android:id="@+id/ButtonFX4"
 				android:layout_height="fill_parent"
 				android:layout_margin="5dp"
 				android:background="@drawable/selectorfx"
@@ -434,59 +459,14 @@
 				android:tag="1"
 				android:textOff=""
 				android:textOn="" />
-		</TableRow>
-
-		<TableRow
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" >
-
-			<ProgressBar
-				android:id="@+id/ProgressDrum4"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressSnare4"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressBass4"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressRythmic4"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
-
-			<ProgressBar
-				android:id="@+id/ProgressLead4"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
 
 			<ProgressBar
 				android:id="@+id/ProgressFX4"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp" />
+				style="@style/Widget.ProgressBar.Vertical"
+				android:layout_width="12dip"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="5dip"
+				android:layout_marginTop="5dip" />
 		</TableRow>
 	</TableLayout>
 
