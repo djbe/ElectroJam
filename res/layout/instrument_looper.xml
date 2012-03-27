@@ -14,7 +14,7 @@
 		android:layout_marginRight="20dp"
 		android:shrinkColumns="*"
 		android:stretchColumns="*" >
-
+
 		<TableRow
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
@@ -23,7 +23,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonDrum1"
 				android:layout_height="match_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectordrum"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -33,7 +36,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonDrum2"
 				android:layout_height="match_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectordrum"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -43,7 +49,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonDrum3"
 				android:layout_height="match_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectordrum"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -53,7 +62,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonDrum4"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectordrum"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -106,7 +118,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonSnare1"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorsnare"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -116,7 +131,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonSnare2"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorsnare"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -126,7 +144,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonSnare3"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorsnare"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -136,7 +157,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonSnare4"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorsnare"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -189,7 +213,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonBass1"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorbass"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -199,7 +226,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonBass2"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorbass"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -209,7 +239,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonBass3"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorbass"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -219,7 +252,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonBass4"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorbass"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -272,7 +308,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonRythmic1"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorrythmic"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -282,7 +321,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonRythmic2"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorrythmic"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -292,7 +334,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonRythmic3"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorrythmic"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -302,7 +347,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonRythmic4"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorrythmic"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -355,7 +403,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonLead1"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorlead"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -365,7 +416,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonLead2"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorlead"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -375,7 +429,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonLead3"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorlead"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -385,7 +442,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonLead4"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorlead"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -438,7 +498,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonFX1"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorfx"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -448,7 +511,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonFX2"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorfx"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -458,7 +524,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonFX3"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorfx"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -468,7 +537,10 @@
 			<ToggleButton
 				android:id="@+id/ButtonFX4"
 				android:layout_height="fill_parent"
-				android:layout_margin="5dp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
 				android:background="@drawable/selectorfx"
 				android:onClick="buttonClick"
 				android:tag="1"
@@ -625,7 +697,7 @@
 						android:background="@drawable/selectortrigger"
 						android:onClick="buttonClick"
 						android:tag="0" />
-
+
 					<Button
 						android:id="@+id/ButtonTrigger6"
 						android:layout_width="match_parent"
@@ -635,6 +707,7 @@
 						android:background="@drawable/selectortrigger"
 						android:onClick="buttonClick"
 						android:tag="0" />
+
 				</LinearLayout>
 			</RelativeLayout>
 		</SlidingDrawer>
