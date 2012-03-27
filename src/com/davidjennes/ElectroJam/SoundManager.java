@@ -1,10 +1,8 @@
 package com.davidjennes.ElectroJam;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,8 +20,7 @@ public class SoundManager {
 	private Timer m_timer = new Timer();
 	private int m_beats;
 	
-	private Queue<ScheduledSound> m_soundQueue;
-	private Map<Integer, ScheduledSound> m_soundQueueMap;
+	private Map<Integer, ScheduledSound> m_soundQueue;
 
 	/**
 	 * Constructor
@@ -32,8 +29,7 @@ public class SoundManager {
 	public SoundManager(Context context) {
 		m_context = context;
 		m_sounds = new HashMap<Integer, Sound>();
-		m_soundQueue = new LinkedList<ScheduledSound>();
-		m_soundQueueMap = new HashMap<Integer, ScheduledSound>();
+		m_soundQueue = new HashMap<Integer, ScheduledSound>();
 		m_beats = -1;
 		
 		m_timer.scheduleAtFixedRate(new Action(), 0, Sound.SAMPLE_LENGTH);
@@ -82,11 +78,10 @@ public class SoundManager {
 		// looped sounds get scheduled to sync with timer beats
 		if (looped)
 			synchronized (m_soundQueue) {
-				if (!m_soundQueueMap.containsKey(id)) {
-					ScheduledSound schedule = new ScheduledSound(m_sounds.get(id));
-					m_soundQueue.add(schedule);
-					m_soundQueueMap.put(id, schedule);
-				}
+				if (m_soundQueue.containsKey(id))
+					m_soundQueue.get(id).setStop(false);
+				else
+					m_soundQueue.put(id, new ScheduledSound(m_sounds.get(id)));
 			}
 		// otherwise play directly
 		else
@@ -100,16 +95,16 @@ public class SoundManager {
 	public void stopSound(int id) {
 		synchronized (m_soundQueue) {
 			// Stop looping if it is
-			if (m_soundQueueMap.containsKey(id)) {
-				ScheduledSound schedule = m_soundQueueMap.get(id);
-				m_soundQueue.remove(schedule);
-				m_soundQueueMap.remove(id);
+			if (m_soundQueue.containsKey(id)) {
+				m_soundQueue.get(id).setStop(true);
+				return;
 			}
 			
-			// Actually stop playing
-			if (m_sounds.containsKey(id))
-				m_sounds.get(id).stop();
 		}
+		
+		// otherwise actually stop playing
+		if (m_sounds.containsKey(id))
+			m_sounds.get(id).stop();
 	}
 	
 	/**
@@ -135,17 +130,27 @@ public class SoundManager {
 	 */
 	class Action extends TimerTask {
 		public void run() {
-			List<ScheduledSound> soundQueue = null;
+			Map<Integer, ScheduledSound> soundQueue = null;
 			m_beats = (m_beats + 1) % BEATS_LIMIT;
 			
 			// get queued sounds
 			synchronized (m_soundQueue) {
-				soundQueue = new LinkedList<ScheduledSound>(m_soundQueue);
+				soundQueue = new HashMap<Integer, ScheduledSound>(m_soundQueue);
 			}
 			
 			// play each scheduled sound
-			for (ScheduledSound schedule : soundQueue)
-				schedule.skipBeat(m_beats);
+			for (Map.Entry<Integer, ScheduledSound> entry : soundQueue.entrySet())
+				entry.getValue().skipBeat(m_beats);
+			
+			// remove stopped sounds
+			synchronized (m_soundQueue) {
+				for (Iterator<Map.Entry<Integer, ScheduledSound>> it = m_soundQueue.entrySet().iterator(); it.hasNext();) {
+					Map.Entry<Integer, ScheduledSound> entry = it.next();
+					
+					if (entry.getValue().isStopped())
+						it.remove();
+				}
+			}
 		}
 	}
 }
