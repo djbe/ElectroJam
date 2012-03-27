@@ -60,14 +60,14 @@
 		<item>@id/ProgressFX4</item>
 	</array>
 	<array name="sounds">
-		<item>@raw/drum1</item>
-		<item>@raw/drum2</item>
-		<item>@raw/drum3</item>
-		<item>@raw/drum4</item>
-		<item>@raw/snare1</item>
-		<item>@raw/snare2</item>
-		<item>@raw/snare3</item>
-		<item>@raw/snare4</item>
+		<item>@raw/drum1_new</item>
+		<item>@raw/drum2_new</item>
+		<item>@raw/drum3_new</item>
+		<item>@raw/drum4_new</item>
+		<item>@raw/snare1_new</item>
+		<item>@raw/snare2_new</item>
+		<item>@raw/snare3_new</item>
+		<item>@raw/snare4_new</item>
 		<item>@raw/bass1</item>
 		<item>@raw/bass2</item>
 		<item>@raw/bass3</item>
