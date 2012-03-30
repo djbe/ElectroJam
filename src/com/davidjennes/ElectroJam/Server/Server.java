@@ -1,6 +1,5 @@
 package com.davidjennes.ElectroJam.Server;
 
-import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Set;
@@ -9,7 +8,6 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
 public class Server implements Runnable {
@@ -34,7 +32,7 @@ public class Server implements Runnable {
 		m_running = false;
 		m_stop = true;
 		m_server = null;
-		initJmDNS();
+		m_jmdns = null;
 	}
 	
 	/**
@@ -92,7 +90,7 @@ public class Server implements Runnable {
 		// --- startup sequence ---
 		try {
 			if (m_jmdns == null)
-				throw new Throwable("JmDNS not initialized.");
+				m_jmdns = JmDNS.create();
 			
 			m_server = new ServerSocket(PORT);
 			ServiceInfo info = ServiceInfo.create(TYPE, m_name, PORT, m_description);
@@ -129,21 +127,5 @@ public class Server implements Runnable {
 	 */
 	public void threadFinished(Thread thread) {
 		m_workers.remove(thread);
-	}
-	
-	/**
-	 * Create ZeroConf instance (off-loaded to another thread)
-	 */
-	private void initJmDNS() {
-        new AsyncTask<Void, Void, Void>() {
-    		protected Void doInBackground(Void... params) {
-    			try {
-    				m_jmdns = JmDNS.create();
-    			} catch (IOException e) {
-    				e.printStackTrace();
-    			}
-    			return null;
-    		}
-    	}.execute();
 	}
 }
