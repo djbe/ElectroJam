@@ -21,9 +21,9 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@id/label_name"
-		android:enabled="false"
 		android:inputType="textPersonName"
-		android:text="@string/server_name" />
+		android:state_enabled="false"
+		android:text="@string/app_name" />
 
 	<TextView
 		android:id="@+id/label_description"
@@ -37,8 +37,8 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@id/label_description"
-		android:enabled="false"
 		android:inputType="textLongMessage"
+		android:state_enabled="false"
 		android:text="@string/server_description" />
 
 	<ToggleButton

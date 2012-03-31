@@ -98,7 +98,7 @@ public class ServerService extends Service {
         
         // The PendingIntent to launch our activity if the user selects this notification 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, ServerActivity.class), 0);
-        notification.setLatestEventInfo(this, getText(R.string.server_name), text, contentIntent);
+        notification.setLatestEventInfo(this, getText(R.string.app_name), text, contentIntent);
         
         // Send the notification.
         m_nm.notify(NOTIFICATION, notification);
