@@ -1,12 +1,13 @@
 package com.davidjennes.ElectroJam.Server;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
 
 import com.davidjennes.ElectroJam.R;
@@ -78,7 +79,7 @@ public class ServerService extends Service {
 	}
 	
 	/**
-	 * Check wether the actual thread server is running
+	 * Check whether the actual thread server is running
 	 * @return True when running
 	 */
 	public boolean isServerRunning() {
@@ -88,19 +89,22 @@ public class ServerService extends Service {
 	/**
 	 * Show a notification while this service is running.
 	 */
-	@SuppressWarnings("deprecation")
 	private void showNotification() {
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, ServerActivity.class), 0);
 		CharSequence text = getText(R.string.server_started);
 		
-		// Set the scrolling text and timestamp
-		Notification notification = new Notification(R.drawable.ic_launcher, text, System.currentTimeMillis());
-		notification.flags |= Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
-        
-        // The PendingIntent to launch our activity if the user selects this notification 
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, ServerActivity.class), 0);
-        notification.setLatestEventInfo(this, getText(R.string.app_name), text, contentIntent);
+		Builder builder = new NotificationCompat.Builder(this);
+		
+		// Build notification
+		builder.setSmallIcon(R.drawable.ic_launcher)
+			.setTicker(text)
+			.setWhen(System.currentTimeMillis())
+			.setOngoing(true)
+			.setContentTitle(getText(R.string.app_name))
+			.setContentText(text)
+			.setContentIntent(contentIntent);
         
         // Send the notification.
-        m_nm.notify(NOTIFICATION, notification);
+        m_nm.notify(NOTIFICATION, builder.getNotification());
     }
 }
