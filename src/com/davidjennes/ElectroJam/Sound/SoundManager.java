@@ -1,4 +1,4 @@
-package com.davidjennes.ElectroJam;
+package com.davidjennes.ElectroJam.Sound;
 
 import java.util.HashMap;
 import java.util.Iterator;

@@ -22,7 +22,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.davidjennes.ElectroJam.R;
-import com.davidjennes.ElectroJam.SoundManager;
+import com.davidjennes.ElectroJam.Sound.SoundManager;
 
 public class InstrumentService extends Service {
 	private static final String TAG = "InstrumentService";

@@ -1,4 +1,4 @@
-package com.davidjennes.ElectroJam;
+package com.davidjennes.ElectroJam.Sound;
 
 /**
  * Used for scheduling sound on next timer beat

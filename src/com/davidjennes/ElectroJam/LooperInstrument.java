@@ -3,8 +3,6 @@ package com.davidjennes.ElectroJam;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.davidjennes.ElectroJam.Client.IInstrumentService;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
@@ -20,6 +18,9 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.widget.ToggleButton;
+
+import com.davidjennes.ElectroJam.Client.IInstrumentService;
+import com.davidjennes.ElectroJam.Sound.SoundManager;
 
 public class LooperInstrument extends Activity {
 	private static final String TAG = "LooperInstrument";
