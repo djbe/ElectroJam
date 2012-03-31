@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">ElectroJam</string>
-	<string name="mode_client">Client</string>
 	<string name="mode_server">Server</string>
-	<string name="mode_instrument">Instrument</string>
+	<string name="mode_instrument">Instruments</string>
 	<string name="permlab_instrumentService">Instrument Service</string>
 	<string name="permdesc_instrumentService">Transmit data through the instrument service of ElectroJam.</string>
 	<string name="server_name">ElectroJam</string>

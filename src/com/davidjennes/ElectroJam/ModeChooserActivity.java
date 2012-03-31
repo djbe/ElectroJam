@@ -1,13 +1,12 @@
 package com.davidjennes.ElectroJam;
 
-import com.davidjennes.ElectroJam.Client.SelectServerActivity;
-import com.davidjennes.ElectroJam.Server.ServerActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+
+import com.davidjennes.ElectroJam.Server.ServerActivity;
 
 public class ModeChooserActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
@@ -20,13 +19,8 @@ public class ModeChooserActivity extends Activity {
     }
     
     public void chooseInstrument(View view) {
-    	Intent intent = new Intent("com.davidjennes.ElectroJam.INSTRUMENT");
+    	Intent intent = new Intent(getPackageName() + ".INSTRUMENT");
     	startActivity(Intent.createChooser(intent, getString(R.string.mode_instrument)));
-    }
-    
-    public void clientActivity(View view) {
-    	Intent intent = new Intent(this, SelectServerActivity.class);
-    	startActivity(intent);
     }
     
     public void serverActivity(View view) {

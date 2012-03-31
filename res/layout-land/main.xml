@@ -2,29 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
+	android:background="@drawable/metalbackground"
 	android:gravity="center_horizontal|center_vertical"
-	android:orientation="vertical"
-	android:background="@drawable/metalbackground" >
+	android:orientation="horizontal" >
 
-	<LinearLayout
-		android:id="@+id/linearLayout1"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" >
-
-		<Button
-			android:layout_width="200dp"
-			android:layout_height="wrap_content"
-			android:layout_margin="20dp"
-			android:onClick="clientActivity"
-			android:text="@string/mode_client" />
-
-		<Button
-			android:layout_width="200dp"
-			android:layout_height="wrap_content"
-			android:layout_margin="20dp"
-			android:onClick="serverActivity"
-			android:text="@string/mode_server" />
-	</LinearLayout>
+	<Button
+		android:layout_width="200dp"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:onClick="serverActivity"
+		android:text="@string/mode_server" />
 
 	<Button
 		android:layout_width="200dp"
