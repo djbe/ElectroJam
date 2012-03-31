@@ -21,6 +21,16 @@ interface IInstrumentService {
 	void connect(int id);
 	
 	/**
+	 * Disconnect from server
+	 */
+	void disconnect();
+	
+	/**
+	 * Check whether we're connected to a server
+	 */
+	boolean isConnected();
+	
+	/**
 	 * Load samples for current instrument
 	 * This WILL take a while, so make sure to use a Handler or aSyncTask
 	 * @param samples A map from sample names to filenames
@@ -29,8 +39,14 @@ interface IInstrumentService {
 	
 	/**
 	 * Send an instrument event
-	 * @param sample The name of the sample
-	 * @param mode The play mode (single, loop)
+	 * @param sample The ID of the sample
+	 * @param looped Whether to play the sample in a looped fashion
 	 */
-	void sendEvent(int sample, int mode);
+	void playSound(int sample, boolean looped);
+	
+	/**
+	 * Send an instrument event
+	 * @param sample The ID of the sample
+	 */
+	void stopSound(int sample);
 }

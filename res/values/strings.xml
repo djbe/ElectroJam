@@ -2,7 +2,9 @@
 <resources>
 
 	<string name="app_name">ElectroJam</string>
-	<string name="client_error_connect">Unable to connect to server.</string>
+	<string name="client_connected">Successfully connected to server.</string>
+	<string name="client_disconnected">Disconnected from server.</string>
+	<string name="client_error_connecting">Unable to connect to server.</string>
 	<string name="found_servers">Found Servers:</string>
 	<string name="loading_sounds">Loading sounds…</string>
 	<string name="mode_instrument">Instruments</string>

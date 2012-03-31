@@ -3,7 +3,6 @@ package com.davidjennes.ElectroJam.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,42 +22,40 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.davidjennes.ElectroJam.R;
+import com.davidjennes.ElectroJam.SoundManager;
 
 public class InstrumentService extends Service {
 	private static final String TAG = "InstrumentService";
 	private static final String LOCK_NAME = "ElectroJamInstrument-BonjourLock";
 	private static final String TYPE = "_eljam._tcp.local.";
+	private static enum Mode {LOCAL, REMOTE};
 	
+	// ZeroConf variables 
 	private MulticastLock m_lock;
 	private JmDNS m_jmdns;
 	private Map<Integer, ServiceInfo> m_services;
 	private BonjourListener m_listener;
 	
+	// Client variables
 	private Socket m_socket;
 	private PrintWriter m_writer;
+	private Mode m_mode;
+	
+	// Sound variables
+	private SoundManager m_soundManager;
 	
     public void onCreate() {
         super.onCreate();
         
+        m_mode = Mode.LOCAL;
         m_socket = null;
         m_writer = null;
         m_services = new HashMap<Integer, ServiceInfo>();
 		m_listener = new BonjourListener(m_services);
+		m_soundManager = new SoundManager(getApplicationContext());
         
-        // Acquire lock to be able to process multicast
-        WifiManager wifi = (WifiManager) getSystemService(android.content.Context.WIFI_SERVICE);
-        m_lock = wifi.createMulticastLock(LOCK_NAME);
-        m_lock.setReferenceCounted(true);
-        m_lock.acquire();
-        Log.i(TAG, "Instrument service started.");
-        
-        // init JmDNS (async)
-        new AsyncTask<Void, Void, Void>() {
-        	protected Void doInBackground(Void... params) {
-        		initJmDNS();
-    			return null;
-    		}        	
-        }.execute();
+		new InitTask().execute();
+        Log.i(TAG, "Instrument service created.");
     }
 	
     public IBinder onBind(Intent intent) {
@@ -68,39 +65,19 @@ public class InstrumentService extends Service {
     public void onDestroy() {
     	super.onDestroy();
     	
-    	stopJmDNS();
+    	// stop ZeroConf
+    	if (m_jmdns != null)
+	    	try {
+		    	m_jmdns.removeServiceListener(TYPE, m_listener);
+				m_jmdns.close();
+			} catch (IOException e) {}
+    	
+    	// Release multicast lock
     	if (m_lock != null)
     		m_lock.release();
-        Log.i(TAG, "Instrument service stopped.");
-	}
-    
-    /**
-     * Start listening for ZeroConf services
-     */
-    private void initJmDNS() {
-    	try {
-			m_jmdns = JmDNS.create();
-			m_listener.jmdns = m_jmdns;
-			
-			m_jmdns.addServiceListener(TYPE, m_listener);
-		} catch (IOException e) {
-			e.printStackTrace();
-			m_jmdns = null;
-		}
-    }
-
-    /**
-     * Stop listening for ZeroConf services
-     */
-    private void stopJmDNS() {
-    	if (m_jmdns == null)
-    		return;
     	
-	    try {
-	    	m_jmdns.removeServiceListener(TYPE, m_listener);
-			m_jmdns.close();
-		} catch (IOException e) {}
-    }
+        Log.i(TAG, "Instrument service destroyed.");
+	}
 	
     /**
      * Service implementation
@@ -154,19 +131,44 @@ public class InstrumentService extends Service {
 					info = m_services.get(id);
 			}
 			
-			// does it still exist
-			if (info == null)
-				Toast.makeText(getApplicationContext(), R.string.client_error_connect, Toast.LENGTH_SHORT).show();
-			else {
-				try {
-					m_socket = new Socket(info.getHostAddresses()[0], info.getPort());
-					m_writer = new PrintWriter(m_socket.getOutputStream(), true);
-				} catch (UnknownHostException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			try {
+				if (info == null)
+					throw new Throwable();
+				
+				m_socket = new Socket(info.getHostAddresses()[0], info.getPort());
+				m_writer = new PrintWriter(m_socket.getOutputStream(), true);
+				m_soundManager = null;
+				m_mode = Mode.REMOTE;
+				Toast.makeText(getApplicationContext(), R.string.client_connected, Toast.LENGTH_SHORT).show();
+			} catch (Throwable e) {
+				e.printStackTrace();
+				Toast.makeText(getApplicationContext(), R.string.client_error_connecting, Toast.LENGTH_SHORT).show();
 			}
+		}
+
+		/**
+		 * Disconnect from server
+		 */
+		public void disconnect() {
+			try {
+				m_writer.close();
+				m_socket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				m_writer = null;
+				m_socket = null;
+				m_soundManager = new SoundManager(getApplicationContext());
+				m_mode = Mode.LOCAL;
+				Toast.makeText(getApplicationContext(), R.string.client_disconnected, Toast.LENGTH_SHORT).show();
+			}
+		}
+
+		/**
+		 * Check whether we're connected to a server
+		 */
+		public boolean isConnected() {
+			return m_mode == Mode.LOCAL;
 		}
 		
 		/**
@@ -176,20 +178,63 @@ public class InstrumentService extends Service {
 		 */
 		@SuppressWarnings("rawtypes")
 		public void loadSamples(Map samples) throws RemoteException {
-			Log.d(TAG, "Load samples.");
+			if (m_mode == Mode.LOCAL) {
+				;
+			} else
+				Log.d(TAG, "Load samples.");
+		}
+
+		/**
+		 * Send an instrument event
+		 * @param sample The ID of the sample
+		 * @param looped Whether to play the sample in a looped fashion
+		 */
+		public void playSound(int sample, boolean looped) {
+			if (m_mode == Mode.LOCAL)
+				m_soundManager.playSound(sample, looped);
+			else {
+				Log.d(TAG, "Send event. sample: " + sample + " looped: " + looped);
+				m_writer.println("START" + (looped ? 1 : 2) + sample);
+			}
 		}
 		
 		/**
 		 * Send an instrument event
-		 * @param sample The name of the sample
-		 * @param mode The play mode (single, loop)
+		 * @param sample The ID of the sample
 		 */
-		public void sendEvent(int sample, int mode) throws RemoteException {
-			if (m_socket == null || m_writer == null)
-				return;
-			
-			Log.d(TAG, "Send event. sample: " + sample + " mode: " + mode);
-			m_writer.println("Sample: " + sample + " mode: " + mode);
+		public void stopSound(int sample) {
+			if (m_mode == Mode.LOCAL)
+				m_soundManager.stopSound(sample);
+			else {
+				Log.d(TAG, "Send event. sample: " + sample + " stop!");
+				m_writer.println("STOP" + sample);
+			}
 		}
 	};
+	
+	/**
+	 * Task to move some initialization to the background, to comply with strict mode restrictions
+	 */
+	class InitTask extends AsyncTask<Void, Void, Void> {
+    	protected Void doInBackground(Void... params) {
+			// Acquire lock to be able to process multicast
+	        WifiManager wifi = (WifiManager) getSystemService(android.content.Context.WIFI_SERVICE);
+	        m_lock = wifi.createMulticastLock(LOCK_NAME);
+	        m_lock.setReferenceCounted(true);
+	        m_lock.acquire();
+
+			// Start listening for ZeroConf services
+    		try {
+    			m_jmdns = JmDNS.create();
+    			m_listener.jmdns = m_jmdns;
+    			m_jmdns.addServiceListener(TYPE, m_listener);
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    			m_jmdns = null;
+    		}
+    		
+    		Log.i(TAG, "Instrument service initialized.");
+			return null;
+		}        	
+    }
 }
