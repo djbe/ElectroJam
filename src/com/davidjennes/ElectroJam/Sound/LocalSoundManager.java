@@ -11,7 +11,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ProgressBar;
 
-public class SoundManager {
+public class LocalSoundManager implements ISoundManager {
 	private final static Random RANDOM = new Random();
 	private final static int BEATS_LIMIT = 4;
 
@@ -26,7 +26,7 @@ public class SoundManager {
 	 * Constructor
 	 * @param context The activity's context
 	 */
-	public SoundManager(Context context) {
+	public LocalSoundManager(Context context) {
 		m_context = context;
 		m_sounds = new HashMap<Integer, Sound>();
 		m_soundQueue = new HashMap<Integer, ScheduledSound>();
@@ -49,9 +49,7 @@ public class SoundManager {
 	}
 
 	/**
-	 * Load a sound and prepare it for playback
-	 * @param resid The resource ID to load from
-	 * @return The sound's ID
+	 * @see com.davidjennes.ElectroJam.Sound.ISoundManager#loadSound(int)
 	 */
 	public int loadSound(int resid) {
 		Sound s = new Sound(RANDOM.nextInt(), m_context, resid);
@@ -61,8 +59,7 @@ public class SoundManager {
 	}
 
 	/**
-	 * Free up the resources used by a sound
-	 * @param id The sound's ID
+	 * @see com.davidjennes.ElectroJam.Sound.ISoundManager#unloadSound(int)
 	 */
 	public void unloadSound(int id) {
 		stopSound(id);
@@ -70,9 +67,7 @@ public class SoundManager {
 	}
 
 	/**
-	 * Play a sound, looping if need be
-	 * @param id The sound's ID
-	 * @param looped Will loop if true
+	 * @see com.davidjennes.ElectroJam.Sound.ISoundManager#playSound(int, boolean)
 	 */
 	public void playSound(int id, boolean looped) {
 		// looped sounds get scheduled to sync with timer beats
@@ -89,8 +84,7 @@ public class SoundManager {
 	}
 
 	/**
-	 * Stop a sound which is playing, and prepare it for playback again
-	 * @param id The sound's ID
+	 * @see com.davidjennes.ElectroJam.Sound.ISoundManager#stopSound(int)
 	 */
 	public void stopSound(int id) {
 		synchronized (m_soundQueue) {
@@ -108,18 +102,14 @@ public class SoundManager {
 	}
 	
 	/**
-	 * Check if a sound is playing
-	 * @param id The sound's ID
-	 * @return True if playing
+	 * @see com.davidjennes.ElectroJam.Sound.ISoundManager#isPlaying(int)
 	 */
 	public boolean isPlaying(int id) {
 		return m_sounds.get(id).isPlaying();
 	}
 	
 	/**
-	 * Associate a progress bar with a sound
-	 * @param id The sound's ID
-	 * @param progressbar The ProgressBar to associate with
+	 * @see com.davidjennes.ElectroJam.Sound.ISoundManager#setProgressBar(java.lang.Integer, android.view.View)
 	 */
 	public void setProgressBar(Integer id, View progressbar) {
 		m_sounds.get(id).setProgressBar((ProgressBar) progressbar);

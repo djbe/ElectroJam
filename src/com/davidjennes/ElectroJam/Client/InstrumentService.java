@@ -22,7 +22,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.davidjennes.ElectroJam.R;
-import com.davidjennes.ElectroJam.Sound.SoundManager;
+import com.davidjennes.ElectroJam.Sound.ISoundManager;
+import com.davidjennes.ElectroJam.Sound.LocalSoundManager;
 
 public class InstrumentService extends Service {
 	private static final String TAG = "InstrumentService";
@@ -42,7 +43,7 @@ public class InstrumentService extends Service {
 	private Mode m_mode;
 	
 	// Sound variables
-	private SoundManager m_soundManager;
+	private ISoundManager m_soundManager;
 	
     public void onCreate() {
         super.onCreate();
@@ -52,7 +53,7 @@ public class InstrumentService extends Service {
         m_writer = null;
         m_services = new HashMap<Integer, ServiceInfo>();
 		m_listener = new BonjourListener(m_services);
-		m_soundManager = new SoundManager(getApplicationContext());
+		m_soundManager = new LocalSoundManager(getApplicationContext());
         
 		new InitTask().execute();
         Log.i(TAG, "Instrument service created.");
@@ -158,7 +159,7 @@ public class InstrumentService extends Service {
 			} finally {
 				m_writer = null;
 				m_socket = null;
-				m_soundManager = new SoundManager(getApplicationContext());
+				m_soundManager = new LocalSoundManager(getApplicationContext());
 				m_mode = Mode.LOCAL;
 				Toast.makeText(getApplicationContext(), R.string.client_disconnected, Toast.LENGTH_SHORT).show();
 			}

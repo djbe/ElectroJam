@@ -20,12 +20,13 @@ import android.view.View;
 import android.widget.ToggleButton;
 
 import com.davidjennes.ElectroJam.Client.IInstrumentService;
-import com.davidjennes.ElectroJam.Sound.SoundManager;
+import com.davidjennes.ElectroJam.Sound.ISoundManager;
+import com.davidjennes.ElectroJam.Sound.LocalSoundManager;
 
 public class LooperInstrument extends Activity {
 	private static final String TAG = "LooperInstrument";
 	
-	private SoundManager m_soundManager;
+	private ISoundManager m_soundManager;
 	private Map<Integer, Integer> m_buttonSound, m_buttonProgress;
 	private ProgressDialog m_progressDialog;
 	private IInstrumentService m_instrumentService;
@@ -123,7 +124,7 @@ public class LooperInstrument extends Activity {
     private class LoadSoundsTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void... params) {
 			int button, progress, sound;
-			m_soundManager = new SoundManager(getBaseContext());
+			m_soundManager = new LocalSoundManager(getBaseContext());
 			m_buttonSound = new HashMap<Integer, Integer>();
 	        m_buttonProgress = new HashMap<Integer, Integer>();
 	        
