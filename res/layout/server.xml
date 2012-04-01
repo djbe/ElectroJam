@@ -47,7 +47,7 @@
 		android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true"
 		android:layout_alignParentRight="true"
-		android:enabled="false"
+		android:state_enabled="false"
 		android:onClick="toggleServer" />
 
 </RelativeLayout>
