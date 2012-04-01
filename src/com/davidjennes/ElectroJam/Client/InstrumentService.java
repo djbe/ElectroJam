@@ -161,16 +161,20 @@ public class InstrumentService extends Service {
 		/**
 		 * Load samples for current instrument
 		 * This WILL take a while, so make sure to use a Handler or aSyncTask
-		 * @param samples A list of samples
-		 * @return A list of IDs corresponding to these samples
+		 * @param samples A list of samples, will be replaced by a list of IDs
 		 */
-		public int[] loadSamples(int[] samples) throws RemoteException {
-			int[] IDs = new int[samples.length];
-			
+		public void loadSamples(int[] samples) throws RemoteException {
 			for (int i = 0; i < samples.length; ++i)
-				IDs[i] = m_soundManager.loadSound(samples[i]);
-			
-			return IDs;
+				samples[i] = m_soundManager.loadSound(samples[i]);
+		}
+		
+		/**
+		 * Unload the specified sounds
+		 * @param IDs A list of IDs to unload 
+		 */
+		public void unloadSamples(int [] IDs) {
+			for (int id : IDs)
+				m_soundManager.unloadSound(id);
 		}
 
 		/**
@@ -188,6 +192,14 @@ public class InstrumentService extends Service {
 		 */
 		public void stopSound(int sample) {
 			m_soundManager.stopSound(sample);
+		}
+
+		/**
+		 * Check if a sound is playing
+		 * @return True if playing
+		 */
+		public boolean isPlaying(int sample) {
+			return m_soundManager.isPlaying(sample);
 		}
 	};
 	

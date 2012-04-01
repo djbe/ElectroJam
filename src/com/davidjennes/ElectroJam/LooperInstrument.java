@@ -24,7 +24,8 @@ import com.davidjennes.ElectroJam.Client.IInstrumentService;
 public class LooperInstrument extends Activity {
 	private static final String TAG = "LooperInstrument";
 	
-	private Map<Integer, Integer> m_buttonSound, m_soundProgress;
+	private int[] m_sounds;
+	private Map<Integer, Integer> m_buttonToSound, m_soundToProgressID;
 	private ProgressDialog m_progressDialog;
 	private IInstrumentService m_instrumentService;
     
@@ -34,8 +35,8 @@ public class LooperInstrument extends Activity {
         
         // show progress dialog during loading
         m_progressDialog = ProgressDialog.show(this, getString(R.string.working), getString(R.string.loading_sounds), true, false);
-        m_buttonSound = new HashMap<Integer, Integer>();
-        m_soundProgress = new HashMap<Integer, Integer>();
+        m_buttonToSound = new HashMap<Integer, Integer>();
+        m_soundToProgressID = new HashMap<Integer, Integer>();
         
         // connect to bounded instrument service
         Intent intent = new Intent();
@@ -52,10 +53,13 @@ public class LooperInstrument extends Activity {
 		setContentView(R.layout.instrument_looper);
 		
 		// light up buttons for playing sounds
-		for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet()) {
-			int sound = entry.getValue();
-//			if (m_soundManager.isPlaying(sound))
-//				((ToggleButton) findViewById(entry.getKey())).setChecked(true);
+		try {
+			for (Map.Entry<Integer, Integer> entry : m_buttonToSound.entrySet()) {
+				if (m_instrumentService.isPlaying(entry.getValue()))
+					((ToggleButton) findViewById(entry.getKey())).setChecked(true);
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
 		}
 		
 		// re-associate progress bars
@@ -66,9 +70,12 @@ public class LooperInstrument extends Activity {
     public void onDestroy() {
         super.onDestroy();
         
-//        for (Map.Entry<Integer, Integer> entry : m_buttonSound.entrySet())
-//    		m_soundManager.unloadSound(entry.getValue());
-		unbindService(m_connection);
+    	try {
+    		m_instrumentService.unloadSamples(m_sounds);
+			unbindService(m_connection);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
     }
     
     /**
@@ -90,9 +97,9 @@ public class LooperInstrument extends Activity {
     	// either play or stop    	
 		try {
 			if (play)
-				m_instrumentService.playSound(m_buttonSound.get(view.getId()), looped);
+				m_instrumentService.playSound(m_buttonToSound.get(view.getId()), looped);
 			else
-		    	m_instrumentService.stopSound(m_buttonSound.get(view.getId()));
+		    	m_instrumentService.stopSound(m_buttonToSound.get(view.getId()));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -125,26 +132,25 @@ public class LooperInstrument extends Activity {
 	        TypedArray soundsArray = getResources().obtainTypedArray(R.array.sounds);
 	        
 	        // get sound resource IDs
-	        int[] sounds = new int[soundsArray.length()];
-	        for (int i = 0; i < sounds.length; ++i)
-	        	sounds[i] = soundsArray.getResourceId(i, -1);
+	        m_sounds = new int[soundsArray.length()];
+	        for (int i = 0; i < m_sounds.length; ++i)
+	        	m_sounds[i] = soundsArray.getResourceId(i, -1);
 	        
 	        // load sounds
 	        try {
-				sounds = m_instrumentService.loadSamples(sounds);
+				m_instrumentService.loadSamples(m_sounds);
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
 	        
 	        // associate buttons to sounds
 	        for (int i = 0; i < buttons.length(); ++i)
-	        	m_buttonSound.put(buttons.getResourceId(i, -1), sounds[i]);
+	        	m_buttonToSound.put(buttons.getResourceId(i, -1), m_sounds[i]);
 	        
 	        // associate sounds to progress bars
 	        for (int i = 0; i < progressBars.length(); ++i) {
         		int progress = progressBars.getResourceId(i, -1);
-        		m_soundProgress.put(sounds[i], progress);
-//	        	m_soundManager.setProgressBar(sounds[i], findViewById(progress));
+        		m_soundToProgressID.put(m_sounds[i], progress);
 	        }
 	        
 			return null;

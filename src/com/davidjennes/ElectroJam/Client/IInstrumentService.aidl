@@ -33,10 +33,15 @@ interface IInstrumentService {
 	/**
 	 * Load samples for current instrument
 	 * This WILL take a while, so make sure to use a Handler or aSyncTask
-	 * @param samples A list of samples
-	 * @return A list of IDs corresponding to these samples
+	 * @param samples A list of samples, will be replaced by a list of IDs
 	 */
-	int [] loadSamples(in int [] samples);
+	void loadSamples(inout int [] samples);
+	
+	/**
+	 * Unload the specified sounds
+	 * @param IDs A list of IDs to unload 
+	 */
+	void unloadSamples(in int [] IDs);
 	
 	/**
 	 * Send an instrument event
@@ -50,4 +55,10 @@ interface IInstrumentService {
 	 * @param sample The ID of the sample
 	 */
 	void stopSound(int sample);
+	
+	/**
+	 * Check if a sound is playing
+	 * @return True if playing
+	 */
+	boolean isPlaying(int sample);
 }
