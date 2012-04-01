@@ -64,10 +64,11 @@ public class SelectServerActivity extends Activity {
         // strict mode
         if (getResources().getBoolean(R.bool.developer_mode))
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
+        m_data = new ArrayList<Map<String, String>>();
         
         // automated server discovery every few seconds
         m_timer.scheduleAtFixedRate(new RepeatServerDiscovery(), 0, REPEAT_DISCOVERY);
-
+        
         // connect to bounded instrument service
         Intent intent = new Intent();
         intent.setClassName(getPackageName(), getPackageName() + ".Client.InstrumentService");
@@ -99,10 +100,9 @@ public class SelectServerActivity extends Activity {
      */
     private void initListView() {
     	// connect ListView to data
-        m_data = new ArrayList<Map<String, String>>();
-        m_adapter = new SimpleAdapter(getApplicationContext(), m_data,
+        m_adapter = new SimpleAdapter(this, m_data,
         		android.R.layout.simple_list_item_2,
-        		new String[] {InfoField_NAME, InfoField_DESCRIPTION},
+        		new String[] {InfoField_NAME, InfoField_DESCRIPTION}, // map keys to views
         		new int[] {android.R.id.text1, android.R.id.text2});
         ListView listView = (ListView) findViewById(R.id.server_list);
         listView.setAdapter(m_adapter);

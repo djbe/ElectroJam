@@ -28,7 +28,7 @@ public class InstrumentService extends Service {
 	private static final String LOCK_NAME = "ElectroJamInstrument-BonjourLock";
 	private static final String TYPE = "_eljam._tcp.local.";
 	
-	// ZeroConf variables 
+	// ZeroConf variables
 	private MulticastLock m_lock;
 	private JmDNS m_jmdns;
 	private Map<Integer, ServiceInfo> m_services;
@@ -42,7 +42,7 @@ public class InstrumentService extends Service {
         
         m_services = new HashMap<Integer, ServiceInfo>();
 		m_listener = new BonjourListener(m_services);
-		m_soundManager = new LocalSoundManager(getApplicationContext());
+		m_soundManager = new LocalSoundManager(this);
         
 		new InitTask().execute();
         Log.i(TAG, "Instrument service created.");
@@ -129,11 +129,11 @@ public class InstrumentService extends Service {
 				
 				// connect and create (fake) sound manager
 				Socket socket = new Socket(info.getHostAddresses()[0], info.getPort());
-				m_soundManager = new RemoteSoundManager(getApplicationContext(), socket);
-				Toast.makeText(getApplicationContext(), R.string.client_connected, Toast.LENGTH_SHORT).show();
+				m_soundManager = new RemoteSoundManager(InstrumentService.this, socket);
+				Toast.makeText(InstrumentService.this, R.string.client_connected, Toast.LENGTH_SHORT).show();
 			} catch (Throwable e) {
 				e.printStackTrace();
-				Toast.makeText(getApplicationContext(), R.string.client_error_connecting, Toast.LENGTH_SHORT).show();
+				Toast.makeText(InstrumentService.this, R.string.client_error_connecting, Toast.LENGTH_SHORT).show();
 			}
 		}
 
@@ -146,8 +146,8 @@ public class InstrumentService extends Service {
 			} catch (Throwable e) {
 				e.printStackTrace();
 			} finally {
-				m_soundManager = new LocalSoundManager(getApplicationContext());
-				Toast.makeText(getApplicationContext(), R.string.client_disconnected, Toast.LENGTH_SHORT).show();
+				m_soundManager = new LocalSoundManager(InstrumentService.this);
+				Toast.makeText(InstrumentService.this, R.string.client_disconnected, Toast.LENGTH_SHORT).show();
 			}
 		}
 
