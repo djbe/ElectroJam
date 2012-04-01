@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import android.content.Context;
 import android.util.Log;
+
+import com.davidjennes.ElectroJam.Sound.SoundManager;
 
 public class ServerWorker extends Thread {
 	private static final String TAG = ServerWorker.class.getName();
@@ -13,19 +16,22 @@ public class ServerWorker extends Thread {
 	private Server m_server;
 	private Socket m_socket;
 	private BufferedReader m_reader;
+	private SoundManager m_soundManager;
 	private volatile boolean m_stop;
+	
 	
 	/**
 	 * Constructor
 	 * @param server The parent server thread
 	 * @param socket The client socket
 	 */
-	public ServerWorker(Server server, Socket socket) {
+	public ServerWorker(Server server, Socket socket, Context context, SoundManager manager) {
 		super();
 		
 		m_server = server;
 		m_socket = socket;
 		m_stop = false;
+		m_soundManager = manager;
 	}
 
 	/**

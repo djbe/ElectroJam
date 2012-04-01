@@ -35,7 +35,7 @@ public class ServerService extends Service {
         
         // init server
         m_running = false;
-        m_server = new Server();
+        m_server = new Server(this);
     }
 	
 	/**

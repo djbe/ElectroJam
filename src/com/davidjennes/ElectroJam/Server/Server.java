@@ -8,7 +8,11 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 
+import android.content.Context;
 import android.util.Log;
+
+import com.davidjennes.ElectroJam.Sound.LocalSoundManager;
+import com.davidjennes.ElectroJam.Sound.SoundManager;
 
 public class Server implements Runnable {
 	private final String TAG = Server.class.getName();
@@ -20,12 +24,14 @@ public class Server implements Runnable {
 	private ServerSocket m_server;
 	private final Set<ServerWorker> m_workers; 
 	private volatile boolean m_running, m_stop;
+	private SoundManager m_soundManager;
+	private Context m_context;
 	
 	/**
 	 * Constructor
 	 * @param context The activity's context
 	 */
-	public Server() {
+	public Server(Context context) {
 		super();
 		
 		m_workers = new CopyOnWriteArraySet<ServerWorker>();
@@ -33,6 +39,8 @@ public class Server implements Runnable {
 		m_stop = true;
 		m_server = null;
 		m_jmdns = null;
+		m_context = context;
+		m_soundManager = new LocalSoundManager(context, null);
 	}
 	
 	/**
@@ -105,7 +113,7 @@ public class Server implements Runnable {
 		try {
 			while (!m_stop) {
 				Socket client = m_server.accept();
-				ServerWorker worker = new ServerWorker(this, client);
+				ServerWorker worker = new ServerWorker(this, client, m_context, m_soundManager);
 				m_workers.add(worker);
 				worker.start();
 			}
