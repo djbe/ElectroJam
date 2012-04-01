@@ -3,7 +3,6 @@ package com.davidjennes.ElectroJam.Sound;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,11 +10,9 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ProgressBar;
 
-public class LocalSoundManager implements ISoundManager {
-	private final static Random RANDOM = new Random();
+public class LocalSoundManager extends SoundManager {
 	private final static int BEATS_LIMIT = 4;
-
-	private Context m_context;
+	
 	private Map<Integer, Sound> m_sounds;
 	private Timer m_timer = new Timer();
 	private int m_beats;
@@ -27,7 +24,7 @@ public class LocalSoundManager implements ISoundManager {
 	 * @param context The activity's context
 	 */
 	public LocalSoundManager(Context context) {
-		m_context = context;
+		super(context);
 		m_sounds = new HashMap<Integer, Sound>();
 		m_soundQueue = new HashMap<Integer, ScheduledSound>();
 		m_beats = -1;
@@ -35,6 +32,9 @@ public class LocalSoundManager implements ISoundManager {
 		m_timer.scheduleAtFixedRate(new Action(), 0, Sound.SAMPLE_LENGTH);
 	}
 	
+	/**
+	 * Destructor
+	 */
 	protected void finalize() throws Throwable {
 		try {
 			m_timer.cancel();
@@ -49,7 +49,7 @@ public class LocalSoundManager implements ISoundManager {
 	}
 
 	/**
-	 * @see com.davidjennes.ElectroJam.Sound.ISoundManager#loadSound(int)
+	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#loadSound(int)
 	 */
 	public int loadSound(int resid) {
 		Sound s = new Sound(RANDOM.nextInt(), m_context, resid);
@@ -59,7 +59,7 @@ public class LocalSoundManager implements ISoundManager {
 	}
 
 	/**
-	 * @see com.davidjennes.ElectroJam.Sound.ISoundManager#unloadSound(int)
+	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#unloadSound(int)
 	 */
 	public void unloadSound(int id) {
 		stopSound(id);
@@ -67,7 +67,7 @@ public class LocalSoundManager implements ISoundManager {
 	}
 
 	/**
-	 * @see com.davidjennes.ElectroJam.Sound.ISoundManager#playSound(int, boolean)
+	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#playSound(int, boolean)
 	 */
 	public void playSound(int id, boolean looped) {
 		// looped sounds get scheduled to sync with timer beats
@@ -84,7 +84,7 @@ public class LocalSoundManager implements ISoundManager {
 	}
 
 	/**
-	 * @see com.davidjennes.ElectroJam.Sound.ISoundManager#stopSound(int)
+	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#stopSound(int)
 	 */
 	public void stopSound(int id) {
 		synchronized (m_soundQueue) {
@@ -102,14 +102,14 @@ public class LocalSoundManager implements ISoundManager {
 	}
 	
 	/**
-	 * @see com.davidjennes.ElectroJam.Sound.ISoundManager#isPlaying(int)
+	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#isPlaying(int)
 	 */
 	public boolean isPlaying(int id) {
 		return m_sounds.get(id).isPlaying();
 	}
 	
 	/**
-	 * @see com.davidjennes.ElectroJam.Sound.ISoundManager#setProgressBar(java.lang.Integer, android.view.View)
+	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#setProgressBar(java.lang.Integer, android.view.View)
 	 */
 	public void setProgressBar(Integer id, View progressbar) {
 		m_sounds.get(id).setProgressBar((ProgressBar) progressbar);

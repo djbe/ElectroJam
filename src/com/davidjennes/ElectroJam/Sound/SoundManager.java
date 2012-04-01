@@ -1,9 +1,22 @@
 package com.davidjennes.ElectroJam.Sound;
 
+import java.util.Random;
+
+import android.content.Context;
 import android.view.View;
 
-public interface ISoundManager {
-
+public abstract class SoundManager {
+	protected final static Random RANDOM = new Random();
+	protected Context m_context;
+	
+	/**
+	 * Constructor
+	 * @param context The activity's context
+	 */
+	public SoundManager(Context context) {
+		m_context = context;
+	}
+	
 	/**
 	 * Load a sound and prepare it for playback
 	 * @param resid The resource ID to load from

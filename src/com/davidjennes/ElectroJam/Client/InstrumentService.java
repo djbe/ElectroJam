@@ -22,11 +22,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.davidjennes.ElectroJam.R;
-import com.davidjennes.ElectroJam.Sound.ISoundManager;
 import com.davidjennes.ElectroJam.Sound.LocalSoundManager;
+import com.davidjennes.ElectroJam.Sound.SoundManager;
 
 public class InstrumentService extends Service {
-	private static final String TAG = "InstrumentService";
+	private static final String TAG = InstrumentService.class.getName();
 	private static final String LOCK_NAME = "ElectroJamInstrument-BonjourLock";
 	private static final String TYPE = "_eljam._tcp.local.";
 	private static enum Mode {LOCAL, REMOTE};
@@ -43,7 +43,7 @@ public class InstrumentService extends Service {
 	private Mode m_mode;
 	
 	// Sound variables
-	private ISoundManager m_soundManager;
+	private SoundManager m_soundManager;
 	
     public void onCreate() {
         super.onCreate();
