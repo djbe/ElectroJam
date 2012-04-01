@@ -56,23 +56,16 @@ public class LooperInstrument extends Activity {
 		super.onConfigurationChanged(newConfig);
 		setContentView(R.layout.instrument_looper);
 		
-		// light up buttons for playing sounds
 		try {
-			for (Map.Entry<Integer, Integer> entry : m_buttonToSound.entrySet()) {
+			// light up buttons for playing sounds
+			for (Map.Entry<Integer, Integer> entry : m_buttonToSound.entrySet())
 				if (m_instrumentService.isPlaying(entry.getValue()))
 					((ToggleButton) findViewById(entry.getKey())).setChecked(true);
-			}
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
 		
-		// re-associate progress bars
-		try {
+			// re-associate progress bars
 			m_instrumentService.unregisterCallback(m_callback);
-			
 			for (Map.Entry<Integer, Integer> entry : m_soundToProgressID.entrySet())
 				m_soundToProgress.put(entry.getKey(), (ProgressBar) findViewById(entry.getValue()));
-			
 			m_instrumentService.registerCallback(m_callback);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -138,7 +131,8 @@ public class LooperInstrument extends Activity {
 	/**
 	 * Callback implementation
 	 */
-	private final IInstrumentServiceCallback.Stub m_callback = new IInstrumentServiceCallback.Stub() {/**
+	private final IInstrumentServiceCallback.Stub m_callback = new IInstrumentServiceCallback.Stub() {
+		/**
 		 * Called when a sound reaches a certain progress while playing
 		 * @param sound The sound's ID
 		 * @param progress The new progress value
@@ -165,31 +159,25 @@ public class LooperInstrument extends Activity {
     private class LoadSoundsTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void... params) {
 			// Get associations data
-	        TypedArray buttons = getResources().obtainTypedArray(R.array.buttons);
-	        TypedArray progressBars = getResources().obtainTypedArray(R.array.progress_bars);
-	        TypedArray soundsArray = getResources().obtainTypedArray(R.array.sounds);
-	        
-	        // get sound resource IDs
-	        m_sounds = new int[soundsArray.length()];
-	        for (int i = 0; i < m_sounds.length; ++i)
-	        	m_sounds[i] = soundsArray.getResourceId(i, -1);
+	        int[] buttons = getTypedArrayAsIDArray(R.array.buttons);
+	        int[] progressBars = getTypedArrayAsIDArray(R.array.progress_bars);
 	        
 	        // load sounds
 	        try {
+		        m_sounds = getTypedArrayAsIDArray(R.array.sounds);
 				m_instrumentService.loadSamples(m_sounds);
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
 	        
 	        // associate buttons to sounds
-	        for (int i = 0; i < buttons.length(); ++i)
-	        	m_buttonToSound.put(buttons.getResourceId(i, -1), m_sounds[i]);
+	        for (int i = 0; i < buttons.length; ++i)
+	        	m_buttonToSound.put(buttons[i], m_sounds[i]);
 	        
 	        // associate sounds to progress bars
-	        for (int i = 0; i < progressBars.length(); ++i) {
-        		int progress = progressBars.getResourceId(i, -1);
-        		m_soundToProgressID.put(m_sounds[i], progress);
-        		m_soundToProgress.put(m_sounds[i], (ProgressBar) findViewById(progress));
+	        for (int i = 0; i < progressBars.length; ++i) {
+        		m_soundToProgressID.put(m_sounds[i], progressBars[i]);
+        		m_soundToProgress.put(m_sounds[i], (ProgressBar) findViewById(progressBars[i]));
 	        }
 	        
 	        // register callback
@@ -207,4 +195,20 @@ public class LooperInstrument extends Activity {
 			m_progressDialog = null;
 		}
 	}
+    
+    /**
+     * Convert a typed array resource into a primitive array
+     * @param id The resource ID
+     * @return A primitive array of integers
+     */
+    private int[] getTypedArrayAsIDArray(int id) {
+    	TypedArray array = getResources().obtainTypedArray(id);
+    	
+    	// convert to primite type
+    	int[] result = new int [array.length()];
+    	for (int i = 0; i < result.length; ++i)
+    		result[i] = array.getResourceId(i, -1);
+    	
+    	return result;
+    }
 }
