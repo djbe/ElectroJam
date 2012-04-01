@@ -3,16 +3,16 @@ package com.davidjennes.ElectroJam.Client;
 interface IInstrumentService {
 	/**
 	 * List of discovered servers
-	 * @return List of server IDs (Integers)
+	 * @return List of server IDs
 	 */
-	List availableServers();
+	int[] availableServers();
 	
 	/**
 	 * Get discovered server info
 	 * @param id Server ID
-	 * @return Server info (name & description)
+	 * @return Server info (array of 2 elements, name and description)
 	 */
-	Map serverInfo(int id);
+	String[] serverInfo(int id);
 	
 	/**
 	 * Connect to a certain server
@@ -33,9 +33,10 @@ interface IInstrumentService {
 	/**
 	 * Load samples for current instrument
 	 * This WILL take a while, so make sure to use a Handler or aSyncTask
-	 * @param samples A map from sample names to filenames
+	 * @param samples A list of samples
+	 * @return A list of IDs corresponding to these samples
 	 */
-	void loadSamples(in Map samples);
+	int [] loadSamples(in int [] samples);
 	
 	/**
 	 * Send an instrument event

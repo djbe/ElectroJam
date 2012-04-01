@@ -1,6 +1,7 @@
 package com.davidjennes.ElectroJam.Client;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
@@ -24,14 +25,15 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.davidjennes.ElectroJam.R;
 
 public class SelectServerActivity extends Activity {
 	private static final String TAG = "InstrumentActivity";
-	private static final String APP_ID = "com.davidjennes.ElectroJam";
 	private static final int REPEAT_DISCOVERY = 2000;
+	private static final String InfoField_ID = "id";
+	private static final String InfoField_NAME = "name";
+	private static final String InfoField_DESCRIPTION = "description";
 	
 	private List<Map<String, String>> m_data;
 	private SimpleAdapter m_adapter;
@@ -68,7 +70,7 @@ public class SelectServerActivity extends Activity {
 
         // connect to bounded instrument service
         Intent intent = new Intent();
-        intent.setClassName(APP_ID, APP_ID + ".Client.InstrumentService");
+        intent.setClassName(getPackageName(), getPackageName() + ".Client.InstrumentService");
         if (!bindService(intent, m_connection, Context.BIND_AUTO_CREATE))
         	Log.e(TAG, "Couldn't bind to local service");
     }
@@ -100,7 +102,7 @@ public class SelectServerActivity extends Activity {
         m_data = new ArrayList<Map<String, String>>();
         m_adapter = new SimpleAdapter(getApplicationContext(), m_data,
         		android.R.layout.simple_list_item_2,
-        		new String[] {"name", "description"},
+        		new String[] {InfoField_NAME, InfoField_DESCRIPTION},
         		new int[] {android.R.id.text1, android.R.id.text2});
         ListView listView = (ListView) findViewById(R.id.server_list);
         listView.setAdapter(m_adapter);
@@ -109,7 +111,7 @@ public class SelectServerActivity extends Activity {
         listView.setOnItemClickListener(new OnItemClickListener() {
         	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         		Log.d(TAG, "Clicked item: " + position);
-        		Integer server = Integer.parseInt(m_data.get(position).get("id"));
+        		Integer server = Integer.parseInt(m_data.get(position).get(InfoField_ID));
         		new ServerConnectTask().execute(server);
         	}
         });
@@ -128,19 +130,25 @@ public class SelectServerActivity extends Activity {
 		/**
 		 * Fetch discovered servers and their info
 		 */
-		@SuppressWarnings("unchecked")
 		protected Void doInBackground(Void... params) {
 			try {
 				m_tempData = new ArrayList<Map<String, String>>();
 				
 				// fetch server IDs
-				List<Integer> serverIDs = m_instrumentService.availableServers();
+				int[] serverIDs = m_instrumentService.availableServers();
 				
 				// fetch info for each server
 				for (int id : serverIDs) {
-					Map<String, String> info = m_instrumentService.serverInfo(id);
-					if (info != null)
-						m_tempData.add(info);
+					String[] info = m_instrumentService.serverInfo(id);
+					
+					// convert array to map 
+					if (info != null) {
+						Map<String, String> mappedInfo = new HashMap<String, String>();
+						mappedInfo.put(InfoField_ID, Integer.toString(id));
+						mappedInfo.put(InfoField_NAME, info[0]);
+						mappedInfo.put(InfoField_DESCRIPTION, info[1]);
+						m_tempData.add(mappedInfo);
+					}
 				}
 			} catch (RemoteException e) {
 				e.printStackTrace();
@@ -168,17 +176,17 @@ public class SelectServerActivity extends Activity {
 				return null;
 			
 			try {
+				// connect
 				m_instrumentService.connect(params[0]);
-				m_instrumentService.sendEvent(1234, 1);
+				
+				// open instrument
+		    	Intent intent = new Intent(getPackageName() + ".INSTRUMENT");
+		    	startActivity(Intent.createChooser(intent, getString(R.string.mode_instrument)));
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
 			
 			return null;
-		}
-		
-		protected void onPostExecute(Void param) {
-    		Toast.makeText(getApplicationContext(), "Finished connecting to server!", Toast.LENGTH_SHORT).show();
 		}
 	}
 
