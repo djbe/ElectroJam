@@ -102,7 +102,8 @@ class Sound implements OnErrorListener {
 	 */
 	public void setProgressBar(ProgressBar bar) {
 		m_progressBar = bar;
-		m_progressBar.setSecondaryProgress(skipLimit * 25);
+		if (m_progressBar != null)
+			m_progressBar.setSecondaryProgress(skipLimit * 25);
 	}
 	
 	/**
@@ -111,7 +112,8 @@ class Sound implements OnErrorListener {
 	 */
 	public void setProgress(int progress) {
 		progress = (progress < skipLimit) ? progress + 1 : skipLimit;
-		m_progressBar.setProgress(progress * 25);
+		if (m_progressBar != null)
+			m_progressBar.setProgress(progress * 25);
 	}
 	
 	/**
