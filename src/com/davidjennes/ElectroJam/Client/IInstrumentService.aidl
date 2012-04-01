@@ -1,5 +1,7 @@
 package com.davidjennes.ElectroJam.Client;
 
+import com.davidjennes.ElectroJam.Client.IInstrumentServiceCallback;
+
 interface IInstrumentService {
 	/**
 	 * List of discovered servers
@@ -61,4 +63,16 @@ interface IInstrumentService {
 	 * @return True if playing
 	 */
 	boolean isPlaying(int sample);
+	
+	/**
+	 * Register a callback to receive progress notifications
+	 * @param callback A callback instance
+	 */
+	void registerCallback(IInstrumentServiceCallback callback);
+	
+	/**
+	 * Remove a callback to stop receiving notifications
+	 * @param callback A callback instance
+	 */
+	void unregisterCallback(IInstrumentServiceCallback callback);
 }

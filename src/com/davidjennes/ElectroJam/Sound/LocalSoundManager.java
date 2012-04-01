@@ -9,8 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.ProgressBar;
+import android.os.Handler;
 
 public class LocalSoundManager extends SoundManager {
 	private final static int BEATS_LIMIT = 4;
@@ -24,8 +23,9 @@ public class LocalSoundManager extends SoundManager {
 	 * Constructor
 	 * @param context The activity's context
 	 */
-	public LocalSoundManager(Context context) {
-		super(context);
+	public LocalSoundManager(Context context, Handler handler) {
+		super(context, handler);
+		
 		m_sounds = new HashMap<Integer, Sound>();
 		m_soundQueue = new ConcurrentHashMap<Integer, ScheduledSound>();
 		m_beats = -1;
@@ -104,13 +104,6 @@ public class LocalSoundManager extends SoundManager {
 	 */
 	public boolean isPlaying(int id) {
 		return m_sounds.get(id).isPlaying();
-	}
-	
-	/**
-	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#setProgressBar(java.lang.Integer, android.view.View)
-	 */
-	public void setProgressBar(Integer id, View progressbar) {
-		m_sounds.get(id).setProgressBar((ProgressBar) progressbar);
 	}
 	
 	/**

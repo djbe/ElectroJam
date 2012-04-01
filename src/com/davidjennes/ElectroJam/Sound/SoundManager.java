@@ -3,17 +3,18 @@ package com.davidjennes.ElectroJam.Sound;
 import java.util.Random;
 
 import android.content.Context;
-import android.view.View;
+import android.os.Handler;
 
 public abstract class SoundManager {
 	protected final static Random RANDOM = new Random();
 	protected Context m_context;
+	protected Handler m_handler;
 	
 	/**
 	 * Constructor
 	 * @param context The activity's context
 	 */
-	public SoundManager(Context context) {
+	public SoundManager(Context context, Handler handler) {
 		m_context = context;
 	}
 	
@@ -49,12 +50,4 @@ public abstract class SoundManager {
 	 * @return True if playing
 	 */
 	public abstract boolean isPlaying(int id);
-
-	/**
-	 * Associate a progress bar with a sound
-	 * @param id The sound's ID
-	 * @param progressbar The ProgressBar to associate with
-	 */
-	public abstract void setProgressBar(Integer id, View progressbar);
-
 }

@@ -13,7 +13,10 @@ import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiManager.MulticastLock;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
@@ -27,6 +30,8 @@ public class InstrumentService extends Service {
 	private static final String TAG = InstrumentService.class.getName();
 	private static final String LOCK_NAME = "ElectroJamInstrument-BonjourLock";
 	private static final String TYPE = "_eljam._tcp.local.";
+	private static final int UPDATE_PROGRESS = 1;
+	private static final int UPDATE_SECONDARY = 2;
 	
 	// ZeroConf variables
 	private MulticastLock m_lock;
@@ -35,6 +40,7 @@ public class InstrumentService extends Service {
 	private BonjourListener m_listener;
 	
 	// Client variables
+	private RemoteCallbackList<IInstrumentServiceCallback> m_callbacks;
 	private SoundManager m_soundManager;
 	
     public void onCreate() {
@@ -42,7 +48,8 @@ public class InstrumentService extends Service {
         
         m_services = new ConcurrentHashMap<Integer, ServiceInfo>();
 		m_listener = new BonjourListener(m_services);
-		m_soundManager = new LocalSoundManager(this);
+		m_soundManager = new LocalSoundManager(this, m_handler);
+		m_callbacks = new RemoteCallbackList<IInstrumentServiceCallback>();
         
 		new InitTask().execute();
         Log.i(TAG, "Instrument service created.");
@@ -66,6 +73,8 @@ public class InstrumentService extends Service {
     	if (m_lock != null)
     		m_lock.release();
     	
+    	// Unregister all callbacks
+    	m_callbacks.kill();
         Log.i(TAG, "Instrument service destroyed.");
 	}
 	
@@ -115,7 +124,7 @@ public class InstrumentService extends Service {
 				
 				// connect and create (fake) sound manager
 				Socket socket = new Socket(info.getHostAddresses()[0], info.getPort());
-				m_soundManager = new RemoteSoundManager(InstrumentService.this, socket);
+				m_soundManager = new RemoteSoundManager(InstrumentService.this, m_handler, socket);
 				Toast.makeText(InstrumentService.this, R.string.client_connected, Toast.LENGTH_SHORT).show();
 			} catch (Throwable e) {
 				e.printStackTrace();
@@ -132,7 +141,7 @@ public class InstrumentService extends Service {
 			} catch (Throwable e) {
 				e.printStackTrace();
 			} finally {
-				m_soundManager = new LocalSoundManager(InstrumentService.this);
+				m_soundManager = new LocalSoundManager(InstrumentService.this, m_handler);
 				Toast.makeText(InstrumentService.this, R.string.client_disconnected, Toast.LENGTH_SHORT).show();
 			}
 		}
@@ -187,6 +196,24 @@ public class InstrumentService extends Service {
 		public boolean isPlaying(int sample) {
 			return m_soundManager.isPlaying(sample);
 		}
+		
+		/**
+		 * Register a callback to receive progress notifications
+		 * @param callback A callback instance
+		 */
+		public void registerCallback(IInstrumentServiceCallback callback) {
+			if (callback != null)
+				m_callbacks.register(callback);
+		}
+		
+		/**
+		 * Remove a callback to stop receiving notifications
+		 * @param callback A callback instance
+		 */
+		public void unregisterCallback(IInstrumentServiceCallback callback) {
+			if (callback != null)
+				m_callbacks.unregister(callback);
+		}
 	};
 	
 	/**
@@ -214,4 +241,32 @@ public class InstrumentService extends Service {
 			return null;
 		}        	
     }
+	
+	/**
+	 * Handle messages from SoundManager
+	 */
+	private final Handler m_handler = new Handler() {
+		public void handleMessage(Message msg) {
+			final int N = m_callbacks.beginBroadcast();
+			
+			switch (msg.what) {
+			case UPDATE_PROGRESS:
+                for (int i = 0; i < N; ++i)
+                    try {
+                    	m_callbacks.getBroadcastItem(i).updateProgress(msg.arg1, msg.arg2);
+                    } catch (RemoteException e) {}
+				break;
+			case UPDATE_SECONDARY:
+				for (int i = 0; i < N; ++i)
+                    try {
+                    	m_callbacks.getBroadcastItem(i).secondaryProgress(msg.arg1, msg.arg2);
+                    } catch (RemoteException e) {}
+				break;
+			default:
+				super.handleMessage(msg);
+			}
+			
+            m_callbacks.finishBroadcast();
+		}
+	};
 }

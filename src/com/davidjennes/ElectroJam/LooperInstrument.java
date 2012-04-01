@@ -17,15 +17,18 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.ToggleButton;
 
 import com.davidjennes.ElectroJam.Client.IInstrumentService;
+import com.davidjennes.ElectroJam.Client.IInstrumentServiceCallback;
 
 public class LooperInstrument extends Activity {
 	private static final String TAG = "LooperInstrument";
 	
 	private int[] m_sounds;
 	private Map<Integer, Integer> m_buttonToSound, m_soundToProgressID;
+	private Map<Integer, ProgressBar> m_soundToProgress;
 	private ProgressDialog m_progressDialog;
 	private IInstrumentService m_instrumentService;
     
@@ -37,6 +40,7 @@ public class LooperInstrument extends Activity {
         m_progressDialog = ProgressDialog.show(this, getString(R.string.working), getString(R.string.loading_sounds), true, false);
         m_buttonToSound = new HashMap<Integer, Integer>();
         m_soundToProgressID = new HashMap<Integer, Integer>();
+        m_soundToProgress = new HashMap<Integer, ProgressBar>();
         
         // connect to bounded instrument service
         Intent intent = new Intent();
@@ -63,14 +67,23 @@ public class LooperInstrument extends Activity {
 		}
 		
 		// re-associate progress bars
-//		for (Map.Entry<Integer, Integer> entry : m_soundProgress.entrySet())
-//			m_soundManager.setProgressBar(entry.getKey(), findViewById(entry.getValue()));
+		try {
+			m_instrumentService.unregisterCallback(m_callback);
+			
+			for (Map.Entry<Integer, Integer> entry : m_soundToProgressID.entrySet())
+				m_soundToProgress.put(entry.getKey(), (ProgressBar) findViewById(entry.getValue()));
+			
+			m_instrumentService.registerCallback(m_callback);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
     }
     
     public void onDestroy() {
         super.onDestroy();
         
     	try {
+    		m_instrumentService.unregisterCallback(m_callback);
     		m_instrumentService.unloadSamples(m_sounds);
 			unbindService(m_connection);
 		} catch (RemoteException e) {
@@ -121,6 +134,33 @@ public class LooperInstrument extends Activity {
 	    }
 	};
 	
+
+	/**
+	 * Callback implementation
+	 */
+	private final IInstrumentServiceCallback.Stub m_callback = new IInstrumentServiceCallback.Stub() {/**
+		 * Called when a sound reaches a certain progress while playing
+		 * @param sound The sound's ID
+		 * @param progress The new progress value
+		 */
+		public void updateProgress(int sound, int progress) {
+			Log.d(TAG, "progress for sound " + sound + ": " + progress);
+			if (m_soundToProgress.containsKey(sound))
+				m_soundToProgress.get(sound).setProgress(progress);
+		}
+
+		/**
+		 * Called to send secondary progress information
+		 * @param sound The sound's ID
+		 * @param secondaryProgress The new secondary progress value (progress will go from 0 to this value)
+		 */
+		public void secondaryProgress(int sound, int secondaryProgress) {
+			Log.d(TAG, "secondary progress for sound " + sound + ": " + secondaryProgress);
+			if (m_soundToProgress.containsKey(sound))
+				m_soundToProgress.get(sound).setSecondaryProgress(secondaryProgress);
+		}
+	};
+	
 	/**
 	 * Task to load necessary sounds to server
 	 */
@@ -151,7 +191,15 @@ public class LooperInstrument extends Activity {
 	        for (int i = 0; i < progressBars.length(); ++i) {
         		int progress = progressBars.getResourceId(i, -1);
         		m_soundToProgressID.put(m_sounds[i], progress);
+        		m_soundToProgress.put(m_sounds[i], (ProgressBar) findViewById(progress));
 	        }
+	        
+	        // register callback
+	        try {
+				m_instrumentService.registerCallback(m_callback);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 	        
 			return null;
 		}

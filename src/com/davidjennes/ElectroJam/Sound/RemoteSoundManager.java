@@ -10,8 +10,8 @@ import java.util.Map;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
+import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 
 public class RemoteSoundManager extends SoundManager {
 	private static final String TAG = SoundManager.class.getName();
@@ -26,8 +26,8 @@ public class RemoteSoundManager extends SoundManager {
 	 * @param socket The server's socket
 	 * @throws IOException 
 	 */
-	public RemoteSoundManager(Context context, Socket socket) throws IOException {
-		super(context);
+	public RemoteSoundManager(Context context, Handler handler, Socket socket) throws IOException {
+		super(context, handler);
 		
 		m_socket = socket;
 		m_writer = new PrintWriter(m_socket.getOutputStream(), true);
@@ -124,12 +124,5 @@ public class RemoteSoundManager extends SoundManager {
 			return m_soundStatus.get(id);
 		else
 			return false;
-	}
-
-	/**
-	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#setProgressBar(java.lang.Integer, android.view.View)
-	 */
-	public void setProgressBar(Integer id, View progressbar) {
-		// TODO: connect id and progress bar
 	}
 }
