@@ -1,8 +1,8 @@
 package com.davidjennes.ElectroJam.Client;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceEvent;
@@ -18,18 +18,18 @@ public class BonjourListener implements ServiceListener {
 	private static final String TAG = "BonjourListener";
 	private final static Random RANDOM = new Random();
 	
-	private Map<Integer, ServiceInfo> m_serviceIDToInfo;
-	private Map<String, Integer> m_serviceNameToID;
+	private ConcurrentMap<Integer, ServiceInfo> m_serviceIDToInfo;
+	private ConcurrentMap<String, Integer> m_serviceNameToID;
 	
 	public JmDNS jmdns;
 	
 	/**
 	 * Constructor
 	 */
-	public BonjourListener(Map<Integer, ServiceInfo> services) {
+	public BonjourListener(ConcurrentMap<Integer, ServiceInfo> services) {
 		jmdns = null;
 		m_serviceIDToInfo = services;
-		m_serviceNameToID = new HashMap<String, Integer>();
+		m_serviceNameToID = new ConcurrentHashMap<String, Integer>();
 	}
 	
 	/**
@@ -37,16 +37,17 @@ public class BonjourListener implements ServiceListener {
 	 */
 	public void serviceResolved(ServiceEvent ev) {
 		String name = ev.getInfo().getQualifiedName();
+		Integer id = m_serviceNameToID.get(name);
 		
-		synchronized(m_serviceIDToInfo) {
-			if (m_serviceNameToID.containsKey(name))
-				m_serviceIDToInfo.put(m_serviceNameToID.get(name), ev.getInfo());
-			else {
-				m_serviceNameToID.put(name, RANDOM.nextInt());
-				m_serviceIDToInfo.put(m_serviceNameToID.get(name), ev.getInfo());
-				Log.i(TAG, "Found: " + name);
-			}
+		// found a new service
+		if (id == null) {
+			id = RANDOM.nextInt();
+			Log.i(TAG, "Found: " + name);
 		}
+		
+		// store info
+		m_serviceNameToID.putIfAbsent(name, id);
+		m_serviceIDToInfo.put(id, ev.getInfo());
     }
 	
 	/**
@@ -55,12 +56,8 @@ public class BonjourListener implements ServiceListener {
     public void serviceRemoved(ServiceEvent ev) {
     	String name = ev.getInfo().getQualifiedName();
     	
-    	synchronized(m_serviceIDToInfo) {
-    		if (m_serviceNameToID.containsKey(name)) {
-    			m_serviceIDToInfo.remove(m_serviceNameToID.get(name));
-    			m_serviceNameToID.remove(name);
-    		}
-		}
+    	m_serviceIDToInfo.remove(m_serviceNameToID.get(name));
+		m_serviceNameToID.remove(name);
     }
     
     /**

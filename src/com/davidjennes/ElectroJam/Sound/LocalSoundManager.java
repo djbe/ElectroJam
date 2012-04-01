@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import android.content.Context;
 import android.view.View;
@@ -16,8 +18,7 @@ public class LocalSoundManager extends SoundManager {
 	private Map<Integer, Sound> m_sounds;
 	private Timer m_timer = new Timer();
 	private int m_beats;
-	
-	private Map<Integer, ScheduledSound> m_soundQueue;
+	private ConcurrentMap<Integer, ScheduledSound> m_soundQueue;
 
 	/**
 	 * Constructor
@@ -26,7 +27,7 @@ public class LocalSoundManager extends SoundManager {
 	public LocalSoundManager(Context context) {
 		super(context);
 		m_sounds = new HashMap<Integer, Sound>();
-		m_soundQueue = new HashMap<Integer, ScheduledSound>();
+		m_soundQueue = new ConcurrentHashMap<Integer, ScheduledSound>();
 		m_beats = -1;
 		
 		m_timer.scheduleAtFixedRate(new Action(), 0, Sound.SAMPLE_LENGTH);
@@ -71,15 +72,15 @@ public class LocalSoundManager extends SoundManager {
 	 */
 	public void playSound(int id, boolean looped) {
 		// looped sounds get scheduled to sync with timer beats
-		if (looped)
-			synchronized (m_soundQueue) {
-				if (m_soundQueue.containsKey(id))
-					m_soundQueue.get(id).setStop(false);
-				else
-					m_soundQueue.put(id, new ScheduledSound(m_sounds.get(id)));
-			}
+		if (looped) {
+			m_soundQueue.putIfAbsent(id, new ScheduledSound(m_sounds.get(id)));
+			
+			ScheduledSound sound = m_soundQueue.get(id);
+			if (sound != null)
+				sound.setStop(false);
+			
 		// otherwise play directly
-		else
+		} else
 			m_sounds.get(id).play();
 	}
 
@@ -87,17 +88,14 @@ public class LocalSoundManager extends SoundManager {
 	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#stopSound(int)
 	 */
 	public void stopSound(int id) {
-		synchronized (m_soundQueue) {
-			// Stop looping if it is
-			if (m_soundQueue.containsKey(id)) {
-				m_soundQueue.get(id).setStop(true);
-				return;
-			}
-			
-		}
+		ScheduledSound sound = m_soundQueue.get(id);
+		
+		// Stop looping if it is
+		if (sound != null)
+			sound.setStop(true);
 		
 		// otherwise actually stop playing
-		if (m_sounds.containsKey(id))
+		else if (m_sounds.containsKey(id))
 			m_sounds.get(id).stop();
 	}
 	
@@ -120,26 +118,19 @@ public class LocalSoundManager extends SoundManager {
 	 */
 	class Action extends TimerTask {
 		public void run() {
-			Map<Integer, ScheduledSound> soundQueue = null;
 			m_beats = (m_beats + 1) % BEATS_LIMIT;
 			
-			// get queued sounds
-			synchronized (m_soundQueue) {
-				soundQueue = new HashMap<Integer, ScheduledSound>(m_soundQueue);
-			}
-			
 			// play each scheduled sound
-			for (Map.Entry<Integer, ScheduledSound> entry : soundQueue.entrySet())
+			for (Map.Entry<Integer, ScheduledSound> entry : m_soundQueue.entrySet())
 				entry.getValue().skipBeat(m_beats);
 			
 			// remove stopped sounds
-			synchronized (m_soundQueue) {
-				for (Iterator<Map.Entry<Integer, ScheduledSound>> it = m_soundQueue.entrySet().iterator(); it.hasNext();) {
-					Map.Entry<Integer, ScheduledSound> entry = it.next();
-					
-					if (entry.getValue().isStopped())
-						it.remove();
-				}
+			Iterator<Map.Entry<Integer, ScheduledSound>> it = m_soundQueue.entrySet().iterator();
+			while (it.hasNext()) {
+				Map.Entry<Integer, ScheduledSound> entry = it.next();
+				
+				if (entry.getValue().isStopped())
+					it.remove();
 			}
 		}
 	}

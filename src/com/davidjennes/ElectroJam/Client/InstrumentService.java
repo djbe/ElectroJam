@@ -2,8 +2,8 @@ package com.davidjennes.ElectroJam.Client;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
@@ -31,7 +31,7 @@ public class InstrumentService extends Service {
 	// ZeroConf variables
 	private MulticastLock m_lock;
 	private JmDNS m_jmdns;
-	private Map<Integer, ServiceInfo> m_services;
+	private ConcurrentMap<Integer, ServiceInfo> m_services;
 	private BonjourListener m_listener;
 	
 	// Client variables
@@ -40,7 +40,7 @@ public class InstrumentService extends Service {
     public void onCreate() {
         super.onCreate();
         
-        m_services = new HashMap<Integer, ServiceInfo>();
+        m_services = new ConcurrentHashMap<Integer, ServiceInfo>();
 		m_listener = new BonjourListener(m_services);
 		m_soundManager = new LocalSoundManager(this);
         
@@ -78,12 +78,7 @@ public class InstrumentService extends Service {
 		 * @return List of server IDs
 		 */
 		public int[] availableServers() throws RemoteException {
-			Integer[] services = null;
-			
-			// get IDs
-			synchronized(m_services) {
-				services = (Integer[]) m_services.keySet().toArray();
-			}
+			Integer[] services = (Integer[]) m_services.keySet().toArray();
 			
 			// convert to primitives array
 			int[] result = new int[services.length];
@@ -99,15 +94,12 @@ public class InstrumentService extends Service {
 		 * @return Server info (array of 2 elements, name and description)
 		 */
 		public String[] serverInfo(int id) throws RemoteException {
-			synchronized(m_services) {
-				if (m_services.containsKey(id))
-					return new String[] {
-							m_services.get(id).getName(),
-							m_services.get(id).getNiceTextString()
-						};
-				else
-					return null;
-			}
+			ServiceInfo info = m_services.get(id);
+			
+			if (info != null)
+				return new String[] {info.getName(), info.getNiceTextString()};
+			else
+				return null;
 		}
 		
 		/**
@@ -115,15 +107,9 @@ public class InstrumentService extends Service {
 		 * @param id Server ID
 		 */
 		public void connect(int id) throws RemoteException {
-			ServiceInfo info = null;
-			
-			// get service info
-			synchronized(m_services) {
-				if (m_services.containsKey(id))
-					info = m_services.get(id);
-			}
-			
 			try {
+				// get info
+				ServiceInfo info = m_services.get(id);
 				if (info == null)
 					throw new Throwable();
 				
