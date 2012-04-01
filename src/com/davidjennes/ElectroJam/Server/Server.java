@@ -11,7 +11,7 @@ import javax.jmdns.ServiceInfo;
 import android.util.Log;
 
 public class Server implements Runnable {
-	private final String TAG = "Server";
+	private final String TAG = Server.class.getName();
 	private final String TYPE = "_eljam._tcp.local.";
 	private final int PORT = 7654;
 	

@@ -13,7 +13,7 @@ import android.util.Log;
 import com.davidjennes.ElectroJam.R;
 
 public class ServerService extends Service {
-	private static final String TAG = "ServerService";
+	private static final String TAG = ServerService.class.getName();
 	private static final int NOTIFICATION = R.string.server_started;
 	
 	private NotificationManager m_nm;

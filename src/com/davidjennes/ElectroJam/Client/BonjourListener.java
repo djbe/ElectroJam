@@ -15,7 +15,7 @@ import android.util.Log;
  * Listener for ZeroConf events
  */
 public class BonjourListener implements ServiceListener {
-	private static final String TAG = "BonjourListener";
+	private static final String TAG = BonjourListener.class.getName();
 	private final static Random RANDOM = new Random();
 	
 	private ConcurrentMap<Integer, ServiceInfo> m_serviceIDToInfo;

@@ -29,7 +29,7 @@ import android.widget.SimpleAdapter;
 import com.davidjennes.ElectroJam.R;
 
 public class SelectServerActivity extends Activity {
-	private static final String TAG = "InstrumentActivity";
+	private static final String TAG = SelectServerActivity.class.getName();;
 	private static final int REPEAT_DISCOVERY = 2000;
 	private static final String InfoField_ID = "id";
 	private static final String InfoField_NAME = "name";

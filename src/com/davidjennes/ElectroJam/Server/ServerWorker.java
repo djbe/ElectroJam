@@ -8,7 +8,7 @@ import java.net.Socket;
 import android.util.Log;
 
 public class ServerWorker extends Thread {
-	private static final String TAG = "ServerWorker";
+	private static final String TAG = ServerWorker.class.getName();
 	
 	private Server m_server;
 	private Socket m_socket;

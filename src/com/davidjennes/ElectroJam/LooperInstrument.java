@@ -24,7 +24,7 @@ import com.davidjennes.ElectroJam.Client.IInstrumentService;
 import com.davidjennes.ElectroJam.Client.IInstrumentServiceCallback;
 
 public class LooperInstrument extends Activity {
-	private static final String TAG = "LooperInstrument";
+	private static final String TAG = LooperInstrument.class.getName();
 	
 	private int[] m_sounds;
 	private Map<Integer, Integer> m_buttonToSound, m_soundToProgressID;
