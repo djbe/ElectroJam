@@ -96,6 +96,9 @@ public class RemoteSoundManager extends SoundManager {
 	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#playSound(int, boolean)
 	 */
 	public void playSound(int id, boolean looped) {
+		if (!m_soundStatus.containsKey(id))
+			return;
+		
 		Log.d(TAG, "Play sample: " + id + " looped: " + looped);
 		m_writer.println("START:" + (looped ? 1 : 2) + id);
 		m_soundStatus.put(id, true);
@@ -105,6 +108,9 @@ public class RemoteSoundManager extends SoundManager {
 	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#stopSound(int)
 	 */
 	public void stopSound(int id) {
+		if (!m_soundStatus.containsKey(id))
+			return;
+		
 		Log.d(TAG, "Stop sample: " + id + " stop!");
 		m_writer.println("STOP:" + id);
 		m_soundStatus.put(id, false);
@@ -114,7 +120,10 @@ public class RemoteSoundManager extends SoundManager {
 	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#isPlaying(int)
 	 */
 	public boolean isPlaying(int id) {
-		return m_soundStatus.get(id);
+		if (m_soundStatus.containsKey(id))
+			return m_soundStatus.get(id);
+		else
+			return false;
 	}
 
 	/**
