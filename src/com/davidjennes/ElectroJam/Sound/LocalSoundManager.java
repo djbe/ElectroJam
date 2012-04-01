@@ -1,23 +1,13 @@
 package com.davidjennes.ElectroJam.Sound;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 import android.content.Context;
 import android.os.Handler;
 
 public class LocalSoundManager extends SoundManager {
-	private final static int BEATS_LIMIT = 4;
-	
 	private Map<Integer, Sound> m_sounds;
-	private Timer m_timer = new Timer();
-	private int m_beats;
-	private ConcurrentMap<Integer, ScheduledSound> m_soundQueue;
 
 	/**
 	 * Constructor
@@ -27,10 +17,6 @@ public class LocalSoundManager extends SoundManager {
 		super(context, handler);
 		
 		m_sounds = new HashMap<Integer, Sound>();
-		m_soundQueue = new ConcurrentHashMap<Integer, ScheduledSound>();
-		m_beats = -1;
-		
-		m_timer.scheduleAtFixedRate(new Action(), 0, Sound.SAMPLE_LENGTH);
 	}
 	
 	/**
@@ -38,9 +24,6 @@ public class LocalSoundManager extends SoundManager {
 	 */
 	protected void finalize() throws Throwable {
 		try {
-			m_timer.cancel();
-			m_timer = null;
-			
 			for (Map.Entry<Integer, Sound> entry : m_sounds.entrySet())
 				entry.getValue().stop();
 			m_sounds.clear();
@@ -53,10 +36,10 @@ public class LocalSoundManager extends SoundManager {
 	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#loadSound(int)
 	 */
 	public int loadSound(int resid) {
-		Sound s = new Sound(RANDOM.nextInt(), m_context, resid);
-		m_sounds.put(s.id, s);
+		int id = RANDOM.nextInt();
+		m_sounds.put(id, new Sound(m_context, resid));
 
-		return s.id;
+		return id;
 	}
 
 	/**
@@ -66,18 +49,26 @@ public class LocalSoundManager extends SoundManager {
 		stopSound(id);
 		m_sounds.remove(id);
 	}
+	
+	/**
+	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#progressListenerRegistered()
+	 */
+	public void progressListenerRegistered() {
+		for (Map.Entry<Integer, Sound> entry : m_sounds.entrySet())
+			sendProgressMessage(UPDATE_SECONDARY, entry.getKey(), entry.getValue().getSkipLimit() * 25);
+	}
 
 	/**
 	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#playSound(int, boolean)
 	 */
 	public void playSound(int id, boolean looped) {
+		super.playSound(id, looped);
+		
 		// looped sounds get scheduled to sync with timer beats
 		if (looped) {
-			m_soundQueue.putIfAbsent(id, new ScheduledSound(m_sounds.get(id)));
-			
 			ScheduledSound sound = m_soundQueue.get(id);
 			if (sound != null)
-				sound.setStop(false);
+				sound.setSound(m_sounds.get(id));
 			
 		// otherwise play directly
 		} else
@@ -88,14 +79,10 @@ public class LocalSoundManager extends SoundManager {
 	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#stopSound(int)
 	 */
 	public void stopSound(int id) {
-		ScheduledSound sound = m_soundQueue.get(id);
-		
-		// Stop looping if it is
-		if (sound != null)
-			sound.setStop(true);
+		super.stopSound(id);
 		
 		// otherwise actually stop playing
-		else if (m_sounds.containsKey(id))
+		if (!m_soundQueue.containsKey(id) &&  m_sounds.containsKey(id))
 			m_sounds.get(id).stop();
 	}
 	
@@ -104,27 +91,5 @@ public class LocalSoundManager extends SoundManager {
 	 */
 	public boolean isPlaying(int id) {
 		return m_sounds.get(id).isPlaying();
-	}
-	
-	/**
-	 * Beat timer task
-	 */
-	class Action extends TimerTask {
-		public void run() {
-			m_beats = (m_beats + 1) % BEATS_LIMIT;
-			
-			// play each scheduled sound
-			for (Map.Entry<Integer, ScheduledSound> entry : m_soundQueue.entrySet())
-				entry.getValue().skipBeat(m_beats);
-			
-			// remove stopped sounds
-			Iterator<Map.Entry<Integer, ScheduledSound>> it = m_soundQueue.entrySet().iterator();
-			while (it.hasNext()) {
-				Map.Entry<Integer, ScheduledSound> entry = it.next();
-				
-				if (entry.getValue().isStopped())
-					it.remove();
-			}
-		}
 	}
 }

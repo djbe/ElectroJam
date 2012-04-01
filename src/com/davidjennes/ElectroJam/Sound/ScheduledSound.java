@@ -12,15 +12,33 @@ class ScheduledSound {
 	 * Constructor
 	 * @param sound The sound to be played
 	 */
-	public ScheduledSound(Sound sound) {
-		m_sound = sound;
+	public ScheduledSound() {
+		m_sound = null;
 		m_skipped = -1;
-		m_skipLimit = m_sound.skipLimit;
+		m_skipLimit = 1;
 		m_stop = false;
 	}
 	
 	/**
+	 * Set which sound is scheduled
+	 * @param sound The affected sound
+	 */
+	public void setSound(Sound sound) {
+		m_sound = sound;
+		m_skipLimit = (sound != null) ? sound.getSkipLimit() : 1;
+	}
+	
+	/**
+	 * Set the skip limit
+	 * @param limit The new skip limit value
+	 */
+	public void setSkipLimit(int limit) {
+		m_skipLimit = limit;
+	}
+	
+	/**
 	 * Set whether to stop this sound on the next timer beats sync or not
+	 * @param stop If true looping will stop, otherwise it will continue
 	 */
 	public void setStop(boolean stop) {
 		m_stop = stop;
@@ -28,9 +46,21 @@ class ScheduledSound {
 	
 	/**
 	 * Check whether we've actually stopped
+	 * @return True if stopped
 	 */
 	public boolean isStopped() {
 		return m_stop && m_skipped == 0;
+	}
+	
+	/**
+	 * Get the progress (based on skip count)
+	 * @return Returns a value between 0 and 100
+	 */
+	public int getProgress() {
+		if (isStopped())
+			return 0;
+		else
+			return 25 * ((m_skipped < m_skipLimit) ? m_skipped + 1 : m_skipLimit);
 	}
 	
 	/**
@@ -43,12 +73,8 @@ class ScheduledSound {
 		if (m_skipped > -1 || (m_skipped == -1 && (beats % m_skipLimit) == 0))
 			m_skipped = (m_skipped + 1) % m_skipLimit;
 		
-		// update progress bar
-		if (m_skipped > -1)
-			m_sound.setProgress(m_skipped);
-		
 		// on sync with beat timer
-		if (m_skipped == 0) {
+		if (m_skipped == 0 && m_sound != null) {
 			if (m_stop)
 				m_sound.stop();
 			else

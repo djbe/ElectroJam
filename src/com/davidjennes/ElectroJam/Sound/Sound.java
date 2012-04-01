@@ -7,37 +7,33 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnErrorListener;
 import android.util.Log;
-import android.widget.ProgressBar;
 
 /**
  * Stores MediaPlayers connected to a single sound 
  */
 class Sound implements OnErrorListener {
-	private final static String TAG = "Sound";
+	private final static String TAG = Sound.class.getName();;
 	public final static int SAMPLE_LENGTH = 1875;
 	
 	private MediaPlayer m_mp;
-	private ProgressBar m_progressBar;
 	private Context m_context;
 	private int m_resID;
-	public int id, skipLimit;
+	private int m_skipLimit;
 	
 	/**
 	 * Constructor
 	 * @param context The activity's context
 	 * @param resid The resource ID to load from
 	 */
-	public Sound(int newID, Context context, int resid) {
+	public Sound(Context context, int resid) {
 		m_mp = create(context, resid);
 		m_resID = resid;
 		m_context = context;
-		m_progressBar = null;
-		id = newID;
 		
 		// calculate skip limit based on duration
-		skipLimit = (int) m_mp.getDuration() / SAMPLE_LENGTH;
-		if (skipLimit < 1)
-			skipLimit = 1;
+		m_skipLimit = (int) m_mp.getDuration() / SAMPLE_LENGTH;
+		if (m_skipLimit < 1)
+			m_skipLimit = 1;
 	}
 
 	/**
@@ -79,10 +75,6 @@ class Sound implements OnErrorListener {
 			if (m_mp.isPlaying())
 				m_mp.pause();
 			m_mp.seekTo(0);
-			
-			// reset progress bar
-			if (m_progressBar != null)
-				m_progressBar.setProgress(0);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		}
@@ -97,23 +89,10 @@ class Sound implements OnErrorListener {
 	}
 	
 	/**
-	 * Connect a ProgressBar to this sound
-	 * @param bar The new progress bar
+	 * Get the skip limit (based on base sample length)
 	 */
-	public void setProgressBar(ProgressBar bar) {
-		m_progressBar = bar;
-		if (m_progressBar != null)
-			m_progressBar.setSecondaryProgress(skipLimit * 25);
-	}
-	
-	/**
-	 * Show the specified progress on the progress bar associated with this sound
-	 * @param progress The new progress to set to (in skips, from 0 to skip limit)
-	 */
-	public void setProgress(int progress) {
-		progress = (progress < skipLimit) ? progress + 1 : skipLimit;
-		if (m_progressBar != null)
-			m_progressBar.setProgress(progress * 25);
+	public int getSkipLimit() {
+		return m_skipLimit;
 	}
 	
 	/**

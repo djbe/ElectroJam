@@ -30,8 +30,6 @@ public class InstrumentService extends Service {
 	private static final String TAG = InstrumentService.class.getName();
 	private static final String LOCK_NAME = "ElectroJamInstrument-BonjourLock";
 	private static final String TYPE = "_eljam._tcp.local.";
-	private static final int UPDATE_PROGRESS = 1;
-	private static final int UPDATE_SECONDARY = 2;
 	
 	// ZeroConf variables
 	private MulticastLock m_lock;
@@ -202,8 +200,10 @@ public class InstrumentService extends Service {
 		 * @param callback A callback instance
 		 */
 		public void registerCallback(IInstrumentServiceCallback callback) {
-			if (callback != null)
+			if (callback != null) {
 				m_callbacks.register(callback);
+				m_soundManager.progressListenerRegistered();
+			}
 		}
 		
 		/**
@@ -250,13 +250,13 @@ public class InstrumentService extends Service {
 			final int N = m_callbacks.beginBroadcast();
 			
 			switch (msg.what) {
-			case UPDATE_PROGRESS:
+			case SoundManager.UPDATE_PROGRESS:
                 for (int i = 0; i < N; ++i)
                     try {
                     	m_callbacks.getBroadcastItem(i).updateProgress(msg.arg1, msg.arg2);
                     } catch (RemoteException e) {}
 				break;
-			case UPDATE_SECONDARY:
+			case SoundManager.UPDATE_SECONDARY:
 				for (int i = 0; i < N; ++i)
                     try {
                     	m_callbacks.getBroadcastItem(i).secondaryProgress(msg.arg1, msg.arg2);

@@ -144,7 +144,6 @@ public class LooperInstrument extends Activity {
 		 * @param progress The new progress value
 		 */
 		public void updateProgress(int sound, int progress) {
-			Log.d(TAG, "progress for sound " + sound + ": " + progress);
 			if (m_soundToProgress.containsKey(sound))
 				m_soundToProgress.get(sound).setProgress(progress);
 		}
@@ -155,7 +154,6 @@ public class LooperInstrument extends Activity {
 		 * @param secondaryProgress The new secondary progress value (progress will go from 0 to this value)
 		 */
 		public void secondaryProgress(int sound, int secondaryProgress) {
-			Log.d(TAG, "secondary progress for sound " + sound + ": " + secondaryProgress);
 			if (m_soundToProgress.containsKey(sound))
 				m_soundToProgress.get(sound).setSecondaryProgress(secondaryProgress);
 		}

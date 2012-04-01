@@ -46,6 +46,7 @@ public class RemoteSoundManager extends SoundManager {
 		} finally {
 			m_writer = null;
 			m_socket = null;
+			super.finalize();
 		}
 	}
 	
@@ -91,23 +92,34 @@ public class RemoteSoundManager extends SoundManager {
 		m_writer.println("DEL:" + id);
 		m_soundStatus.remove(id);
 	}
+	
+	/**
+	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#progressListenerRegistered()
+	 */
+	public void progressListenerRegistered() {
+	}
 
 	/**
 	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#playSound(int, boolean)
 	 */
 	public void playSound(int id, boolean looped) {
+		super.playSound(id, looped);
+		
 		if (!m_soundStatus.containsKey(id))
 			return;
 		
 		Log.d(TAG, "Play sample: " + id + " looped: " + looped);
 		m_writer.println("START:" + (looped ? 1 : 2) + id);
-		m_soundStatus.put(id, true);
+		if (!looped)
+			m_soundStatus.put(id, true);
 	}
 
 	/**
 	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#stopSound(int)
 	 */
 	public void stopSound(int id) {
+		super.stopSound(id);
+		
 		if (!m_soundStatus.containsKey(id))
 			return;
 		
