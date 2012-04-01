@@ -18,8 +18,8 @@ public class BonjourListener implements ServiceListener {
 	private static final String TAG = "BonjourListener";
 	private final static Random RANDOM = new Random();
 	
-	private Map<Integer, ServiceInfo> m_services;
-	private Map<String, Integer> m_serviceNames;
+	private Map<Integer, ServiceInfo> m_serviceIDToInfo;
+	private Map<String, Integer> m_serviceNameToID;
 	
 	public JmDNS jmdns;
 	
@@ -28,8 +28,8 @@ public class BonjourListener implements ServiceListener {
 	 */
 	public BonjourListener(Map<Integer, ServiceInfo> services) {
 		jmdns = null;
-		m_services = services;
-		m_serviceNames = new HashMap<String, Integer>();;
+		m_serviceIDToInfo = services;
+		m_serviceNameToID = new HashMap<String, Integer>();
 	}
 	
 	/**
@@ -38,13 +38,13 @@ public class BonjourListener implements ServiceListener {
 	public void serviceResolved(ServiceEvent ev) {
 		String name = ev.getInfo().getQualifiedName();
 		
-		synchronized(m_services) {
-			if (m_serviceNames.containsKey(name))
-				m_services.put(m_serviceNames.get(name), ev.getInfo());
+		synchronized(m_serviceIDToInfo) {
+			if (m_serviceNameToID.containsKey(name))
+				m_serviceIDToInfo.put(m_serviceNameToID.get(name), ev.getInfo());
 			else {
-				m_serviceNames.put(name, RANDOM.nextInt());
-				m_services.put(m_serviceNames.get(name), ev.getInfo());
-				Log.i(TAG, "Found: " + ev.getInfo().getQualifiedName());
+				m_serviceNameToID.put(name, RANDOM.nextInt());
+				m_serviceIDToInfo.put(m_serviceNameToID.get(name), ev.getInfo());
+				Log.i(TAG, "Found: " + name);
 			}
 		}
     }
@@ -55,10 +55,10 @@ public class BonjourListener implements ServiceListener {
     public void serviceRemoved(ServiceEvent ev) {
     	String name = ev.getInfo().getQualifiedName();
     	
-    	synchronized(m_services) {
-    		if (m_serviceNames.containsKey(name)) {
-    			m_services.remove(m_serviceNames.get(name));
-    			m_serviceNames.remove(name);
+    	synchronized(m_serviceIDToInfo) {
+    		if (m_serviceNameToID.containsKey(name)) {
+    			m_serviceIDToInfo.remove(m_serviceNameToID.get(name));
+    			m_serviceNameToID.remove(name);
     		}
 		}
     }
