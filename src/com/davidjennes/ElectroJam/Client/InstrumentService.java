@@ -40,6 +40,7 @@ public class InstrumentService extends Service {
 	// Client variables
 	private RemoteCallbackList<IInstrumentServiceCallback> m_callbacks;
 	private SoundManager m_soundManager;
+	private Handler m_toastHandler;
 	
     public void onCreate() {
         super.onCreate();
@@ -48,6 +49,7 @@ public class InstrumentService extends Service {
 		m_listener = new BonjourListener(m_services);
 		m_soundManager = new LocalSoundManager(this, m_handler);
 		m_callbacks = new RemoteCallbackList<IInstrumentServiceCallback>();
+		m_toastHandler = new Handler();
         
 		new InitTask().execute();
         Log.i(TAG, "Instrument service created.");
@@ -74,6 +76,18 @@ public class InstrumentService extends Service {
     	// Unregister all callbacks
     	m_callbacks.kill();
         Log.i(TAG, "Instrument service destroyed.");
+	}
+    
+    /**
+     * Display a toast message
+     * @param resid The text message's ID to show
+     */
+	private void showToast(final int resid) {
+		m_toastHandler.post(new Runnable() {
+			public void run() {
+				Toast.makeText(InstrumentService.this, resid, Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 	
     /**
@@ -123,10 +137,10 @@ public class InstrumentService extends Service {
 				// connect and create (fake) sound manager
 				Socket socket = new Socket(info.getHostAddresses()[0], info.getPort());
 				m_soundManager = new RemoteSoundManager(InstrumentService.this, m_handler, socket);
-				Toast.makeText(InstrumentService.this, R.string.client_connected, Toast.LENGTH_SHORT).show();
+				showToast(R.string.client_connected);
 			} catch (Throwable e) {
 				e.printStackTrace();
-				Toast.makeText(InstrumentService.this, R.string.client_error_connecting, Toast.LENGTH_SHORT).show();
+				showToast(R.string.client_error_connecting);
 			}
 		}
 
@@ -140,7 +154,7 @@ public class InstrumentService extends Service {
 				e.printStackTrace();
 			} finally {
 				m_soundManager = new LocalSoundManager(InstrumentService.this, m_handler);
-				Toast.makeText(InstrumentService.this, R.string.client_disconnected, Toast.LENGTH_SHORT).show();
+				showToast(R.string.client_disconnected);
 			}
 		}
 
