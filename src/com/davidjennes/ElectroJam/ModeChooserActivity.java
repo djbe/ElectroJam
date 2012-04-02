@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.davidjennes.ElectroJam.Client.SelectServerActivity;
 import com.davidjennes.ElectroJam.Server.ServerActivity;
 
 public class ModeChooserActivity extends Activity {
@@ -52,7 +53,7 @@ public class ModeChooserActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
         case R.id.settings:
-        	//startActivity(new Intent(this, About.class));
+        	startActivity(new Intent(this, SelectServerActivity.class));
         	return true;
         default:
         	return super.onOptionsItemSelected(item);
