@@ -21,16 +21,14 @@ public class LocalSoundManager extends SoundManager {
 	}
 	
 	/**
-	 * Destructor
+	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#stopManager()
 	 */
-	protected void finalize() throws Throwable {
-		try {
-			for (Map.Entry<Integer, Sound> entry : m_sounds.entrySet())
-				entry.getValue().stop();
-			m_sounds.clear();
-		} finally {
-			super.finalize();
-		}
+	public void stopManager() {
+		super.stopManager();
+		
+		for (Map.Entry<Integer, Sound> entry : m_sounds.entrySet())
+			entry.getValue().stop();
+		m_sounds.clear();
 	}
 
 	/**
@@ -63,11 +61,9 @@ public class LocalSoundManager extends SoundManager {
 	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#playSound(int, boolean)
 	 */
 	public void playSound(int id, boolean looped) {
-		super.playSound(id, looped);
-		
 		// looped sounds get scheduled to sync with timer beats
 		if (looped) {
-			ScheduledSound sound = m_soundQueue.get(id);
+			ScheduledSound sound = scheduleSound(id);
 			if (sound != null)
 				sound.setSound(m_sounds.get(id));
 			
@@ -80,7 +76,7 @@ public class LocalSoundManager extends SoundManager {
 	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#stopSound(int)
 	 */
 	public void stopSound(int id) {
-		super.stopSound(id);
+		unscheduleSound(id);
 		
 		// otherwise actually stop playing
 		if (!m_soundQueue.containsKey(id) &&  m_sounds.containsKey(id))
@@ -92,5 +88,14 @@ public class LocalSoundManager extends SoundManager {
 	 */
 	public boolean isPlaying(int id) {
 		return m_sounds.get(id).isPlaying();
+	}
+	
+	/**
+	 * Get the duration of a certain sound
+	 * @param id The sound's ID
+	 * @return Duration in number of beats (skips)
+	 */
+	public int getSoundDuration(int id) {
+		return m_sounds.get(id).getSkipLimit();
 	}
 }

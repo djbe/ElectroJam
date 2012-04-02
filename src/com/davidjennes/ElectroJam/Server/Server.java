@@ -12,7 +12,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.davidjennes.ElectroJam.Sound.LocalSoundManager;
-import com.davidjennes.ElectroJam.Sound.SoundManager;
 
 public class Server implements Runnable {
 	private final String TAG = Server.class.getName();
@@ -24,7 +23,7 @@ public class Server implements Runnable {
 	private ServerSocket m_server;
 	private final Set<ServerWorker> m_workers; 
 	private volatile boolean m_running, m_stop;
-	private SoundManager m_soundManager;
+	private LocalSoundManager m_soundManager;
 	private Context m_context;
 	
 	/**
@@ -41,6 +40,7 @@ public class Server implements Runnable {
 		m_jmdns = null;
 		m_context = context;
 		m_soundManager = new LocalSoundManager(context, null);
+		Log.d(TAG, "Server manager: " + m_soundManager.id);
 	}
 	
 	/**

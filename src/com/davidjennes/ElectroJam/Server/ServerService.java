@@ -25,7 +25,7 @@ public class ServerService extends Service {
 	 * Simple binder for local service
 	 */
 	public class LocalBinder extends Binder {
-		ServerService getService() {
+		public ServerService getService() {
             return ServerService.this;
         }
     }

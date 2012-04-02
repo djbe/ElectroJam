@@ -137,6 +137,7 @@ public class InstrumentService extends Service {
 				
 				// connect and create (fake) sound manager
 				Socket socket = new Socket(info.getHostAddresses()[0], info.getPort());
+				m_soundManager.stopManager();
 				m_soundManager = new RemoteSoundManager(InstrumentService.this, m_handler, socket);
 				showToast(R.string.client_connected);
 			} catch (Throwable e) {
@@ -149,14 +150,10 @@ public class InstrumentService extends Service {
 		 * Disconnect from server
 		 */
 		public void disconnect() {
-			try {
-				m_soundManager = null;
-			} catch (Throwable e) {
-				e.printStackTrace();
-			} finally {
-				m_soundManager = new LocalSoundManager(InstrumentService.this, m_handler);
-				showToast(R.string.client_disconnected);
-			}
+			m_soundManager.stopManager();
+			m_soundManager = new LocalSoundManager(InstrumentService.this, m_handler);
+			
+			showToast(R.string.client_disconnected);
 		}
 
 		/**

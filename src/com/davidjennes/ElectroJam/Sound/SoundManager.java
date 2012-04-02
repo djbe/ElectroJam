@@ -24,6 +24,8 @@ public abstract class SoundManager {
 	private Handler m_handler;
 	private Timer m_timer;
 	private int m_beats;
+	private long m_lastBeat;
+	public int id = new Random().nextInt(100);
 	
 	/**
 	 * Constructor
@@ -33,6 +35,7 @@ public abstract class SoundManager {
 		m_context = context;
 		m_handler = handler;
 		m_beats = -1;
+		m_lastBeat = 0;
 		m_timer = new Timer();
 		m_soundQueue = new ConcurrentHashMap<Integer, ScheduledSound>();
 		
@@ -45,11 +48,19 @@ public abstract class SoundManager {
 	 */
 	protected void finalize() throws Throwable {
 		try {
-			m_timer.cancel();
-			m_timer = null;
+			stopManager();
 		} finally {
 			super.finalize();
 		}
+	}
+	
+	/**
+	 * Stop this manager (and any of it's playing sounds)
+	 */
+	public void stopManager() {
+		if (m_timer != null)
+			m_timer.cancel();
+		m_timer = null;
 	}
 	
 	/**
@@ -76,25 +87,13 @@ public abstract class SoundManager {
 	 * @param id The sound's ID
 	 * @param looped Will loop if true
 	 */
-	public void playSound(int id, boolean looped) {
-		m_soundQueue.putIfAbsent(id, new ScheduledSound());
-		
-		ScheduledSound sound = m_soundQueue.get(id);
-		if (sound != null)
-			sound.setStop(false);
-	}
+	public abstract void playSound(int id, boolean looped);
 
 	/**
 	 * Stop a sound which is playing, and prepare it for playback again
 	 * @param id The sound's ID
 	 */
-	public void stopSound(int id) {
-		ScheduledSound sound = m_soundQueue.get(id);
-		
-		// Stop looping if it is
-		if (sound != null)
-			sound.setStop(true);
-	}
+	public abstract void stopSound(int id);
 
 	/**
 	 * Check if a sound is playing
@@ -104,14 +103,65 @@ public abstract class SoundManager {
 	public abstract boolean isPlaying(int id);
 	
 	/**
+	 * Check when the next beat will happen
+	 * @return Time in milliseconds
+	 */
+	public long timeUntilNextBeat() {
+		long tick = m_lastBeat + Sound.SAMPLE_LENGTH * ((BEATS_LIMIT - m_beats) % BEATS_LIMIT);
+		long now = System.currentTimeMillis();
+		
+		return (tick > now) ? tick - now : 0;
+	}
+	
+	/**
+	 * Schedule a sound to be looped
+	 * @param id The sound's ID
+	 */
+	protected ScheduledSound scheduleSound(int id) {
+		m_soundQueue.putIfAbsent(id, new ScheduledSound());
+		
+		ScheduledSound sound = m_soundQueue.get(id);
+		if (sound != null)
+			sound.setStop(false);
+		
+		return sound;
+	}
+	
+	/**
+	 * Remove a sound from loop schedule
+	 * @param id The sound's ID
+	 */
+	protected void unscheduleSound(int id) {
+		ScheduledSound sound = m_soundQueue.get(id);
+		
+		// Stop looping if it is
+		if (sound != null)
+			sound.setStop(true);
+	}
+	
+	/**
+	 * Restart the beat timer with a certain delay 
+	 * @param delay Delay in milliseconds
+	 */
+	protected void restartTimer(long delay) {
+		m_timer.cancel();
+		m_beats = -1;
+		
+		m_timer = new Timer();
+		m_timer.scheduleAtFixedRate(new Action(), delay, Sound.SAMPLE_LENGTH);
+	}
+	
+	/**
 	 * Send a progress update to clients
 	 * @param what Update kind
 	 * @param sound Which sound
 	 * @param progress Progress value (between 0 and 100)
 	 */
 	protected void sendProgressMessage(int what, int sound, int progress) {
-		Message msg = new Message();
+		if (m_handler == null)
+			return;
 		
+		Message msg = new Message();
 		msg.what = what;
 		msg.arg1 = sound;
 		msg.arg2 = progress;
@@ -125,6 +175,7 @@ public abstract class SoundManager {
 	class Action extends TimerTask {
 		public void run() {
 			m_beats = (m_beats + 1) % BEATS_LIMIT;
+			m_lastBeat = System.currentTimeMillis();
 			
 			// play each scheduled sound
 			for (Map.Entry<Integer, ScheduledSound> entry : m_soundQueue.entrySet()) {
