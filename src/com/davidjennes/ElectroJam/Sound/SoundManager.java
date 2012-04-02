@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 
@@ -53,10 +54,10 @@ public abstract class SoundManager {
 	
 	/**
 	 * Load a sound and prepare it for playback
-	 * @param resid The resource ID to load from
+	 * @param uri The path to the media file
 	 * @return The sound's ID
 	 */
-	public abstract int loadSound(int resid);
+	public abstract int loadSound(Uri uri);
 
 	/**
 	 * Free up the resources used by a sound

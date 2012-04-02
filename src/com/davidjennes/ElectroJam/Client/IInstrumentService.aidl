@@ -35,9 +35,10 @@ interface IInstrumentService {
 	/**
 	 * Load samples for current instrument
 	 * This WILL take a while, so make sure to use a Handler or aSyncTask
-	 * @param samples A list of samples, will be replaced by a list of IDs
+	 * @param samples A list of sample paths
+	 * @return A list of IDs
 	 */
-	void loadSamples(inout int [] samples);
+	int [] loadSamples(in String [] samples);
 	
 	/**
 	 * Unload the specified sounds

@@ -10,6 +10,7 @@ import javax.jmdns.ServiceInfo;
 
 import android.app.Service;
 import android.content.Intent;
+import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiManager.MulticastLock;
 import android.os.AsyncTask;
@@ -99,12 +100,12 @@ public class InstrumentService extends Service {
 		 * @return List of server IDs
 		 */
 		public int[] availableServers() throws RemoteException {
-			Integer[] services = (Integer[]) m_services.keySet().toArray();
-			
+			int i = 0;
+
 			// convert to primitives array
-			int[] result = new int[services.length];
-			for (int i = 0; i < result.length; ++i)
-				result[i] = services[i];
+			int[] result = new int[m_services.size()];
+			for (Integer id : m_services.keySet())
+				result[i++] = id;
 			
 			return result;
 		}
@@ -168,11 +169,16 @@ public class InstrumentService extends Service {
 		/**
 		 * Load samples for current instrument
 		 * This WILL take a while, so make sure to use a Handler or aSyncTask
-		 * @param samples A list of samples, will be replaced by a list of IDs
+		 * @param samples A list of sample paths
+		 * @return A list of IDs
 		 */
-		public void loadSamples(int[] samples) throws RemoteException {
+		public int[] loadSamples(String[] samples) {
+			int[] result = new int[samples.length];
+			
 			for (int i = 0; i < samples.length; ++i)
-				samples[i] = m_soundManager.loadSound(samples[i]);
+				result[i] = m_soundManager.loadSound(Uri.parse(samples[i]));
+			
+			return result;
 		}
 		
 		/**

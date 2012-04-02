@@ -3,9 +3,9 @@ package com.davidjennes.ElectroJam.Sound;
 import java.io.IOException;
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnErrorListener;
+import android.net.Uri;
 import android.util.Log;
 
 /**
@@ -17,17 +17,17 @@ class Sound implements OnErrorListener {
 	
 	private MediaPlayer m_mp;
 	private Context m_context;
-	private int m_resID;
+	private Uri m_uri;
 	private int m_skipLimit;
 	
 	/**
 	 * Constructor
 	 * @param context The activity's context
-	 * @param resid The resource ID to load from
+	 * @param uri The URI to the media file
 	 */
-	public Sound(Context context, int resid) {
-		m_mp = create(context, resid);
-		m_resID = resid;
+	public Sound(Context context, Uri uri) {
+		m_mp = create(context, uri);
+		m_uri = uri;
 		m_context = context;
 		
 		// calculate skip limit based on duration
@@ -101,15 +101,10 @@ class Sound implements OnErrorListener {
 	 * @param resid The resource ID
 	 * @return A MediaPlayer instance
 	 */
-	private MediaPlayer create(Context context, int resid) {
+	private MediaPlayer create(Context context, Uri resource) {
 		try {
-			AssetFileDescriptor afd = context.getResources().openRawResourceFd(resid);
-			if (afd == null)
-				return null;
-
 			MediaPlayer mp = new MediaPlayer();
-			mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-			afd.close();
+			mp.setDataSource(context, resource);
 			mp.setOnErrorListener(this);
 			mp.prepare();
 
@@ -134,7 +129,7 @@ class Sound implements OnErrorListener {
 	 */
 	public boolean onError(MediaPlayer player, int what, int extra) {
 		m_mp.release();
-		m_mp = create(m_context, m_resID);
+		m_mp = create(m_context, m_uri);
 		
 		switch (what) {
 		case MediaPlayer.MEDIA_ERROR_SERVER_DIED:

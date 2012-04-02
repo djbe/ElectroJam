@@ -161,11 +161,11 @@ public class LooperInstrument extends Activity {
 			// Get associations data
 	        int[] buttons = getTypedArrayAsIDArray(R.array.buttons);
 	        int[] progressBars = getTypedArrayAsIDArray(R.array.progress_bars);
+	        String[] sounds = getTypedArrayAsStringArray(R.array.sounds);
 	        
 	        // load sounds
 	        try {
-		        m_sounds = getTypedArrayAsIDArray(R.array.sounds);
-				m_instrumentService.loadSamples(m_sounds);
+				m_sounds = m_instrumentService.loadSamples(sounds);
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -205,9 +205,25 @@ public class LooperInstrument extends Activity {
     	TypedArray array = getResources().obtainTypedArray(id);
     	
     	// convert to primite type
-    	int[] result = new int [array.length()];
+    	int[] result = new int[array.length()];
     	for (int i = 0; i < result.length; ++i)
     		result[i] = array.getResourceId(i, -1);
+    	
+    	return result;
+    }
+    
+    /**
+     * Convert a typed array resource into a primitive array
+     * @param id The resource ID
+     * @return An array of Strings
+     */
+    private String[] getTypedArrayAsStringArray(int id) {
+    	TypedArray array = getResources().obtainTypedArray(id);
+    	
+    	// convert to primite type
+    	String[] result = new String[array.length()];
+    	for (int i = 0; i < result.length; ++i)
+    		result[i] = "android.resource://" + getPackageName() + "/raw/" + array.getResourceId(i, -1);
     	
     	return result;
     }

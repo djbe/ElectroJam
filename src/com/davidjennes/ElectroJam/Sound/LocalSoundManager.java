@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Handler;
 
 public class LocalSoundManager extends SoundManager {
@@ -35,9 +36,9 @@ public class LocalSoundManager extends SoundManager {
 	/**
 	 * @see com.davidjennes.ElectroJam.Sound.SoundManager#loadSound(int)
 	 */
-	public int loadSound(int resid) {
+	public int loadSound(Uri uri) {
 		int id = RANDOM.nextInt();
-		m_sounds.put(id, new Sound(m_context, resid));
+		m_sounds.put(id, new Sound(m_context, uri));
 
 		return id;
 	}
