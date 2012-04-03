@@ -149,7 +149,7 @@ public class ServerWorker extends Thread {
 			int read;
 			
 			// create storage file
-			File file = new File(m_cacheDir, m_id.toString() + id + ".ogg");
+			File file = new File(m_cacheDir, m_id.toString() + id + ".m4a");
 			FileOutputStream fos = new FileOutputStream(file);
 			
 			// receive file from client
@@ -177,7 +177,7 @@ public class ServerWorker extends Thread {
 	 * @param id The sound's ID
 	 */
 	private void deleteFile(int id) {
-		File file = new File(m_cacheDir, m_id.toString() + id + ".ogg");
+		File file = new File(m_cacheDir, m_id.toString() + id + ".m4a");
 		
 		if (!file.delete())
 			Log.i(TAG, "Could not delete cache file!");
